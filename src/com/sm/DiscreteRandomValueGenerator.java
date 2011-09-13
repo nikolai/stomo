@@ -11,7 +11,7 @@ public class DiscreteRandomValueGenerator {
     private final DistributionFunction distributionFunction;
 
     private DiscreteRandomValueGenerator(DistributionTable distributionTable){
-        distributionFunction = new DistributionFunction(distributionTable);
+        distributionFunction = DistributionFunction.createByTable(distributionTable);
     }
 
     public static DiscreteRandomValueGenerator get(DistributionTable distributionTable) {

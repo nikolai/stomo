@@ -12,23 +12,31 @@ import java.util.*;
  * Time: 16:55
  */
 public class DistributionFunction {
-    private final SortedMap<DiscreteValue, Probability> distributionFunction = new TreeMap<DiscreteValue, Probability>();
+    private SortedMap<DiscreteValue, Probability> distributionFunction;
     private final DistributionTable distributionTable;
 
-    public DistributionFunction(DistributionTable distributionTable) {
+    private DistributionFunction(DistributionTable distributionTable) {
         this.distributionTable = distributionTable;
+    }
+    public static DistributionFunction createByTable(DistributionTable distributionTable) {
+        return new DistributionFunction(distributionTable);
+    }
 
-        distributionFunction.put(distributionTable.getDiscreteValueInRow(0), distributionTable.getProbabilityInRow(0));
+    private void safeDistributionFunctionCalc() {
+        if (distributionFunction == null) {
+            distributionFunction = new TreeMap<DiscreteValue, Probability>();
+            distributionFunction.put(distributionTable.getDiscreteValueInRow(0), distributionTable.getProbabilityInRow(0));
 
-        Probability previousDistrFuncEvaluation = distributionFunction.get(distributionFunction.firstKey());
-        for (int i = 1; i < distributionTable.size(); i++) {
-            Probability sum = previousDistrFuncEvaluation.plus(distributionTable.getProbabilityInRow(i));
-            distributionFunction.put(distributionTable.getDiscreteValueInRow(i), sum);
-            previousDistrFuncEvaluation = sum;
+            Probability previousDistrFuncEvaluation = distributionFunction.get(distributionFunction.firstKey());
+            for (int i = 1; i < distributionTable.size(); i++) {
+                Probability sum = previousDistrFuncEvaluation.plus(distributionTable.getProbabilityInRow(i));
+                distributionFunction.put(distributionTable.getDiscreteValueInRow(i), sum);
+                previousDistrFuncEvaluation = sum;
+            }
         }
     }
     
-    public DistributionFunction(Experiment experiment) {
+    private DistributionFunction(Experiment experiment) {
         DiscreteValue[] vals = experiment.getMeasurements();
         // calc count
         Map<DiscreteValue, Integer> count = new TreeMap();
@@ -48,8 +56,11 @@ public class DistributionFunction {
             this.distributionTable.put(key, p);
         }
     }
+    public static DistributionFunction createByExperiment(Experiment experiment) {
+        return new DistributionFunction(experiment);
+    }
 
-    public DistributionFunction(CompatibleExperiments compatibleExperiments) {
+    private DistributionFunction(CompatibleExperiments compatibleExperiments) {
 
         // calc count
         Map<DiscreteValue, Integer> count = new TreeMap();
@@ -61,11 +72,8 @@ public class DistributionFunction {
             DiscreteValue max = SMMath.max(eventsData);
             Integer number = count.get(max);
 
-            if (number == null) {
-                number = 0;
-            }
-
-            count.put(max, ++number);
+            number = number != null ? number+1 : 1;
+            count.put(max, number);
         }
 
         // calc distribution
@@ -75,8 +83,38 @@ public class DistributionFunction {
             this.distributionTable.put(key, p);
         }
     }
+    public static DistributionFunction createByCompatibleExperiments(CompatibleExperiments compatibleExperiments) {
+        return new DistributionFunction(compatibleExperiments);
+    }
+
+    /**
+     * Analytical distribution function of several compatibles (AND-parallelism)
+     * */
+    private DistributionFunction(CompatibleDistributionFunctions compatibleDistributionFunctions) {
+        // calc distribution
+        this.distributionTable = new DistributionTable();
+
+        double previousEvaluationOfDF = 0;
+        for (DiscreteValue discreteVal : compatibleDistributionFunctions.getDiscreteValueSet()) {
+            double multiplication = 1;
+            for (DistributionFunction df : compatibleDistributionFunctions.getDistributionFunctions()) {
+                multiplication *= df.eval(discreteVal);
+            }
+
+            Probability p = new Probability(multiplication - previousEvaluationOfDF);
+            this.distributionTable.put(discreteVal, p);
+
+            previousEvaluationOfDF = multiplication;
+        }
+    }
+
+    public static DistributionFunction createByCompatibleDistributionFunctions(CompatibleDistributionFunctions cdf) {
+        return new DistributionFunction(cdf);
+    }
+
 
     public double eval(DiscreteValue discreteValue) {
+        safeDistributionFunctionCalc();
         return distributionFunction.get(discreteValue).getValue();
     }
 

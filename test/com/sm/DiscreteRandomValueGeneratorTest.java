@@ -33,7 +33,7 @@ public class DiscreteRandomValueGeneratorTest {
 
 //        System.out.println("experiments = " + Arrays.toString(experiment.getMeasurements().toArray()));
 
-        DistributionFunction df = new DistributionFunction(experiment);
+        DistributionFunction df = DistributionFunction.createByExperiment(experiment);
         DistributionTable dt_ = df.getDistributionTable();
         System.out.println("distribTable:\n" + dt_.toString());
 
@@ -66,17 +66,17 @@ public class DiscreteRandomValueGeneratorTest {
         Experiment experiment1 = new Experiment();
         Experiment experiment2 = new Experiment();
         CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2);
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 100000; i++) {
             experiment1.addMeasurement(generator1.getNext());
             experiment2.addMeasurement(generator2.getNext());
         }
 
-        DistributionFunction df = new DistributionFunction(ce);
+        DistributionFunction df = DistributionFunction.createByCompatibleExperiments(ce);
 
         DistributionTable dt_ = df.getDistributionTable();
         System.out.println("Compatible events distribution table:\n" + dt_);
 
-        double error = 0.001;
+        double error = 0.01;
         Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(0).getValue() - 0.01) < error, true);
         Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(1).getValue() - 0.03) < error, true);
         Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(2).getValue() - 0.45) < error, true);
@@ -84,5 +84,43 @@ public class DiscreteRandomValueGeneratorTest {
         Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(4).getValue() - 0.19) < error, true);
 
         pAll.finishPrint();
+    }
+
+    @Test
+    public void test_compatible_distribution_functions_analytical() {
+        DiscreteRandomValueGenerator generator1 = DiscreteRandomValueGenerator.get(dt);
+        DiscreteRandomValueGenerator generator2 = DiscreteRandomValueGenerator.get(dt);
+
+        Experiment experiment1 = new Experiment();
+        Experiment experiment2 = new Experiment();
+        for (int i = 0; i < 100000; i++) {
+            experiment1.addMeasurement(generator1.getNext());
+            experiment2.addMeasurement(generator2.getNext());
+        }
+
+        // analytical
+        DistributionFunction df1 = DistributionFunction.createByExperiment(experiment1);
+        DistributionFunction df2 = DistributionFunction.createByExperiment(experiment2);
+        CompatibleDistributionFunctions cdf = new CompatibleDistributionFunctions(df1, df2);
+
+        // analytically
+        DistributionFunction dfAnalytical = DistributionFunction.createByCompatibleDistributionFunctions(cdf);
+
+
+        // modelling
+        CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2);
+        DistributionFunction dfModelling = DistributionFunction.createByCompatibleExperiments(ce);
+
+        double error = 0.001;
+        for (int i = 0; i < 5; i ++) {
+            assertEquals(
+                dfAnalytical.getDistributionTable().getProbabilityInRow(i).getValue(),
+                dfModelling.getDistributionTable().getProbabilityInRow(i).getValue(),
+                error);
+        }
+    }
+
+    public static void assertEquals(double a, double b, double error) {
+        Assert.assertEquals(a + " and " + b + " are not equal with error " + error, Math.abs(a - b) < error, true);
     }
 }
