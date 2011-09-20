@@ -16,8 +16,21 @@ public class DistributionFunction {
     private final DistributionTable distributionTable;
 
     private DistributionFunction(DistributionTable distributionTable) {
+        checkDT(distributionTable);
         this.distributionTable = distributionTable;
     }
+
+    public static void checkDT(DistributionTable dt) {
+        double sum = 0;
+        for (int i = 0; i < dt.size(); i++) {
+            sum += dt.getProbabilityInRow(i).getValue();
+        }
+        double error = 0.0000000001;
+        if (Math.abs(sum - 1) > error) {
+            throw new IllegalArgumentException("Invalid distribution table!\n" + dt);
+        }
+    }
+
     public static DistributionFunction createByTable(DistributionTable distributionTable) {
         return new DistributionFunction(distributionTable);
     }
@@ -35,86 +48,13 @@ public class DistributionFunction {
             }
         }
     }
-    
-    private DistributionFunction(Experiment experiment) {
-        DiscreteValue[] vals = experiment.getMeasurements();
-        // calc count
-        Map<DiscreteValue, Integer> count = new TreeMap();
-        for (DiscreteValue val : vals) {
-            if (count.containsKey(val)) {
-                int number = count.get(val);
-                count.put(val, ++number);
-            } else {
-                count.put(val, 1);
-            }
-        }
-
-        // calc distribution
-        this.distributionTable = new DistributionTable();
-        for (DiscreteValue key : count.keySet()) {
-            Probability p = new Probability(count.get(key) / (double) experiment.getSize());
-            this.distributionTable.put(key, p);
-        }
-    }
-    public static DistributionFunction createByExperiment(Experiment experiment) {
-        return new DistributionFunction(experiment);
-    }
-
-    private DistributionFunction(CompatibleExperiments compatibleExperiments) {
-
-        // calc count
-        Map<DiscreteValue, Integer> count = new TreeMap();
-
-        int numOfMeasurements = compatibleExperiments.getSizeOfExperiments();
-        for (int i = 0; i < numOfMeasurements; i++) {
-
-            DiscreteValue[] eventsData = compatibleExperiments.getExperimentsData(i);
-            DiscreteValue max = SMMath.max(eventsData);
-            Integer number = count.get(max);
-
-            number = number != null ? number+1 : 1;
-            count.put(max, number);
-        }
-
-        // calc distribution
-        this.distributionTable = new DistributionTable();
-        for (DiscreteValue key : count.keySet()) {
-            Probability p = new Probability(count.get(key) / (double) compatibleExperiments.getSizeOfExperiments());
-            this.distributionTable.put(key, p);
-        }
-    }
-    public static DistributionFunction createByCompatibleExperiments(CompatibleExperiments compatibleExperiments) {
-        return new DistributionFunction(compatibleExperiments);
-    }
-
-    /**
-     * Analytical distribution function of several compatibles (AND-parallelism)
-     * */
-    private DistributionFunction(CompatibleDistributionFunctions compatibleDistributionFunctions) {
-        // calc distribution
-        this.distributionTable = new DistributionTable();
-
-        double previousEvaluationOfDF = 0;
-        for (DiscreteValue discreteVal : compatibleDistributionFunctions.getDiscreteValueSet()) {
-            double multiplication = 1;
-            for (DistributionFunction df : compatibleDistributionFunctions.getDistributionFunctions()) {
-                multiplication *= df.eval(discreteVal);
-            }
-
-            Probability p = new Probability(multiplication - previousEvaluationOfDF);
-            this.distributionTable.put(discreteVal, p);
-
-            previousEvaluationOfDF = multiplication;
-        }
-    }
-
-    public static DistributionFunction createByCompatibleDistributionFunctions(CompatibleDistributionFunctions cdf) {
-        return new DistributionFunction(cdf);
-    }
-
 
     public double eval(DiscreteValue discreteValue) {
         safeDistributionFunctionCalc();
+
+        if (distributionFunction.get(discreteValue) == null && distributionFunction.firstKey().compareTo(discreteValue) > 0) {
+            return 0;
+        }
         return distributionFunction.get(discreteValue).getValue();
     }
 

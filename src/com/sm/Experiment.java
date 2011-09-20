@@ -11,6 +11,11 @@ import java.util.List;
 public class Experiment {
     private final List<DiscreteValue> measurements = new LinkedList<DiscreteValue>();
     private DiscreteValue[] measurementsArray;
+    private final DiscreteRandomValueGenerator generator;
+
+    public Experiment(DiscreteRandomValueGenerator generator) {
+        this.generator = generator;
+    }
 
     public void addMeasurement(DiscreteValue value) {
         measurementsArray = null;
@@ -26,5 +31,16 @@ public class Experiment {
 
     public int getSize() {
         return measurements.size();
+    }
+
+    public void run(int count) {
+        assert count >= 0;
+        for (int i = 0; i < count; i++) {
+            runOnce();
+        }
+    }
+
+    public void runOnce() {
+        addMeasurement(generator.getNext());
     }
 }

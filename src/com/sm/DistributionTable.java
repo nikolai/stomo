@@ -34,6 +34,10 @@ public class DistributionTable {
         return cachedEntries[rowNum].getValue();
     }
 
+    public Probability getProbability(DiscreteValue dv) {
+        return table.get(dv);
+    }
+
     private static String separator = "\t|\t";
     @Override
     public String toString() {

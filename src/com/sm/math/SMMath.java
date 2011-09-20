@@ -29,4 +29,9 @@ public class SMMath {
 //        }
 //        return max;
     }
+
+    public static DiscreteValue min(DiscreteValue[] eventsData) {
+        Arrays.sort(eventsData);
+        return eventsData[0];
+    }
 }

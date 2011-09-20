@@ -30,4 +30,8 @@ public class CompatibleDistributionFunctions {
     public DistributionFunction[] getDistributionFunctions() {
         return compatibleDistributionFunctions;
     }
+
+    public int getSize() {
+        return compatibleDistributionFunctions.length;
+    }
 }

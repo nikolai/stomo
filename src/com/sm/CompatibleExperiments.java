@@ -1,7 +1,11 @@
 package com.sm;
 
+import sun.reflect.generics.tree.ArrayTypeSignature;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 /**
  * User: smirnov-n
@@ -39,5 +43,32 @@ public class CompatibleExperiments {
             eventsData.add(exp.getMeasurements()[measurementIndex]);
         }
         return eventsData.toArray(new DiscreteValue[0]);
+    }
+
+    public Set<DiscreteValue> getDiscreteValueSet() {
+        List<DistributionFunction> dfList = new ArrayList<DistributionFunction>(getNumberOfExperiments());
+        for (Experiment exp : experiments) {
+            dfList.add(ModellingDF.get().createSingle(exp));
+        }
+        return new CompatibleDistributionFunctions(dfList.toArray(new DistributionFunction[0])).getDiscreteValueSet();
+    }
+
+    public void run(int count) {
+        assert count >= 0;
+        for (int i = 0; i < count; i++) {
+            for (Experiment exp : experiments) {
+                exp.runOnce();
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < getNumberOfExperiments(); i++) {
+            sb.append(i + "|" + Arrays.toString(experiments[i].getMeasurements()) + "\n");
+
+        }
+        return sb.toString();
     }
 }
