@@ -88,4 +88,31 @@ public class ModellingDF {
 
         return DistributionFunction.createByTable(distributionTable);
     }
+
+    public DistributionFunction createMNParallelism(CompatibleExperiments compatibleExperiments, int M) {
+        // calc count
+        Map<DiscreteValue, Integer> count = new TreeMap();
+
+        int numOfMeasurements = compatibleExperiments.getSizeOfExperiments();
+        for (int i = 0; i < numOfMeasurements; i++) {
+
+            DiscreteValue[] eventsData = compatibleExperiments.getExperimentsData(i);
+            DiscreteValue min = SMMath.min(M, eventsData);
+            Integer number = count.get(min);
+
+            number = number != null ? number+1 : 1;
+            count.put(min, number);
+        }
+
+        // calc distribution
+        DistributionTable distributionTable = new DistributionTable();
+        for (DiscreteValue key : count.keySet()) {
+            Probability p = new Probability(count.get(key) / (double) compatibleExperiments.getSizeOfExperiments());
+            distributionTable.put(key, p);
+        }
+
+        return DistributionFunction.createByTable(distributionTable);
+    }
+
+
 }

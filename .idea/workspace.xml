@@ -20,7 +20,20 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/sm/AnalyticalDF.java" line="42" class="com.sm.AnalyticalDF" package="com.sm">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/sm/AnalyticalDF.java" line="73" class="com.sm.AnalyticalDF" package="com.sm">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/sm/AnalyticalDF.java" line="71" class="com.sm.AnalyticalDF" package="com.sm">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -77,7 +90,7 @@
       <file leaf-file-name="ModellingDF.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/sm/ModellingDF.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="51" selection-start="2199" selection-end="2199" vertical-scroll-proportion="0.0">
+            <state line="100" column="34" selection-start="3648" selection-end="3648" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -88,7 +101,7 @@
       <file leaf-file-name="SMMath.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/sm/math/SMMath.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="27" selection-start="836" selection-end="836" vertical-scroll-proportion="0.0">
+            <state line="43" column="31" selection-start="1087" selection-end="1087" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -97,7 +110,7 @@
       <file leaf-file-name="DiscreteRandomValueGeneratorTest.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/com/sm/DiscreteRandomValueGeneratorTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="155" column="48" selection-start="6936" selection-end="6936" vertical-scroll-proportion="1.3105023">
+            <state line="270" column="17" selection-start="12104" selection-end="12104" vertical-scroll-proportion="0.8259386">
               <folding />
             </state>
           </provider>
@@ -106,53 +119,19 @@
       <file leaf-file-name="AnalyticalDF.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/sm/AnalyticalDF.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="33" selection-start="2411" selection-end="2411" vertical-scroll-proportion="0.0">
+            <state line="85" column="49" selection-start="3324" selection-end="3324" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LowestDiscreteValue.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sm/LowestDiscreteValue.java">
+      <file leaf-file-name="DistributionFunctionByValueBuilder.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionFunctionByValueBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="33" selection-start="232" selection-end="232" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DiscreteValue.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sm/DiscreteValue.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="76" selection-start="723" selection-end="723" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CompatiblePDF.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sm/CompatiblePDF.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="584" selection-end="584" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CompatibleDistributionFunctions.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sm/CompatibleDistributionFunctions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="34" selection-start="982" selection-end="982" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProbabilityDensityFunction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sm/ProbabilityDensityFunction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="27" selection-start="626" selection-end="626" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="15" column="71" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -160,7 +139,7 @@
       <file leaf-file-name="DistributionFunction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionFunction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="39" selection-start="1872" selection-end="1872" vertical-scroll-proportion="0.0">
+            <state line="14" column="59" selection-start="307" selection-end="307" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -183,20 +162,20 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/sm/DiscreteRandomValueGenerator.java" />
         <option value="$PROJECT_DIR$/src/com/sm/DistributionFunctionFactory.java" />
         <option value="$PROJECT_DIR$/src/com/sm/AndParallelismDF.java" />
         <option value="$PROJECT_DIR$/src/com/sm/DistributionTable.java" />
         <option value="$PROJECT_DIR$/src/com/sm/ProbabilityDensityFunction.java" />
         <option value="$PROJECT_DIR$/src/com/sm/Experiment.java" />
         <option value="$PROJECT_DIR$/src/com/sm/CompatibleExperiments.java" />
-        <option value="$PROJECT_DIR$/src/com/sm/math/SMMath.java" />
         <option value="$PROJECT_DIR$/src/com/sm/CompatibleDistributionFunctions.java" />
         <option value="$PROJECT_DIR$/src/com/sm/CompatiblePDF.java" />
-        <option value="$PROJECT_DIR$/src/com/sm/ModellingDF.java" />
         <option value="$PROJECT_DIR$/src/com/sm/LowestDsicreteValue.java" />
         <option value="$PROJECT_DIR$/src/com/sm/LowestDiscreteValue.java" />
         <option value="$PROJECT_DIR$/src/com/sm/DistributionFunction.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/ModellingDF.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/math/SMMath.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/DistributionFunctionByValueBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/sm/AnalyticalDF.java" />
         <option value="$PROJECT_DIR$/test/com/sm/DiscreteRandomValueGeneratorTest.java" />
       </list>
@@ -542,14 +521,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1288" height="1032" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23730685" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Analyze Dataflow to" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.3156733" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="-1276" y="709" width="920" height="286" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.3156733" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="-1276" y="708" width="920" height="286" />
       <window_info id="Analyze Dataflow from" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="simpleUML" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32927817" sideWeight="0.76269317" order="2" side_tool="false" content_ui="tabs" />
@@ -561,7 +540,7 @@
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32927817" sideWeight="0.76269317" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.23438767" sideWeight="0.7494481" order="0" side_tool="false" content_ui="tabs" x="-360" y="0" width="360" height="999" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.410596" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22516556" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.22516556" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="-1278" y="709" width="919" height="283" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -615,23 +594,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/sm/IntDiscreteValue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="29" selection-start="244" selection-end="244" vertical-scroll-proportion="0.35843372">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sm/Probability.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="4" selection-start="266" selection-end="266" vertical-scroll-proportion="0.38403615">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="33" selection-start="525" selection-end="530" vertical-scroll-proportion="0.43674698">
           <folding />
         </state>
       </provider>
@@ -650,81 +615,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/math/SMMath.java">
+    <entry file="file://$PROJECT_DIR$/src/com/sm/LowestDiscreteValue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="27" selection-start="836" selection-end="836" vertical-scroll-proportion="0.0">
+        <state line="11" column="33" selection-start="232" selection-end="232" vertical-scroll-proportion="0.27703702">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/CompatibleDistributionFunctions.java">
+    <entry file="file://$PROJECT_DIR$/src/com/sm/DiscreteValue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="34" selection-start="982" selection-end="982" vertical-scroll-proportion="0.0">
+        <state line="33" column="76" selection-start="723" selection-end="723" vertical-scroll-proportion="0.7777778">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sm/CompatiblePDF.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="584" selection-end="584" vertical-scroll-proportion="0.0">
+        <state line="18" column="0" selection-start="584" selection-end="584" vertical-scroll-proportion="0.45333335">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/CompatibleDistributionFunctions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="34" selection-start="982" selection-end="982" vertical-scroll-proportion="0.6474074">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sm/ProbabilityDensityFunction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="27" selection-start="626" selection-end="626" vertical-scroll-proportion="0.0">
+        <state line="23" column="27" selection-start="626" selection-end="626" vertical-scroll-proportion="0.5792593">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/ModellingDF.java">
+    <entry file="file://$PROJECT_DIR$/src/com/sm/math/SMMath.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="51" selection-start="2199" selection-end="2199" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/DiscreteValue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="76" selection-start="723" selection-end="723" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.8.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="40" selection-start="397" selection-end="397" vertical-scroll-proportion="0.26898733">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/LowestDiscreteValue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="33" selection-start="232" selection-end="232" vertical-scroll-proportion="0.0">
+        <state line="43" column="31" selection-start="1087" selection-end="1087" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionFunction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="39" selection-start="1872" selection-end="1872" vertical-scroll-proportion="0.0">
+        <state line="14" column="59" selection-start="307" selection-end="307" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="25" selection-start="611" selection-end="611" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/ModellingDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="100" column="34" selection-start="3648" selection-end="3648" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionFunctionByValueBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="71" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.8.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="40" selection-start="397" selection-end="397" vertical-scroll-proportion="0.19906323">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sm/AnalyticalDF.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="33" selection-start="2411" selection-end="2411" vertical-scroll-proportion="0.0">
+        <state line="85" column="49" selection-start="3324" selection-end="3324" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/com/sm/DiscreteRandomValueGeneratorTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="155" column="48" selection-start="6936" selection-end="6936" vertical-scroll-proportion="1.3105023">
+        <state line="270" column="17" selection-start="12104" selection-end="12104" vertical-scroll-proportion="0.8259386">
           <folding />
         </state>
       </provider>

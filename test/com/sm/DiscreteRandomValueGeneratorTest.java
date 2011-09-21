@@ -113,8 +113,6 @@ public class DiscreteRandomValueGeneratorTest {
 
     @Test
     public void test_modelling_OR_parallelism() {
-        System.out.println("Distribution table:\n" + dt.toString());
-
         Experiment experiment1 = new Experiment(generator1);
         Experiment experiment2 = new Experiment(generator2);
 //        Experiment experiment3 = new Experiment(generator3);
@@ -137,8 +135,6 @@ public class DiscreteRandomValueGeneratorTest {
 
     @Test
     public void test_analytical_OR_parallelism() {
-        System.out.println("Distribution table:\n" + dt.toString());
-
         Experiment experiment1 = new Experiment(generator1);
         Experiment experiment2 = new Experiment(generator2);
 //        Experiment experiment3 = new Experiment(generator3);
@@ -160,14 +156,115 @@ public class DiscreteRandomValueGeneratorTest {
 
         System.out.println("OR distribution table (analytical):\n" + analyticalDF.getDistributionTable());
 
-        double error = 0.001;
+        double error = 0.005;
         for (int i = 0; i < 5; i ++) {
             assertEquals(
                 analyticalDF.getDistributionTable().getProbabilityInRow(i).getValue(),
                 modellingDF.getDistributionTable().getProbabilityInRow(i).getValue(),
                 error);
         }
+    }
 
+    @Test
+    public void test_modelling_MN_AND_parallelism() {
+        Experiment experiment1 = new Experiment(generator1);
+        Experiment experiment2 = new Experiment(generator2);
+
+        CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2);
+        ce.run(100000);
+
+//        System.out.println("Measurements:\n" + ce.toString());
+
+        DistributionFunction mnParallelismDF = ModellingDF.get().createMNParallelism(ce, 2);
+        System.out.println("MN distribution table (modelling):\n" + mnParallelismDF.getDistributionTable());
+
+        DistributionFunction andParallelismDF = ModellingDF.get().createAndParallelism(ce);
+
+        double error = 0.001;
+
+        for (int i = 0; i < andParallelismDF.getDistributionTable().size(); i++) {
+            assertEquals(
+                    andParallelismDF.getDistributionTable().getProbabilityInRow(i).getValue(),
+                    mnParallelismDF.getDistributionTable().getProbabilityInRow(i).getValue(), error);
+        }
+    }
+
+    @Test
+    public void test_modelling_MN_OR_parallelism() {
+        Experiment experiment1 = new Experiment(generator1);
+        Experiment experiment2 = new Experiment(generator2);
+
+        CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2);
+        ce.run(100000);
+
+//        System.out.println("Measurements:\n" + ce.toString());
+
+        DistributionFunction mnParallelismDF = ModellingDF.get().createMNParallelism(ce, 1);
+        System.out.println("MN distribution table (modelling):\n" + mnParallelismDF.getDistributionTable());
+
+        DistributionFunction orParallelismDF = ModellingDF.get().createOrParallelism(ce);
+
+        double error = 0.001;
+
+        for (int i = 0; i < orParallelismDF.getDistributionTable().size(); i++) {
+            assertEquals(
+                    orParallelismDF.getDistributionTable().getProbabilityInRow(i).getValue(),
+                    mnParallelismDF.getDistributionTable().getProbabilityInRow(i).getValue(), error);
+        }
+    }
+
+    @Test
+    public void test_modelling_MN_parallelism() {
+        Experiment experiment1 = new Experiment(generator1);
+        Experiment experiment2 = new Experiment(generator2);
+        Experiment experiment3 = new Experiment(generator3);
+
+        CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2, experiment3);
+        ce.run(100000);
+
+//        System.out.println("Measurements:\n" + ce.toString());
+
+        DistributionFunction mnParallelismDF = ModellingDF.get().createMNParallelism(ce, 2);
+        System.out.println("MN (2 of 3) distribution table (modelling):\n" + mnParallelismDF.getDistributionTable());
+
+
+        double error = 0.005;
+
+        assertEquals(0.0284, mnParallelismDF.getDistributionTable().getProbabilityInRow(0).getValue(), error);
+        assertEquals(0.07698, mnParallelismDF.getDistributionTable().getProbabilityInRow(1).getValue(), error);
+        assertEquals(0.67728, mnParallelismDF.getDistributionTable().getProbabilityInRow(2).getValue(), error);
+        assertEquals(0.18962, mnParallelismDF.getDistributionTable().getProbabilityInRow(3).getValue(), error);
+        assertEquals(0.02772, mnParallelismDF.getDistributionTable().getProbabilityInRow(4).getValue(), error);
+    }
+
+     @Test
+    public void test_analytical_modelling_MN_AND_parallelism() {
+        Experiment experiment1 = new Experiment(generator1);
+        Experiment experiment2 = new Experiment(generator2);
+        Experiment experiment3 = new Experiment(generator3);
+
+        CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2, experiment3);
+        ce.run(100000);
+
+
+        CompatibleDistributionFunctions cdf = new CompatibleDistributionFunctions(
+                ModellingDF.get().createSingle(experiment1),
+                ModellingDF.get().createSingle(experiment2),
+                ModellingDF.get().createSingle(experiment3));
+
+        int M = 2;
+        DistributionFunction mnParallelismDF = AnalyticalDF.get().createMN(cdf, M);
+        System.out.println("MN (2 of 3) distribution table (analytical):\n" + mnParallelismDF.getDistributionTable());
+
+        DistributionFunction mnModellingDF = ModellingDF.get().createMNParallelism(ce, M);
+
+        double error = 0.001;
+
+        for (int i = 0; i < mnModellingDF.getDistributionTable().size(); i++) {
+            assertEquals(
+                    mnModellingDF.getDistributionTable().getProbabilityInRow(i).getValue(),
+                    mnParallelismDF.getDistributionTable().getProbabilityInRow(i).getValue(), error);
+        }
     }
 
     public static void assertEquals(double a, double b, double error) {
