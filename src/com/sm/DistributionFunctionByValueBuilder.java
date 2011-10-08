@@ -23,15 +23,16 @@ public class DistributionFunctionByValueBuilder {
         Iterator<DiscreteValue> dvIt = distributionFunction.keySet().iterator();
         DiscreteValue firstDV = dvIt.next();
         DistributionTable dt = new DistributionTable();
-        dt.put(firstDV, distributionFunction.get(firstDV));
+        double previousEvaluationOfDF = distributionFunction.get(firstDV).getValue();
+        dt.put(firstDV, new Probability(previousEvaluationOfDF));
 
-        double previousEvaluationOfDF = 0;
+
         while(dvIt.hasNext()) {
             DiscreteValue curDV = dvIt.next();
-            Probability p = new Probability(previousEvaluationOfDF + distributionFunction.get(curDV).getValue());
+            Probability p = new Probability(distributionFunction.get(curDV).getValue()-previousEvaluationOfDF);
             dt.put(curDV, p);
 
-            previousEvaluationOfDF = p.getValue();
+            previousEvaluationOfDF = distributionFunction.get(curDV).getValue();
         }
 
         return DistributionFunction.createByTable(dt);
