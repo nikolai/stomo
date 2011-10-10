@@ -279,7 +279,7 @@ public class DiscreteRandomValueGeneratorTest {
         System.out.println("MN (2 of 3) distribution table (modelling):\n" + mnParallelismDF.getDistributionTable());
 
 
-        double error = 0.005;
+        double error = 0.01;
 
         assertEquals(0.0284, mnParallelismDF.getDistributionTable().getProbabilityInRow(0).getValue(), error);
         assertEquals(0.07698, mnParallelismDF.getDistributionTable().getProbabilityInRow(1).getValue(), error);

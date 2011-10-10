@@ -18,6 +18,7 @@ public class DistributionFunction {
     private DistributionFunction(DistributionTable distributionTable) {
         checkDT(distributionTable);
         this.distributionTable = distributionTable;
+        safeDistributionFunctionCalc();
     }
 
     public static void checkDT(DistributionTable dt) {

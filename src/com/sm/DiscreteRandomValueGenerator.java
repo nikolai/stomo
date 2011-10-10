@@ -10,7 +10,7 @@ import java.util.Set;
 public class DiscreteRandomValueGenerator {
     private final DistributionFunction distributionFunction;
 
-    private DiscreteRandomValueGenerator(DistributionTable distributionTable){
+    protected DiscreteRandomValueGenerator(DistributionTable distributionTable){
         distributionFunction = DistributionFunction.createByTable(distributionTable);
     }
 

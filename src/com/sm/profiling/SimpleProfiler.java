@@ -5,7 +5,7 @@ package com.sm.profiling;
  * Date: 12.09.11
  * Time: 19:15
  */
-public class SimpleProfiler extends AbstractProfiler{
+public class SimpleProfiler extends AbstractProfiler {
     private final long startTime;
     private long estimated;
 
