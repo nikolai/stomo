@@ -4,11 +4,9 @@ import com.sm.logging.LogService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * User: smirnov-n
@@ -16,15 +14,21 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Time: 18:22
  */
 public class Loader {
-    private ExecutorService executorService = Executors.newFixedThreadPool(10);
-    private int executionsCount;
+    private final ExecutorService executorService;
+    private final int executionCount;
+    private int currentExecutionCount;
+
+    private Loader(int executionCount, int clientCount) {
+        this.executionCount = executionCount;
+        executorService = Executors.newFixedThreadPool(clientCount);
+    }
 
     public void start() throws InterruptedException {
         LogService.get().log("Start loading");
         List<InvokeBPTask> tasks = new ArrayList<InvokeBPTask>();
 
-        while (executionsCount < 100) {
-            tasks.add(new InvokeBPTask(++executionsCount));
+        while (currentExecutionCount < executionCount) {
+            tasks.add(new InvokeBPTask(++currentExecutionCount));
         }
         executorService.invokeAll(tasks);
         LogService.get().log("End loading");
@@ -36,23 +40,26 @@ public class Loader {
         LogService.get().stop();
     }
 
-    private class InvokeBPTask implements Callable<Object> {
-        private final int i;
+    public static class LoaderBuilder {
+        private int executionCount = 100;
+        private int clientCount;
 
-        public InvokeBPTask(int i) {
-            this.i = i;
+        public LoaderBuilder() {}
+
+        public LoaderBuilder setExecutionCount(int executionCount) {
+            this.executionCount = executionCount;
+            return this;
         }
 
-        public Object call() throws Exception {
-            try {
-                String count = i + "";
-                String res = new SampleBP().invoke(count);
-                LogService.get().log(res);
-                return res;
-            } catch (Exception e) {
-                LogService.get().log(e);
-                throw e;
-            }
+        public LoaderBuilder setClientCount(int clientCount) {
+            this.clientCount = clientCount;
+            return this;
+        }
+
+        public Loader build() {
+            return new Loader(executionCount, clientCount);
         }
     }
+
+
 }

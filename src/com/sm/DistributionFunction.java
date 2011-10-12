@@ -12,13 +12,23 @@ import java.util.*;
  * Time: 16:55
  */
 public class DistributionFunction {
-    private SortedMap<DiscreteValue, Probability> distributionFunction;
+    private final SortedMap<DiscreteValue, Probability> distributionFunction;
     private final DistributionTable distributionTable;
 
     private DistributionFunction(DistributionTable distributionTable) {
         checkDT(distributionTable);
         this.distributionTable = distributionTable;
-        safeDistributionFunctionCalc();
+
+        // calc distribution function
+        distributionFunction = new TreeMap<DiscreteValue, Probability>();
+        distributionFunction.put(distributionTable.getDiscreteValueInRow(0), distributionTable.getProbabilityInRow(0));
+
+        Probability previousDistrFuncEvaluation = distributionFunction.get(distributionFunction.firstKey());
+        for (int i = 1; i < distributionTable.size(); i++) {
+            Probability sum = previousDistrFuncEvaluation.plus(distributionTable.getProbabilityInRow(i));
+            distributionFunction.put(distributionTable.getDiscreteValueInRow(i), sum);
+            previousDistrFuncEvaluation = sum;
+        }
     }
 
     public static void checkDT(DistributionTable dt) {
@@ -36,22 +46,8 @@ public class DistributionFunction {
         return new DistributionFunction(distributionTable);
     }
 
-    private void safeDistributionFunctionCalc() {
-        if (distributionFunction == null) {
-            distributionFunction = new TreeMap<DiscreteValue, Probability>();
-            distributionFunction.put(distributionTable.getDiscreteValueInRow(0), distributionTable.getProbabilityInRow(0));
-
-            Probability previousDistrFuncEvaluation = distributionFunction.get(distributionFunction.firstKey());
-            for (int i = 1; i < distributionTable.size(); i++) {
-                Probability sum = previousDistrFuncEvaluation.plus(distributionTable.getProbabilityInRow(i));
-                distributionFunction.put(distributionTable.getDiscreteValueInRow(i), sum);
-                previousDistrFuncEvaluation = sum;
-            }
-        }
-    }
-
     public double eval(DiscreteValue discreteValue) {
-        safeDistributionFunctionCalc();
+//        safeDistributionFunctionCalc();
 
         if (distributionFunction.get(discreteValue) == null && distributionFunction.firstKey().compareTo(discreteValue) > 0) {
             return 0;

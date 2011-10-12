@@ -10,8 +10,8 @@ import org.junit.Test;
 public class LoaderTest {
 
     @Test
-    public void start_test() throws InterruptedException {
-        Loader loader = new Loader();
+    public void start_stop_test() throws InterruptedException {
+        Loader loader = new Loader.LoaderBuilder().setClientCount(10).setExecutionCount(100).build();
         loader.start();
         loader.stop();
     }
