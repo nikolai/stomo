@@ -27,6 +27,12 @@ public class DiscreteRandomValueGeneratorTest {
         generator1 = DiscreteRandomValueGenerator.get(dt);
         generator2 = DiscreteRandomValueGenerator.get(dt);
         generator3 = DiscreteRandomValueGenerator.get(dt);
+
+        DistributionTable dt2 = new DistributionTable();
+        dt2.put(new IntDiscreteValue(7), new Probability(0.3));
+        dt2.put(new IntDiscreteValue(9), new Probability(0.5));
+        dt2.put(new IntDiscreteValue(10), new Probability(0.2));
+        generator2 = DiscreteRandomValueGenerator.get(dt2);
     }
 
     @Test
@@ -64,7 +70,7 @@ public class DiscreteRandomValueGeneratorTest {
         SimpleProfiler pAll = SimpleProfiler.start("all");
 
         Experiment experiment1 = new Experiment(generator1);
-        Experiment experiment2 = new Experiment(generator2);
+        Experiment experiment2 = new Experiment(generator1);
         CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2);
         ce.run(100000);
 
@@ -102,18 +108,13 @@ public class DiscreteRandomValueGeneratorTest {
         DistributionFunction dfModelling = ModellingDF.get().createAndParallelism(ce);
 
         double error = 0.005;
-        for (int i = 0; i < 5; i ++) {
-            assertEquals(
-                dfAnalytical.getDistributionTable().getProbabilityInRow(i).getValue(),
-                dfModelling.getDistributionTable().getProbabilityInRow(i).getValue(),
-                error);
-        }
+        assertEquals(dfModelling, dfAnalytical, error);
     }
 
     @Test
     public void test_modelling_OR_parallelism() {
         Experiment experiment1 = new Experiment(generator1);
-        Experiment experiment2 = new Experiment(generator2);
+        Experiment experiment2 = new Experiment(generator1);
 //        Experiment experiment3 = new Experiment(generator3);
         CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2);
         ce.run(100000);
@@ -156,12 +157,8 @@ public class DiscreteRandomValueGeneratorTest {
         System.out.println("OR distribution table (analytical):\n" + analyticalDF.getDistributionTable());
 
         double error = 0.005;
-        for (int i = 0; i < 5; i ++) {
-            assertEquals(
-                analyticalDF.getDistributionTable().getProbabilityInRow(i).getValue(),
-                modellingDF.getDistributionTable().getProbabilityInRow(i).getValue(),
-                error);
-        }
+
+        assertEquals(modellingDF, analyticalDF, error);
     }
 
     @Test
@@ -182,11 +179,7 @@ public class DiscreteRandomValueGeneratorTest {
         double error = 0.001;
 
         // check via AND parallelism: when M=N (M=2)
-        for (int i = 0; i < andParallelismDF.getDistributionTable().size(); i++) {
-            assertEquals(
-                    andParallelismDF.getDistributionTable().getProbabilityInRow(i).getValue(),
-                    mnParallelismDF.getDistributionTable().getProbabilityInRow(i).getValue(), error);
-        }
+        assertEquals(andParallelismDF, mnParallelismDF, error);
     }
 
     @Test
@@ -208,11 +201,7 @@ public class DiscreteRandomValueGeneratorTest {
         double error = 0.001;
 
         // check via AND parallelism: when M=N (M=2)
-        for (int i = 0; i < andParallelismDF.getDistributionTable().size(); i++) {
-            assertEquals(
-                    andParallelismDF.getDistributionTable().getProbabilityInRow(i).getValue(),
-                    mnParallelismDF.getDistributionTable().getProbabilityInRow(i).getValue(), error);
-        }
+        assertEquals(andParallelismDF, mnParallelismDF, error);
     }
 
     @Test
@@ -233,11 +222,7 @@ public class DiscreteRandomValueGeneratorTest {
         double error = 0.001;
 
         // check via OR parallelism: when M=1
-        for (int i = 0; i < orParallelismDF.getDistributionTable().size(); i++) {
-            assertEquals(
-                    orParallelismDF.getDistributionTable().getProbabilityInRow(i).getValue(),
-                    mnParallelismDF.getDistributionTable().getProbabilityInRow(i).getValue(), error);
-        }
+        assertEquals(orParallelismDF, mnParallelismDF, error);
     }
 
     @Test
@@ -257,17 +242,13 @@ public class DiscreteRandomValueGeneratorTest {
         double error = 0.001;
 
         // check via OR parallelism: when M=1
-        for (int i = 0; i < orParallelismDF.getDistributionTable().size(); i++) {
-            assertEquals(
-                    orParallelismDF.getDistributionTable().getProbabilityInRow(i).getValue(),
-                    mnParallelismDF.getDistributionTable().getProbabilityInRow(i).getValue(), error);
-        }
+        assertEquals(orParallelismDF, mnParallelismDF, error);
     }
 
     @Test
     public void test_modelling_MN_parallelism_2_of_3() {
         Experiment experiment1 = new Experiment(generator1);
-        Experiment experiment2 = new Experiment(generator2);
+        Experiment experiment2 = new Experiment(generator1);
         Experiment experiment3 = new Experiment(generator3);
 
         CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2, experiment3);
@@ -296,28 +277,86 @@ public class DiscreteRandomValueGeneratorTest {
 
         CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2, experiment3);
         ce.run(100000);
+        int M = 2;
+        DistributionFunction mnModellingDF = ModellingDF.get().createMNParallelism(ce, M);
 
         CompatibleDistributionFunctions cdf = new CompatibleDistributionFunctions(
                 ModellingDF.get().createSingle(experiment1),
                 ModellingDF.get().createSingle(experiment2),
                 ModellingDF.get().createSingle(experiment3));
 
-        int M = 2;
+
         DistributionFunction mnParallelismDF = AnalyticalDF.get().createMN(cdf, M);
         System.out.println("MN (2 of 3) distribution table (analytical):\n" + mnParallelismDF.getDistributionTable());
 
-        DistributionFunction mnModellingDF = ModellingDF.get().createMNParallelism(ce, M);
-
         double error = 0.01;
 
-        for (int i = 0; i < mnModellingDF.getDistributionTable().size(); i++) {
-            assertEquals(
-                    mnModellingDF.getDistributionTable().getProbabilityInRow(i).getValue(),
-                    mnParallelismDF.getDistributionTable().getProbabilityInRow(i).getValue(), error);
-        }
+        assertEquals(mnModellingDF, mnParallelismDF, error);
     }
 
-    public static void assertEquals(double a, double b, double error) {
+    @Test
+    public void test_modelling_sequence_invoke() {
+        Experiment experiment1 = new Experiment(generator1);
+        Experiment experiment2 = new Experiment(generator2);
+        CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2);
+        ce.run(100000);
+
+        DistributionFunction sequenceDF = ModellingDF.get().createSequenceProcessing(ce);
+        System.out.println("Sequence processing distribution table (modelling):\n" + sequenceDF.getDistributionTable());
+        double expVal1 = new ExpectedValue(ModellingDF.get().createSingle(experiment1)).getValue();
+        double expVal2 = new ExpectedValue(ModellingDF.get().createSingle(experiment2)).getValue();
+        double expVal12 = new ExpectedValue(sequenceDF).getValue();
+
+        System.out.println("Expected value of the experiment 1: " + new ExpectedValue(ModellingDF.get().createSingle(experiment1)));
+        System.out.println("Expected value of the experiment 2: " + new ExpectedValue(ModellingDF.get().createSingle(experiment2)));
+        System.out.println("Expected value of the sequence of2: " + new ExpectedValue(sequenceDF));
+
+        double error = 0.05;
+//        assertEquals(expVal1, expVal2, error);
+        assertEquals(expVal1 + expVal2, expVal12, error);
+    }
+
+    @Test
+    public void test_analytical_sequence_invoke() {
+        Experiment experiment1 = new Experiment(generator1);
+        Experiment experiment2 = new Experiment(generator2);
+        CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2);
+        ce.run(100000);
+
+        CompatibleDistributionFunctions cdf = new CompatibleDistributionFunctions(
+                ModellingDF.get().createSingle(experiment1),
+                ModellingDF.get().createSingle(experiment2));
+
+        DistributionFunction analyticalSequenceDF = AnalyticalDF.get().createSequenceProcessing(cdf);
+        DistributionFunction modellingSequenceDF = ModellingDF.get().createSequenceProcessing(ce);
+
+        System.out.println("Sequence processing distribution table (analytical):\n" + analyticalSequenceDF.getDistributionTable());
+        double expVal1 = new ExpectedValue(ModellingDF.get().createSingle(experiment1)).getValue();
+        double expVal2 = new ExpectedValue(ModellingDF.get().createSingle(experiment2)).getValue();
+        double expVal12 = new ExpectedValue(analyticalSequenceDF).getValue();
+
+        System.out.println("Expected value of the experiment 1: " + new ExpectedValue(ModellingDF.get().createSingle(experiment1)));
+        System.out.println("Expected value of the experiment 2: " + new ExpectedValue(ModellingDF.get().createSingle(experiment2)));
+        System.out.println("Expected value of the sequence of2: " + new ExpectedValue(analyticalSequenceDF));
+
+        double error = 0.01;
+        assertEquals(expVal1, expVal2, error);
+        assertEquals(expVal1 + expVal2, expVal12, error);
+
+        assertEquals(modellingSequenceDF, analyticalSequenceDF, error);
+    }
+
+    private static void assertEquals(double a, double b, double error) {
         Assert.assertEquals(a + " and " + b + " are not equal with error " + error, true, Math.abs(a - b) < error);
     }
+
+    private static boolean assertEquals(DistributionFunction df1, DistributionFunction df2, double error) {
+        CompatibleDistributionFunctions cdf = new CompatibleDistributionFunctions(df1, df2);
+//        assert df1.getDistributionTable().size() == df2.getDistributionTable().size() : "compared DFs should have the same size";
+        for (DiscreteValue dv : cdf.getDiscreteValueSet()) {
+            assertEquals(df1.eval(dv), df2.eval(dv), error);
+        }
+        return true;
+    }
+
 }

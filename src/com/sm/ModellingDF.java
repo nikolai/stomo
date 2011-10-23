@@ -115,4 +115,29 @@ public class ModellingDF {
     }
 
 
+    public DistributionFunction createSequenceProcessing(CompatibleExperiments compatibleExperiments) {
+        // calc count
+        Map<DiscreteValue, Integer> count = new TreeMap();
+
+        int numOfMeasurements = compatibleExperiments.getSizeOfExperiments();
+
+        for (int i = 0; i < numOfMeasurements; i++) {
+
+            DiscreteValue[] eventsData = compatibleExperiments.getExperimentsData(i);
+            DiscreteValue sum = SMMath.sum(eventsData);
+            Integer number = count.get(sum);
+
+            number = number != null ? number+1 : 1;
+            count.put(sum, number);
+        }
+
+        // calc distribution
+        DistributionTable distributionTable = new DistributionTable();
+        for (DiscreteValue key : count.keySet()) {
+            Probability p = new Probability(count.get(key) / (double) compatibleExperiments.getSizeOfExperiments());
+            distributionTable.put(key, p);
+        }
+
+        return DistributionFunction.createByTable(distributionTable);
+    }
 }

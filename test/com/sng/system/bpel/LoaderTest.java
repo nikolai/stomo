@@ -9,7 +9,7 @@ import org.junit.Test;
  */
 public class LoaderTest {
 
-    @Test
+    //@Test
     public void start_stop_test() throws InterruptedException {
         Loader loader = new Loader.LoaderBuilder().setClientCount(10).setExecutionCount(100).build();
         loader.start();

@@ -43,4 +43,12 @@ public class SMMath {
         Arrays.sort(eventsData);
         return eventsData[M-1];
     }
+
+    public static DiscreteValue<Integer> sum(DiscreteValue<Integer>[] eventsData) {
+        int sum = 0;
+        for (DiscreteValue<Integer> dv : eventsData) {
+            sum += dv.getValue();
+        }
+        return new DiscreteValue(sum);
+    }
 }

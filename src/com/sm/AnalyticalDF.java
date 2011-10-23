@@ -91,4 +91,12 @@ public class AnalyticalDF {
         return dfBuilder.build();
     }
 
+    public DistributionFunction createSequenceProcessing(CompatibleDistributionFunctions cdf) {
+        DistributionFunctionByValueBuilder dfBuilder = new DistributionFunctionByValueBuilder();
+        for(DistributionFunction df : cdf.getDistributionFunctions()) {
+
+        }
+        //int cdfSize = cdf.
+        throw new UnsupportedOperationException("not implemented!");
+    }
 }

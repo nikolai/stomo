@@ -15,7 +15,7 @@ import java.util.Map;
  * Time: 17:19
  */
 public class OldClassesTest {
-    @Test
+    //@Test
     public void test_old_main() {
         int experimentCount = 10000;
         Map<DiscreteRandomValue,int[]> allValues = new HashMap();

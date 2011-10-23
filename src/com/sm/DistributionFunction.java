@@ -49,8 +49,13 @@ public class DistributionFunction {
     public double eval(DiscreteValue discreteValue) {
 //        safeDistributionFunctionCalc();
 
-        if (distributionFunction.get(discreteValue) == null && distributionFunction.firstKey().compareTo(discreteValue) > 0) {
-            return 0;
+        if (distributionFunction.get(discreteValue) == null){
+            if (distributionFunction.firstKey().compareTo(discreteValue) > 0) {
+                return 0;
+            }
+            if (distributionFunction.lastKey().compareTo(discreteValue) < 0) {
+                return 1;
+            }
         }
         return distributionFunction.get(discreteValue).getValue();
     }
