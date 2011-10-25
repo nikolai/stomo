@@ -22,8 +22,13 @@ public class ProbabilityDensityFunction {
     public double eval(DiscreteValue dv) {
         Probability p = dt.getProbability(dv);
         if (p == null) {
-            throw new IllegalArgumentException("Probability Density Function is not defined in " + dv);
+//            throw new IllegalArgumentException("Probability Density Function is not defined in " + dv);
+            return 0;
         }
         return p.getValue();
+    }
+
+    public DistributionTable getDistributionTable() {
+        return dt;
     }
 }

@@ -15,7 +15,7 @@ public class AnalyticalDF {
     /**
      * Analytical distribution function of several compatibles (AND-parallelism)
      * */
-    public DistributionFunction createAND(CompatibleDistributionFunctions compatibleDistributionFunctions) {
+    public DistributionFunction createAND(CompatibleDistributionFunctions<Integer> compatibleDistributionFunctions) {
         // calc distribution
         DistributionTable distributionTable = new DistributionTable();
 
@@ -38,10 +38,11 @@ public class AnalyticalDF {
     /**
      * Analytical distribution function of several compatibles (OR-parallelism)
      * */
-    public DistributionFunction createOR(CompatibleDistributionFunctions compatibleDistributionFunctions) {
+    public DistributionFunction createOR(CompatibleDistributionFunctions<Integer> compatibleDistributionFunctions) {
         // calc distribution
         DistributionTable distributionTable = new DistributionTable();
-        DiscreteValue[] discreteValues = compatibleDistributionFunctions.getDiscreteValueSet().toArray(new DiscreteValue[0]);
+        DiscreteValue[] discreteValues = compatibleDistributionFunctions
+                .getDiscreteValueSet().toArray(new DiscreteValue[0]);
 
         for (int i=0; i < discreteValues.length; i++){
             double mul1 = 1;
@@ -67,7 +68,7 @@ public class AnalyticalDF {
         return createMNRecursive(cdf, N, M, N);
     }
 
-    private DistributionFunction createMNRecursive(CompatibleDistributionFunctions cdf, int N, int M, int IND) {
+    private DistributionFunction createMNRecursive(CompatibleDistributionFunctions<Integer> cdf, int N, int M, int IND) {
         if (M == 1) {
             return createOR(cdf);
         } else if (M == N) {
@@ -92,11 +93,72 @@ public class AnalyticalDF {
     }
 
     public DistributionFunction createSequenceProcessing(CompatibleDistributionFunctions cdf) {
-        DistributionFunctionByValueBuilder dfBuilder = new DistributionFunctionByValueBuilder();
-        for(DistributionFunction df : cdf.getDistributionFunctions()) {
+        DistributionTable dt1 = cdf.getDistributionFunctions()[0].getDistributionTable();
+        DistributionTable dt2 = cdf.getDistributionFunctions()[1].getDistributionTable();
 
+        int t01 = ((Integer)dt1.getDiscreteValueInRow(0).getValue()) + ((Integer)dt2.getDiscreteValueInRow(0).getValue());
+        int t02 = ((Integer)dt1.getDiscreteValueInRow(0).getValue()) + ((Integer)dt2.getDiscreteValueInRow(1).getValue());
+        int t11 = ((Integer)dt1.getDiscreteValueInRow(1).getValue()) + ((Integer)dt2.getDiscreteValueInRow(0).getValue());
+        int t12 = ((Integer)dt1.getDiscreteValueInRow(1).getValue()) + ((Integer)dt2.getDiscreteValueInRow(1).getValue());
+
+        double p01 = dt1.getProbabilityInRow(0).getValue() * dt2.getProbabilityInRow(0).getValue();
+        double p02 = dt1.getProbabilityInRow(0).getValue() * dt2.getProbabilityInRow(1).getValue();
+        double p11 = dt1.getProbabilityInRow(1).getValue() * dt2.getProbabilityInRow(0).getValue();
+        double p12 = dt1.getProbabilityInRow(1).getValue() * dt2.getProbabilityInRow(1).getValue();
+
+        DistributionTable dt = new DistributionTable();
+        puttt(dt, new DiscreteValue(t01), new Probability(p01));
+        puttt(dt, new DiscreteValue(t02), new Probability(p02));
+        puttt(dt, new DiscreteValue(t11), new Probability(p11));
+        puttt(dt, new DiscreteValue(t12), new Probability(p12));
+
+        return DistributionFunction.createByTable(dt);
+
+//        ProbabilityDensityFunctionBuilder pdfBuilder = new ProbabilityDensityFunctionBuilder();
+//        for (int dfIndex = 0; dfIndex < cdf.getDistributionFunctions().length; dfIndex++) {
+//
+//            for (DiscreteValue dv : df.getDistributionTable().sortedValues()) {
+//
+//            }
+//        }
+//        for (DiscreteValue dv : cdf.getDiscreteValueSet()) {
+//            double multiplication = 1;
+//            for (DistributionFunction df : cdf.getDistributionFunctions()) {
+//                ProbabilityDensityFunction pdf = ProbabilityDensityFunction.get(df);
+//                multiplication += ((Integer)dv.getValue()) * pdf.eval(dv);
+//            }
+//            pdfBuilder.add(dv, multiplication);
+//        }
+//        return DistributionFunction.createByTable(pdfBuilder.build().getDistributionTable());
+    }
+
+    public DistributionFunction createSequenceProcessing1(CompatibleDistributionFunctions<Integer> cdf) {
+//        assert cdf.getSize() > 1;
+//        DistributionTable<Integer> dtResult = new DistributionTable<Integer>();
+//        DistributionFunction<Integer> currentDF = cdf.getDistributionFunctions()[0];
+//        for (int i = 1; i < cdf.getSize(); i++) {
+//            DistributionFunction<Integer> nextDF = cdf.getDistributionFunctions()[i];
+//            for (int j = 0; j < currentDF.getDistributionTable().size(); j++) {
+//                int sum = 0;
+//                double p = 1;
+//                for (int k=0; k < nextDF.getDistributionTable().size(); k++) {
+//                     sum += currentDF.getDistributionTable().getDiscreteValueInRow(j).getValue()
+//                            + nextDF.getDistributionTable().getDiscreteValueInRow(k).getValue();
+//                     p *= currentDF.getDistributionTable().getProbabilityInRow(j).getValue()
+//                          * nextDF.getDistributionTable().getProbabilityInRow(k).getValue();
+//                }
+//                puttt(dtResult, new DiscreteValue(sum), new Probability(p));
+//            }
+//            currentDF = nextDF;
+//        }
+//        return DistributionFunction.createByTable(dtResult);
+        return new SequenceDistributionFunctionBuilder(cdf).build();
+    }
+    private static void puttt(DistributionTable dt, DiscreteValue dv, Probability p) {
+        Probability oldP = dt.getProbability(dv);
+        if (oldP != null) {
+            p = new Probability(p.getValue() + oldP.getValue());
         }
-        //int cdfSize = cdf.
-        throw new UnsupportedOperationException("not implemented!");
+        dt.put(dv, p);
     }
 }

@@ -8,8 +8,8 @@ import java.util.TreeSet;
  * Date: 13.09.11
  * Time: 13:25
  */
-public class CompatibleDistributionFunctions {
-    private final Set<DiscreteValue> discreteValueSet;
+public class CompatibleDistributionFunctions<T extends Comparable> {
+    private final Set<DiscreteValue<T>> discreteValueSet;
     private final DistributionFunction[] compatibleDistributionFunctions;
 
     public CompatibleDistributionFunctions(DistributionFunction... compatibleDistributionFunctions) {
@@ -17,17 +17,17 @@ public class CompatibleDistributionFunctions {
         assert compatibleDistributionFunctions != null && compatibleDistributionFunctions.length > 1;
 
         // prepare discrete values set
-        discreteValueSet = new TreeSet<DiscreteValue>();
+        discreteValueSet = new TreeSet<DiscreteValue<T>>();
         for (DistributionFunction df : compatibleDistributionFunctions) {
             discreteValueSet.addAll(df.getDistributionTable().sortedValues());
         }
     }
 
-    public Set<DiscreteValue> getDiscreteValueSet() {
+    public Set<DiscreteValue<T>> getDiscreteValueSet() {
         return discreteValueSet;
     }
 
-    public DistributionFunction[] getDistributionFunctions() {
+    public DistributionFunction<T>[] getDistributionFunctions() {
         return compatibleDistributionFunctions;
     }
 

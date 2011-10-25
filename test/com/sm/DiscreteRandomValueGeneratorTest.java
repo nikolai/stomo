@@ -15,6 +15,9 @@ public class DiscreteRandomValueGeneratorTest {
     private DiscreteRandomValueGenerator generator1;
     private DiscreteRandomValueGenerator generator2;
     private DiscreteRandomValueGenerator generator3;
+    private DiscreteRandomValueGenerator generatorToy1;
+    private DiscreteRandomValueGenerator generatorToy2;
+    private DiscreteRandomValueGenerator generatorToy3;
 
     @Before
     public void init() {
@@ -33,6 +36,22 @@ public class DiscreteRandomValueGeneratorTest {
         dt2.put(new IntDiscreteValue(9), new Probability(0.5));
         dt2.put(new IntDiscreteValue(10), new Probability(0.2));
         generator2 = DiscreteRandomValueGenerator.get(dt2);
+
+
+        DistributionTable dtToy1 = new DistributionTable();
+        dtToy1.put(new IntDiscreteValue(1), new Probability(0.1));
+        dtToy1.put(new IntDiscreteValue(2), new Probability(0.7));
+        dtToy1.put(new IntDiscreteValue(3), new Probability(0.2));
+        DistributionTable dtToy2 = new DistributionTable();
+        dtToy2.put(new IntDiscreteValue(7), new Probability(0.4));
+        dtToy2.put(new IntDiscreteValue(8), new Probability(0.6));
+        DistributionTable dtToy3 = new DistributionTable();
+        dtToy3.put(new IntDiscreteValue(21), new Probability(0.2));
+        dtToy3.put(new IntDiscreteValue(14), new Probability(0.8));
+        generatorToy1 = new DiscreteRandomValueGenerator(dtToy1);
+        generatorToy2 = new DiscreteRandomValueGenerator(dtToy2);
+        generatorToy3 = new DiscreteRandomValueGenerator(dtToy3);
+
     }
 
     @Test
@@ -318,31 +337,35 @@ public class DiscreteRandomValueGeneratorTest {
 
     @Test
     public void test_analytical_sequence_invoke() {
-        Experiment experiment1 = new Experiment(generator1);
-        Experiment experiment2 = new Experiment(generator2);
-        CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2);
+        Experiment experiment1 = new Experiment(generatorToy1);
+        Experiment experiment2 = new Experiment(generatorToy2);
+        Experiment experiment3 = new Experiment(generatorToy3);
+        CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2, experiment3);
         ce.run(100000);
 
         CompatibleDistributionFunctions cdf = new CompatibleDistributionFunctions(
                 ModellingDF.get().createSingle(experiment1),
-                ModellingDF.get().createSingle(experiment2));
+                ModellingDF.get().createSingle(experiment2),
+                ModellingDF.get().createSingle(experiment3)
+                );
 
-        DistributionFunction analyticalSequenceDF = AnalyticalDF.get().createSequenceProcessing(cdf);
+        DistributionFunction analyticalSequenceDF = AnalyticalDF.get().createSequenceProcessing1(cdf);
         DistributionFunction modellingSequenceDF = ModellingDF.get().createSequenceProcessing(ce);
 
         System.out.println("Sequence processing distribution table (analytical):\n" + analyticalSequenceDF.getDistributionTable());
         double expVal1 = new ExpectedValue(ModellingDF.get().createSingle(experiment1)).getValue();
         double expVal2 = new ExpectedValue(ModellingDF.get().createSingle(experiment2)).getValue();
-        double expVal12 = new ExpectedValue(analyticalSequenceDF).getValue();
+        double expVal3 = new ExpectedValue(ModellingDF.get().createSingle(experiment3)).getValue();
+        double expVal123 = new ExpectedValue(analyticalSequenceDF).getValue();
 
         System.out.println("Expected value of the experiment 1: " + new ExpectedValue(ModellingDF.get().createSingle(experiment1)));
         System.out.println("Expected value of the experiment 2: " + new ExpectedValue(ModellingDF.get().createSingle(experiment2)));
-        System.out.println("Expected value of the sequence of2: " + new ExpectedValue(analyticalSequenceDF));
+        System.out.println("Expected value of the experiment 3: " + new ExpectedValue(ModellingDF.get().createSingle(experiment3)));
+        System.out.println("Expected value of the sequence of3: " + new ExpectedValue(analyticalSequenceDF));
 
-        double error = 0.01;
-        assertEquals(expVal1, expVal2, error);
-        assertEquals(expVal1 + expVal2, expVal12, error);
-
+        double error = 0.005;
+//        assertEquals(expVal1, expVal2, error);
+        assertEquals(expVal1 + expVal2 + expVal3, expVal123, error);
         assertEquals(modellingSequenceDF, analyticalSequenceDF, error);
     }
 
@@ -351,9 +374,9 @@ public class DiscreteRandomValueGeneratorTest {
     }
 
     private static boolean assertEquals(DistributionFunction df1, DistributionFunction df2, double error) {
-        CompatibleDistributionFunctions cdf = new CompatibleDistributionFunctions(df1, df2);
+        CompatibleDistributionFunctions<Integer> cdf = new CompatibleDistributionFunctions<Integer>(df1, df2);
 //        assert df1.getDistributionTable().size() == df2.getDistributionTable().size() : "compared DFs should have the same size";
-        for (DiscreteValue dv : cdf.getDiscreteValueSet()) {
+        for (DiscreteValue<Integer> dv : cdf.getDiscreteValueSet()) {
             assertEquals(df1.eval(dv), df2.eval(dv), error);
         }
         return true;

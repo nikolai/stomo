@@ -5,15 +5,15 @@ package com.sm;
  * Date: 08.09.11
  * Time: 16:57
  */
-public class DiscreteValue<T extends Comparable> implements Comparable<T>{
+public class DiscreteValue<T extends Comparable> implements Comparable<DiscreteValue<T>>{
     private final T value;
 
     public DiscreteValue(T value) {
         this.value = value;
     }
 
-    public int compareTo(T o) {
-        return -o.compareTo(value);
+    public int compareTo(DiscreteValue<T> o) {
+        return -o.value.compareTo(value);
     }
 
     @Override
@@ -41,4 +41,5 @@ public class DiscreteValue<T extends Comparable> implements Comparable<T>{
     public T getValue() {
         return value;
     }
+
 }

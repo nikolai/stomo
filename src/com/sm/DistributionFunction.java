@@ -11,8 +11,8 @@ import java.util.*;
  * Date: 08.09.11
  * Time: 16:55
  */
-public class DistributionFunction {
-    private final SortedMap<DiscreteValue, Probability> distributionFunction;
+public class DistributionFunction<T extends Comparable> {
+    private final SortedMap<DiscreteValue<T>, Probability> distributionFunction;
     private final DistributionTable distributionTable;
 
     private DistributionFunction(DistributionTable distributionTable) {
@@ -20,7 +20,7 @@ public class DistributionFunction {
         this.distributionTable = distributionTable;
 
         // calc distribution function
-        distributionFunction = new TreeMap<DiscreteValue, Probability>();
+        distributionFunction = new TreeMap<DiscreteValue<T>, Probability>();
         distributionFunction.put(distributionTable.getDiscreteValueInRow(0), distributionTable.getProbabilityInRow(0));
 
         Probability previousDistrFuncEvaluation = distributionFunction.get(distributionFunction.firstKey());
@@ -42,11 +42,11 @@ public class DistributionFunction {
         }
     }
 
-    public static DistributionFunction createByTable(DistributionTable distributionTable) {
-        return new DistributionFunction(distributionTable);
+    public static <T extends Comparable> DistributionFunction<T> createByTable(DistributionTable<T> distributionTable) {
+        return new DistributionFunction<T>(distributionTable);
     }
 
-    public double eval(DiscreteValue discreteValue) {
+    public double eval(DiscreteValue<T> discreteValue) {
 //        safeDistributionFunctionCalc();
 
         if (distributionFunction.get(discreteValue) == null){
@@ -60,7 +60,7 @@ public class DistributionFunction {
         return distributionFunction.get(discreteValue).getValue();
     }
 
-    public DistributionTable getDistributionTable() {
+    public DistributionTable<T> getDistributionTable() {
         return distributionTable;
     }
 }
