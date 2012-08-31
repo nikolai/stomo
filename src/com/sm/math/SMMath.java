@@ -39,7 +39,7 @@ public class SMMath {
      * returns the M minimal value
      * */
     public static DiscreteValue min(int M, DiscreteValue[] eventsData) {
-        assert M-1 <= eventsData.length && M >= 0;
+        assert M-1 <= eventsData.length && M >= 1;
         Arrays.sort(eventsData);
         return eventsData[M-1];
     }

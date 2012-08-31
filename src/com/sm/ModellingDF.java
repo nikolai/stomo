@@ -13,131 +13,83 @@ import java.util.TreeMap;
  */
 public class ModellingDF {
     private ModellingDF(){}
-    public static ModellingDF get() {
-        return new ModellingDF();
-    }
+    public static ModellingDF get() { return new ModellingDF(); }
 
     public DistributionFunction createSingle(Experiment experiment) {
         DiscreteValue[] vals = experiment.getMeasurements();
         // calc count
         Map<DiscreteValue, Integer> count = new TreeMap();
         for (DiscreteValue val : vals) {
-            if (count.containsKey(val)) {
-                int number = count.get(val);
-                count.put(val, ++number);
-            } else {
-                count.put(val, 1);
-            }
+            Integer number = count.get(val);
+            number = number != null ? number+1 : 1;
+            count.put(val, number);
         }
-
         // calc distribution
-        DistributionTable distributionTable = new DistributionTable();
-        for (DiscreteValue key : count.keySet()) {
-            Probability p = new Probability(count.get(key) / (double) experiment.getSize());
-            distributionTable.put(key, p);
-        }
-        return DistributionFunction.createByTable(distributionTable);
+        return DistributionFunction.createByTable(constructDT(count, experiment.getSize()));
     }
 
     public DistributionFunction createAndParallelism(CompatibleExperiments compatibleExperiments) {
-        // calc count
-        Map<DiscreteValue, Integer> count = new TreeMap();
-
-        int numOfMeasurements = compatibleExperiments.getSizeOfExperiments();
-        for (int i = 0; i < numOfMeasurements; i++) {
-
-            DiscreteValue[] eventsData = compatibleExperiments.getExperimentsData(i);
-            DiscreteValue max = SMMath.max(eventsData);
-            Integer number = count.get(max);
-
-            number = number != null ? number+1 : 1;
-            count.put(max, number);
-        }
-
-        // calc distribution
-        DistributionTable distributionTable = new DistributionTable();
-        for (DiscreteValue key : count.keySet()) {
-            Probability p = new Probability(count.get(key) / (double) compatibleExperiments.getSizeOfExperiments());
-            distributionTable.put(key, p);
-        }
-
-        return DistributionFunction.createByTable(distributionTable);
+        return template(compatibleExperiments, new SelectionAlgo(){
+            public DiscreteValue getAlgoValue(DiscreteValue[] eventsData) {
+                return SMMath.max(eventsData);
+            }
+        });
     }
 
     public DistributionFunction createOrParallelism(CompatibleExperiments compatibleExperiments) {
-        // calc count
-        Map<DiscreteValue, Integer> count = new TreeMap();
-
-        int numOfMeasurements = compatibleExperiments.getSizeOfExperiments();
-        for (int i = 0; i < numOfMeasurements; i++) {
-
-            DiscreteValue[] eventsData = compatibleExperiments.getExperimentsData(i);
-            DiscreteValue min = SMMath.min(eventsData);
-            Integer number = count.get(min);
-
-            number = number != null ? number+1 : 1;
-            count.put(min, number);
-        }
-
-        // calc distribution
-        DistributionTable distributionTable = new DistributionTable();
-        for (DiscreteValue key : count.keySet()) {
-            Probability p = new Probability(count.get(key) / (double) compatibleExperiments.getSizeOfExperiments());
-            distributionTable.put(key, p);
-        }
-
-        return DistributionFunction.createByTable(distributionTable);
+        return template(compatibleExperiments, new SelectionAlgo(){
+            public DiscreteValue getAlgoValue(DiscreteValue[] eventsData) {
+                return SMMath.min(eventsData);
+            }
+        });
     }
 
-    public DistributionFunction createMNParallelism(CompatibleExperiments compatibleExperiments, int M) {
-        // calc count
-        Map<DiscreteValue, Integer> count = new TreeMap();
-
-        int numOfMeasurements = compatibleExperiments.getSizeOfExperiments();
-        for (int i = 0; i < numOfMeasurements; i++) {
-
-            DiscreteValue[] eventsData = compatibleExperiments.getExperimentsData(i);
-            DiscreteValue min = SMMath.min(M, eventsData);
-            Integer number = count.get(min);
-
-            number = number != null ? number+1 : 1;
-            count.put(min, number);
-        }
-
-        // calc distribution
-        DistributionTable distributionTable = new DistributionTable();
-        for (DiscreteValue key : count.keySet()) {
-            Probability p = new Probability(count.get(key) / (double) compatibleExperiments.getSizeOfExperiments());
-            distributionTable.put(key, p);
-        }
-
-        return DistributionFunction.createByTable(distributionTable);
+    public DistributionFunction createMNParallelism(CompatibleExperiments compatibleExperiments, final int M) {
+        return template(compatibleExperiments, new SelectionAlgo(){
+            public DiscreteValue getAlgoValue(DiscreteValue[] eventsData) {
+                return SMMath.min(M, eventsData);
+            }
+        });
     }
 
 
     public DistributionFunction createSequenceProcessing(CompatibleExperiments compatibleExperiments) {
+        return template(compatibleExperiments, new SelectionAlgo(){
+            public DiscreteValue getAlgoValue(DiscreteValue[] eventsData) {
+                return SMMath.sum(eventsData);
+            }
+        });
+    }
+
+    private DistributionTable constructDT(Map<DiscreteValue, Integer> countTable, int experimentCount) {
+        DistributionTable distributionTable = new DistributionTable();
+        for (DiscreteValue key : countTable.keySet()) {
+            Probability p = new Probability(countTable.get(key) / (double) experimentCount);
+            distributionTable.put(key, p);
+        }
+        return distributionTable;
+    }
+
+    private DistributionFunction template(CompatibleExperiments compatibleExperiments, SelectionAlgo algo) {
         // calc count
         Map<DiscreteValue, Integer> count = new TreeMap();
 
         int numOfMeasurements = compatibleExperiments.getSizeOfExperiments();
-
         for (int i = 0; i < numOfMeasurements; i++) {
 
             DiscreteValue[] eventsData = compatibleExperiments.getExperimentsData(i);
-            DiscreteValue sum = SMMath.sum(eventsData);
-            Integer number = count.get(sum);
+            DiscreteValue algoValue = algo.getAlgoValue(eventsData);
+            Integer number = count.get(algoValue);
 
             number = number != null ? number+1 : 1;
-            count.put(sum, number);
+            count.put(algoValue, number);
         }
 
         // calc distribution
-        DistributionTable distributionTable = new DistributionTable();
-        for (DiscreteValue key : count.keySet()) {
-            Probability p = new Probability(count.get(key) / (double) compatibleExperiments.getSizeOfExperiments());
-            distributionTable.put(key, p);
-        }
+        return DistributionFunction.createByTable(constructDT(count, numOfMeasurements));
+    }
 
-        return DistributionFunction.createByTable(distributionTable);
+    private abstract static class SelectionAlgo {
+        public abstract DiscreteValue getAlgoValue(DiscreteValue[] eventsData);
     }
 }

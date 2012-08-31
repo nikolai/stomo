@@ -56,6 +56,15 @@ public class DistributionFunction<T extends Comparable> {
             if (distributionFunction.lastKey().compareTo(discreteValue) < 0) {
                 return 1;
             }
+            // find first lower discreteValue. return its probability
+            DiscreteValue[] sortedVals = (DiscreteValue[]) distributionTable.sortedValues().toArray(new DiscreteValue[0]);
+            int index = sortedVals.length - 1;
+            while (index >= 0) {
+                if (sortedVals[index].compareTo(discreteValue) < 0) {
+                    return distributionFunction.get(sortedVals[index]).getValue();
+                }
+                index--;
+            }
         }
         return distributionFunction.get(discreteValue).getValue();
     }

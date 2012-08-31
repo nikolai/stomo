@@ -64,7 +64,7 @@ public class AnalyticalDF {
      * */
     public DistributionFunction createMN(CompatibleDistributionFunctions cdf, int M) {
         int N = cdf.getSize();
-        assert M<N && M>1 : "Analytical MN function is not supported for M>=N && M<=1. M=" + M;
+        assert M<=N && M>=1 : "Analytical MN function is not supported for M>N && M<1. M=" + M;
         return createMNRecursive(cdf, N, M, N);
     }
 
@@ -84,7 +84,7 @@ public class AnalyticalDF {
         for (int i=0; i < discreteValues.length; i++){
             DiscreteValue dv = discreteValues[i];
 
-            double Find = cdf.getDistributionFunctions()[IND-1].eval(dv);
+            double Find = cdf.getDistributionFunctions()[cdf.getSize()-IND].eval(dv);
             double gVal = Find * dfChild1.eval(dv) + (1-Find) * dfChild2.eval(dv);
             dfBuilder.add(dv, gVal);
         }

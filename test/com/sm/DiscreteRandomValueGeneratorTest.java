@@ -1,6 +1,7 @@
 package com.sm;
 
 import com.sm.profiling.SimpleProfiler;
+import com.test.DiscreteRandomValue;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,25 +19,26 @@ public class DiscreteRandomValueGeneratorTest {
     private DiscreteRandomValueGenerator generatorToy1;
     private DiscreteRandomValueGenerator generatorToy2;
     private DiscreteRandomValueGenerator generatorToy3;
+    private static final double MODELLING_ERROR = 0.01;
+    private static final double ANALYTICAL_ERROR = 0.002;
+    private static final int STD_RUN_COUNT = 100000;
 
     @Before
     public void init() {
-        dt.put(new IntDiscreteValue(2), new Probability(0.1));
-        dt.put(new IntDiscreteValue(4), new Probability(0.2));
-        dt.put(new IntDiscreteValue(3), new Probability(0.5));
-        dt.put(new IntDiscreteValue(5), new Probability(0.1));
         dt.put(new IntDiscreteValue(1), new Probability(0.1));
+        dt.put(new IntDiscreteValue(2), new Probability(0.1));
+        dt.put(new IntDiscreteValue(3), new Probability(0.5));
+        dt.put(new IntDiscreteValue(4), new Probability(0.2));
+        dt.put(new IntDiscreteValue(5), new Probability(0.1));
 
         generator1 = DiscreteRandomValueGenerator.get(dt);
-        generator2 = DiscreteRandomValueGenerator.get(dt);
         generator3 = DiscreteRandomValueGenerator.get(dt);
 
         DistributionTable dt2 = new DistributionTable();
-        dt2.put(new IntDiscreteValue(7), new Probability(0.3));
+        dt2.put(new IntDiscreteValue(5), new Probability(0.3));
         dt2.put(new IntDiscreteValue(9), new Probability(0.5));
         dt2.put(new IntDiscreteValue(10), new Probability(0.2));
         generator2 = DiscreteRandomValueGenerator.get(dt2);
-
 
         DistributionTable dtToy1 = new DistributionTable();
         dtToy1.put(new IntDiscreteValue(1), new Probability(0.1));
@@ -57,7 +59,7 @@ public class DiscreteRandomValueGeneratorTest {
     @Test
     public void test_Get_Next() throws Exception {
         Experiment experiment = new Experiment(generator1);
-        experiment.run(100000);
+        experiment.run(STD_RUN_COUNT);
 
 //        System.out.println("experiments = " + Arrays.toString(experiment.getMeasurements().toArray()));
 
@@ -74,7 +76,7 @@ public class DiscreteRandomValueGeneratorTest {
         Assert.assertTrue(dt_.getDiscreteValueInRow(3).getValue().equals(4));
         Assert.assertTrue(dt_.getDiscreteValueInRow(4).getValue().equals(5));
 
-        double error = 0.01;
+        double error = MODELLING_ERROR;
 
         Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(0).getValue() - 0.1) < error, true);
         Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(1).getValue() - 0.1) < error, true);
@@ -91,14 +93,14 @@ public class DiscreteRandomValueGeneratorTest {
         Experiment experiment1 = new Experiment(generator1);
         Experiment experiment2 = new Experiment(generator1);
         CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2);
-        ce.run(100000);
+        ce.run(STD_RUN_COUNT);
 
         DistributionFunction df = ModellingDF.get().createAndParallelism(ce);
 
         DistributionTable dt_ = df.getDistributionTable();
         System.out.println("Compatible events distribution table:\n" + dt_);
 
-        double error = 0.01;
+        double error = MODELLING_ERROR;
         Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(0).getValue() - 0.01) < error, true);
         Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(1).getValue() - 0.03) < error, true);
         Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(2).getValue() - 0.45) < error, true);
@@ -112,7 +114,7 @@ public class DiscreteRandomValueGeneratorTest {
     public void test_compatible_distribution_functions_analytical() {
         Experiment experiment1 = new Experiment(generator1);
         Experiment experiment2 = new Experiment(generator2);
-        new CompatibleExperiments(experiment1, experiment2).run(100000);
+        new CompatibleExperiments(experiment1, experiment2).run(STD_RUN_COUNT);
 
         // analytical
         DistributionFunction df1 = ModellingDF.get().createSingle(experiment1);
@@ -126,8 +128,30 @@ public class DiscreteRandomValueGeneratorTest {
         CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2);
         DistributionFunction dfModelling = ModellingDF.get().createAndParallelism(ce);
 
-        double error = 0.005;
-        assertEquals(dfModelling, dfAnalytical, error);
+        assertEquals(dfModelling, dfAnalytical, ANALYTICAL_ERROR);
+    }
+
+    @Test
+    public void test_compatible3_distribution_functions_analytical() {
+        Experiment experiment1 = new Experiment(generator1);
+        Experiment experiment2 = new Experiment(generator2);
+        Experiment experiment3 = new Experiment(generatorToy2);
+        CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2, experiment3).run(STD_RUN_COUNT);
+
+        // analytical
+        CompatibleDistributionFunctions cdf = new CompatibleDistributionFunctions(
+                generator1.getDistributionFunction(),
+                generator2.getDistributionFunction(),
+                generatorToy2.getDistributionFunction());
+
+        DistributionFunction dfAnalytical = AnalyticalDF.get().createAND(cdf);
+
+        // modelling
+        DistributionFunction dfModelling = ModellingDF.get().createAndParallelism(ce);
+        System.out.println("AND3 distribution table (modelling):\n" + dfModelling.getDistributionTable());
+        System.out.println("AND3 distribution table (analytical):\n" + dfAnalytical.getDistributionTable());
+
+        assertEquals(dfModelling, dfAnalytical, ANALYTICAL_ERROR);
     }
 
     @Test
@@ -136,14 +160,14 @@ public class DiscreteRandomValueGeneratorTest {
         Experiment experiment2 = new Experiment(generator1);
 //        Experiment experiment3 = new Experiment(generator3);
         CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2);
-        ce.run(100000);
+        ce.run(STD_RUN_COUNT);
 
 //        System.out.println("Measurements:\n" + ce.toString());
 
         DistributionFunction orParallelismDF = ModellingDF.get().createOrParallelism(ce);
         System.out.println("OR distribution table (modelling):\n" + orParallelismDF.getDistributionTable());
 
-        double error = 0.01;
+        double error = MODELLING_ERROR;
 
         assertEquals(0.1909807731, orParallelismDF.getDistributionTable().getProbabilityInRow(0).getValue(), error);
         assertEquals(0.1688273568, orParallelismDF.getDistributionTable().getProbabilityInRow(1).getValue(), error);
@@ -158,7 +182,7 @@ public class DiscreteRandomValueGeneratorTest {
         Experiment experiment2 = new Experiment(generator2);
 //        Experiment experiment3 = new Experiment(generator3);
         CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2);
-        ce.run(100000);
+        ce.run(STD_RUN_COUNT);
 
 //        System.out.println("Measurements:\n" + ce.toString());
 
@@ -175,9 +199,29 @@ public class DiscreteRandomValueGeneratorTest {
 
         System.out.println("OR distribution table (analytical):\n" + analyticalDF.getDistributionTable());
 
-        double error = 0.005;
+        assertEquals(modellingDF, analyticalDF, ANALYTICAL_ERROR);
+    }
 
-        assertEquals(modellingDF, analyticalDF, error);
+    @Test
+    public void test_analytical_OR3_parallelism() {
+        Experiment experiment1 = new Experiment(generator1);
+        Experiment experiment2 = new Experiment(generator2);
+        Experiment experiment3 = new Experiment(generatorToy2);
+        CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2, experiment3).run(STD_RUN_COUNT);
+
+        DistributionFunction modellingDF = ModellingDF.get().createOrParallelism(ce);
+
+        CompatibleDistributionFunctions cdf = new CompatibleDistributionFunctions(
+                ModellingDF.get().createSingle(experiment1),
+                ModellingDF.get().createSingle(experiment2),
+                ModellingDF.get().createSingle(experiment3)
+
+        );
+        DistributionFunction analyticalDF = AnalyticalDF.get().createOR(cdf);
+        System.out.println("OR3 distribution table (modelling):\n" + modellingDF.getDistributionTable());
+        System.out.println("OR3 distribution table (analytical):\n" + analyticalDF.getDistributionTable());
+
+        assertEquals(modellingDF, analyticalDF, ANALYTICAL_ERROR);
     }
 
     @Test
@@ -186,7 +230,7 @@ public class DiscreteRandomValueGeneratorTest {
         Experiment experiment2 = new Experiment(generator2);
 
         CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2);
-        ce.run(100000);
+        ce.run(STD_RUN_COUNT);
 
 //        System.out.println("Measurements:\n" + ce.toString());
 
@@ -195,10 +239,8 @@ public class DiscreteRandomValueGeneratorTest {
 
         DistributionFunction andParallelismDF = ModellingDF.get().createAndParallelism(ce);
 
-        double error = 0.001;
-
         // check via AND parallelism: when M=N (M=2)
-        assertEquals(andParallelismDF, mnParallelismDF, error);
+        assertEquals(andParallelismDF, mnParallelismDF, ANALYTICAL_ERROR);
     }
 
     @Test
@@ -208,19 +250,15 @@ public class DiscreteRandomValueGeneratorTest {
         Experiment experiment3 = new Experiment(generator3);
 
         CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2, experiment3);
-        ce.run(100000);
-
-//        System.out.println("Measurements:\n" + ce.toString());
+        ce.run(STD_RUN_COUNT);
 
         DistributionFunction mnParallelismDF = ModellingDF.get().createMNParallelism(ce, 3);
         System.out.println("MN distribution table (modelling):\n" + mnParallelismDF.getDistributionTable());
 
         DistributionFunction andParallelismDF = ModellingDF.get().createAndParallelism(ce);
 
-        double error = 0.001;
-
         // check via AND parallelism: when M=N (M=2)
-        assertEquals(andParallelismDF, mnParallelismDF, error);
+        assertEquals(andParallelismDF, mnParallelismDF, ANALYTICAL_ERROR);
     }
 
     @Test
@@ -229,7 +267,7 @@ public class DiscreteRandomValueGeneratorTest {
         Experiment experiment2 = new Experiment(generator2);
 
         CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2);
-        ce.run(100000);
+        ce.run(STD_RUN_COUNT);
 
 //        System.out.println("Measurements:\n" + ce.toString());
 
@@ -238,10 +276,8 @@ public class DiscreteRandomValueGeneratorTest {
 
         DistributionFunction orParallelismDF = ModellingDF.get().createOrParallelism(ce);
 
-        double error = 0.001;
-
         // check via OR parallelism: when M=1
-        assertEquals(orParallelismDF, mnParallelismDF, error);
+        assertEquals(orParallelismDF, mnParallelismDF, ANALYTICAL_ERROR);
     }
 
     @Test
@@ -251,27 +287,25 @@ public class DiscreteRandomValueGeneratorTest {
         Experiment experiment3 = new Experiment(generator3);
 
         CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2, experiment3);
-        ce.run(100000);
+        ce.run(STD_RUN_COUNT);
 
         DistributionFunction mnParallelismDF = ModellingDF.get().createMNParallelism(ce, 1);
 //        System.out.println("MN distribution table (modelling):\n" + mnParallelismDF.getDistributionTable());
 
         DistributionFunction orParallelismDF = ModellingDF.get().createOrParallelism(ce);
 
-        double error = 0.001;
-
         // check via OR parallelism: when M=1
-        assertEquals(orParallelismDF, mnParallelismDF, error);
+        assertEquals(orParallelismDF, mnParallelismDF, ANALYTICAL_ERROR);
     }
 
     @Test
     public void test_modelling_MN_parallelism_2_of_3() {
         Experiment experiment1 = new Experiment(generator1);
-        Experiment experiment2 = new Experiment(generator1);
+        Experiment experiment2 = new Experiment(generator2);
         Experiment experiment3 = new Experiment(generator3);
 
         CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2, experiment3);
-        ce.run(100000);
+        ce.run(STD_RUN_COUNT);
 
 //        System.out.println("Measurements:\n" + ce.toString());
 
@@ -279,23 +313,47 @@ public class DiscreteRandomValueGeneratorTest {
         System.out.println("MN (2 of 3) distribution table (modelling):\n" + mnParallelismDF.getDistributionTable());
 
 
-        double error = 0.01;
+        double error = MODELLING_ERROR;
 
-        assertEquals(0.0284, mnParallelismDF.getDistributionTable().getProbabilityInRow(0).getValue(), error);
-        assertEquals(0.07698, mnParallelismDF.getDistributionTable().getProbabilityInRow(1).getValue(), error);
-        assertEquals(0.67728, mnParallelismDF.getDistributionTable().getProbabilityInRow(2).getValue(), error);
-        assertEquals(0.18962, mnParallelismDF.getDistributionTable().getProbabilityInRow(3).getValue(), error);
-        assertEquals(0.02772, mnParallelismDF.getDistributionTable().getProbabilityInRow(4).getValue(), error);
+        assertEquals(0.00986, mnParallelismDF.getDistributionTable().getProbabilityInRow(0).getValue(), error);
+        assertEquals(0.0302 , mnParallelismDF.getDistributionTable().getProbabilityInRow(1).getValue(), error);
+        assertEquals(0.44915, mnParallelismDF.getDistributionTable().getProbabilityInRow(2).getValue(), error);
+        assertEquals(0.32089, mnParallelismDF.getDistributionTable().getProbabilityInRow(3).getValue(), error);
+        assertEquals(0.1899 , mnParallelismDF.getDistributionTable().getProbabilityInRow(4).getValue(), error);
+    }
+
+    @Test
+    public void test_modelling_MN_parallelism_2_of_3_two_quick() {
+        DiscreteRandomValueGenerator gen1 = DiscreteRandomValueGenerator.get(new int[]{1, 2, 3}, new double[]{0.01, 0.98, 0.01});
+        Experiment experiment1 = new Experiment(gen1);
+        Experiment experiment2 = new Experiment(gen1);
+        Experiment experiment3 = new Experiment(DiscreteRandomValueGenerator.get(new int[]{1, 2, 3}, new double[]{0.01, 0.01, 0.98}));
+
+        CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2, experiment3);
+        ce.run(STD_RUN_COUNT);
+
+//        System.out.println("Measurements:\n" + ce.toString());
+
+        DistributionFunction mnParallelismDF = ModellingDF.get().createMNParallelism(ce, 2);
+        System.out.println("MN (2 of 3) distribution table (modelling):\n" + mnParallelismDF.getDistributionTable());
+
+
+        double error = MODELLING_ERROR;
+
+        assertEquals(0.001, mnParallelismDF.getDistributionTable().getProbabilityInRow(0).getValue(), error);
+        assertEquals(0.98, mnParallelismDF.getDistributionTable().getProbabilityInRow(1).getValue(), error);
+        assertEquals(0.02, mnParallelismDF.getDistributionTable().getProbabilityInRow(2).getValue(), error);
     }
 
     @Test
     public void test_analytical_MN_parallelism_2_of_3() {
         Experiment experiment1 = new Experiment(generator1);
         Experiment experiment2 = new Experiment(generator2);
-        Experiment experiment3 = new Experiment(generator3);
+        Experiment experiment3 = new Experiment(generatorToy2);
 
         CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2, experiment3);
-        ce.run(100000);
+        ce.run(STD_RUN_COUNT);
+//        ce.run(10000);
         int M = 2;
         DistributionFunction mnModellingDF = ModellingDF.get().createMNParallelism(ce, M);
 
@@ -306,19 +364,87 @@ public class DiscreteRandomValueGeneratorTest {
 
 
         DistributionFunction mnParallelismDF = AnalyticalDF.get().createMN(cdf, M);
+        System.out.println("MN (2 of 3) distribution table (modelling):\n" + mnModellingDF.getDistributionTable());
         System.out.println("MN (2 of 3) distribution table (analytical):\n" + mnParallelismDF.getDistributionTable());
 
-        double error = 0.01;
-
-        assertEquals(mnModellingDF, mnParallelismDF, error);
+        assertEquals(mnModellingDF, mnParallelismDF, ANALYTICAL_ERROR);
     }
+
+    @Test
+    public void test_analytical_MN_parallelism_2_of_3_two_quick() {
+        DiscreteRandomValueGenerator gen1 = DiscreteRandomValueGenerator.get(new int[]{1, 2, 3}, new double[]{0.01, 0.98, 0.01});
+        DiscreteRandomValueGenerator gen2 = DiscreteRandomValueGenerator.get(new int[]{1, 2, 3}, new double[]{0.01, 0.01, 0.98});
+        Experiment experiment1 = new Experiment(gen1);
+        Experiment experiment2 = new Experiment(gen1);
+        Experiment experiment3 = new Experiment(gen2);
+
+        CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2, experiment3);
+        ce.run(STD_RUN_COUNT);
+        int M = 2;
+        DistributionFunction mnModellingDF = ModellingDF.get().createMNParallelism(ce, M);
+
+        CompatibleDistributionFunctions cdf = new CompatibleDistributionFunctions(
+                ModellingDF.get().createSingle(experiment1),
+                ModellingDF.get().createSingle(experiment2),
+                ModellingDF.get().createSingle(experiment3));
+
+
+        DistributionFunction mnParallelismDF = AnalyticalDF.get().createMN(cdf, M);
+        System.out.println("MN (2 of 3) distribution table (modelling):\n" + mnModellingDF.getDistributionTable());
+        System.out.println("MN (2 of 3) distribution table (analytical):\n" + mnParallelismDF.getDistributionTable());
+
+        assertEquals(mnModellingDF, mnParallelismDF, ANALYTICAL_ERROR);
+    }
+
+    @Test
+    public void test_analytical_MN_parallelism_2_of_3_two_quick50_50() {
+        DiscreteRandomValueGenerator gen1 = DiscreteRandomValueGenerator.get(new int[]{1, 2, 4}, new double[]{0.01, 0.98, 0.01});
+        DiscreteRandomValueGenerator gen2 = DiscreteRandomValueGenerator.get(new int[]{1, 3, 4}, new double[]{0.01, 0.98, 0.01});
+        DiscreteRandomValueGenerator gen3 = DiscreteRandomValueGenerator.get(new int[]{1, 2, 4}, new double[]{0.01, 0.01, 0.98});
+        Experiment experiment1 = new Experiment(gen1);
+        Experiment experiment2 = new Experiment(gen2);
+        Experiment experiment3 = new Experiment(gen3);
+
+        CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2, experiment3);
+        ce.run(STD_RUN_COUNT);
+        int M = 2;
+        DistributionFunction mnModellingDF = ModellingDF.get().createMNParallelism(ce, M);
+
+        CompatibleDistributionFunctions cdf = new CompatibleDistributionFunctions(
+                ModellingDF.get().createSingle(experiment1),
+                ModellingDF.get().createSingle(experiment2),
+                ModellingDF.get().createSingle(experiment3));
+
+
+        DistributionFunction mnParallelismDF = AnalyticalDF.get().createMN(cdf, M);
+        System.out.println("MN (2 of 3) distribution table (modelling):\n" + mnModellingDF.getDistributionTable());
+        System.out.println("MN (2 of 3) distribution table (analytical):\n" + mnParallelismDF.getDistributionTable());
+
+        assertEquals(mnModellingDF, mnParallelismDF, ANALYTICAL_ERROR);
+    }
+
+    @Test
+    public void test_df_builder_by_val() {
+        DistributionFunctionByValueBuilder dfBuilder = new DistributionFunctionByValueBuilder();
+        Experiment exp = new Experiment(generator1);
+        exp.run(STD_RUN_COUNT);
+        DistributionFunction df = ModellingDF.get().createSingle(exp);
+        int size = df.getDistributionTable().size();
+        for(int i = 0; i < size; i++) {
+            DiscreteValue<Integer> dv = df.getDistributionTable().getDiscreteValueInRow(i);
+            dfBuilder.add(dv, df.eval(dv));
+        }
+        DistributionFunction builtDF = dfBuilder.build();
+        assertEquals(df, builtDF, ANALYTICAL_ERROR);
+    }
+
 
     @Test
     public void test_modelling_sequence_invoke() {
         Experiment experiment1 = new Experiment(generator1);
         Experiment experiment2 = new Experiment(generator2);
         CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2);
-        ce.run(100000);
+        ce.run(STD_RUN_COUNT);
 
         DistributionFunction sequenceDF = ModellingDF.get().createSequenceProcessing(ce);
         System.out.println("Sequence processing distribution table (modelling):\n" + sequenceDF.getDistributionTable());
@@ -330,9 +456,7 @@ public class DiscreteRandomValueGeneratorTest {
         System.out.println("Expected value of the experiment 2: " + new ExpectedValue(ModellingDF.get().createSingle(experiment2)));
         System.out.println("Expected value of the sequence of2: " + new ExpectedValue(sequenceDF));
 
-        double error = 0.05;
-//        assertEquals(expVal1, expVal2, error);
-        assertEquals(expVal1 + expVal2, expVal12, error);
+        assertEquals(expVal1 + expVal2, expVal12, ANALYTICAL_ERROR);
     }
 
     @Test
@@ -341,7 +465,7 @@ public class DiscreteRandomValueGeneratorTest {
         Experiment experiment2 = new Experiment(generatorToy2);
         Experiment experiment3 = new Experiment(generatorToy3);
         CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2, experiment3);
-        ce.run(100000);
+        ce.run(STD_RUN_COUNT);
 
         CompatibleDistributionFunctions cdf = new CompatibleDistributionFunctions(
                 ModellingDF.get().createSingle(experiment1),
@@ -363,10 +487,8 @@ public class DiscreteRandomValueGeneratorTest {
         System.out.println("Expected value of the experiment 3: " + new ExpectedValue(ModellingDF.get().createSingle(experiment3)));
         System.out.println("Expected value of the sequence of3: " + new ExpectedValue(analyticalSequenceDF));
 
-        double error = 0.005;
-//        assertEquals(expVal1, expVal2, error);
-        assertEquals(expVal1 + expVal2 + expVal3, expVal123, error);
-        assertEquals(modellingSequenceDF, analyticalSequenceDF, error);
+        assertEquals(expVal1 + expVal2 + expVal3, expVal123, ANALYTICAL_ERROR);
+        assertEquals(modellingSequenceDF, analyticalSequenceDF, ANALYTICAL_ERROR);
     }
 
     private static void assertEquals(double a, double b, double error) {

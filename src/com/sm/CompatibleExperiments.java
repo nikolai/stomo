@@ -53,13 +53,14 @@ public class CompatibleExperiments {
         return new CompatibleDistributionFunctions(dfList.toArray(new DistributionFunction[0])).getDiscreteValueSet();
     }
 
-    public void run(int count) {
+    public CompatibleExperiments run(int count) {
         assert count >= 0;
         for (int i = 0; i < count; i++) {
             for (Experiment exp : experiments) {
                 exp.runOnce();
             }
         }
+        return this;
     }
 
     @Override

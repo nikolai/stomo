@@ -13,27 +13,26 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
-    <option name="REVERSE_PATCH" value="false" />
   </component>
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
   <component name="DebuggerManager">
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/sm/DistributionFunction.java" line="59" class="com.sm.DistributionFunction" package="com.sm">
-        <option name="ENABLED" value="false" />
+      <breakpoint url="file://$PROJECT_DIR$/src/com/sm/DistributionFunction.java" line="68" class="com.sm.DistributionFunction" package="com.sm">
+        <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
         <option name="SUSPEND_POLICY" value="SuspendAll" />
         <option name="COUNT_FILTER_ENABLED" value="false" />
         <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CONDITION_ENABLED" value="true" />
         <option name="CLASS_FILTERS_ENABLED" value="false" />
         <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
+        <option name="CONDITION" value="distributionFunction.get(discreteValue) == null" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/sm/AnalyticalDF.java" line="95" class="com.sm.AnalyticalDF" package="com.sm">
+      <breakpoint url="file://$PROJECT_DIR$/test/com/sm/DiscreteRandomValueGeneratorTest.java" line="391" class="com.sm.DiscreteRandomValueGeneratorTest" package="com.sm">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -46,7 +45,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/test/com/sm/DiscreteRandomValueGeneratorTest.java" line="365" class="com.sm.DiscreteRandomValueGeneratorTest" package="com.sm">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/sm/AnalyticalDF.java" line="71" class="com.sm.AnalyticalDF" package="com.sm">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -59,7 +58,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/test/com/sm/DiscreteRandomValueGeneratorTest.java" line="351" class="com.sm.DiscreteRandomValueGeneratorTest" package="com.sm">
+      <breakpoint url="file://$PROJECT_DIR$/test/com/sm/DiscreteRandomValueGeneratorTest.java" line="422" class="com.sm.DiscreteRandomValueGeneratorTest" package="com.sm">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -73,23 +72,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </line_breakpoints>
-    <exception_breakpoints>
-      <breakpoint class_name="java.lang.NullPointerException" package_name="java.lang">
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </exception_breakpoints>
     <breakpoint_any>
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -137,8 +119,8 @@
       <property name="field_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByClasses" value="true" />
       <property name="exception_breakpoints_viewId" value="TREE" />
-      <property name="field_breakpoints_viewId" value="TABLE" />
       <property name="exception_breakpoints_groupByClasses" value="true" />
+      <property name="field_breakpoints_viewId" value="TABLE" />
       <property name="method_breakpoints_groupByMethods" value="false" />
     </ui_properties>
   </component>
@@ -147,19 +129,64 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SequenceDistributionFunctionBuilder.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sm/SequenceDistributionFunctionBuilder.java">
+      <file leaf-file-name="DiscreteRandomValueGeneratorTest.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/com/sm/DiscreteRandomValueGeneratorTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="36" selection-start="1006" selection-end="1006" vertical-scroll-proportion="0.0">
+            <state line="501" column="41" selection-start="25221" selection-end="25221" vertical-scroll-proportion="0.6452174">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DiscreteRandomValueGeneratorTest.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/com/sm/DiscreteRandomValueGeneratorTest.java">
+      <file leaf-file-name="Experiment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sm/Experiment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="348" column="45" selection-start="15871" selection-end="15871" vertical-scroll-proportion="0.52806413">
+            <state line="13" column="32" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DiscreteRandomValueGenerator.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sm/DiscreteRandomValueGenerator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="79" selection-start="695" selection-end="695" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DistributionFunction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionFunction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="68" column="0" selection-start="2689" selection-end="2689" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnalyticalDF.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sm/AnalyticalDF.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="86" column="70" selection-start="3457" selection-end="3457" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DistributionFunctionByValueBuilder.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionFunctionByValueBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="32" selection-start="563" selection-end="563" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModellingDF.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sm/ModellingDF.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="83" column="12" selection-start="3100" selection-end="3100" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -173,8 +200,7 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
-    <option name="CHECKOUT_INCLUDE_TAGS" value="false" />
-    <option name="UPDATE_CHANGES_POLICY" value="STASH" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/com/test/Main.java" root0="FORCE_HIGHLIGHTING" />
@@ -182,21 +208,21 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/sm/ModellingDF.java" />
-        <option value="$PROJECT_DIR$/src/com/sm/math/SMMath.java" />
-        <option value="$PROJECT_DIR$/src/com/sm/ExpectedValue.java" />
-        <option value="$PROJECT_DIR$/test/com/sng/system/bpel/LoaderTest.java" />
         <option value="$PROJECT_DIR$/test/com/sm/OldClassesTest.java" />
         <option value="$PROJECT_DIR$/src/com/sm/DistributionFunctionByValueBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/sm/ProbabilityDensityFunctionBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/sm/ProbabilityDensityFunction.java" />
         <option value="$PROJECT_DIR$/src/com/sm/DiscreteValue.java" />
-        <option value="$PROJECT_DIR$/src/com/sm/DistributionTable.java" />
         <option value="$PROJECT_DIR$/src/com/sm/CompatibleDistributionFunctions.java" />
-        <option value="$PROJECT_DIR$/src/com/sm/DistributionFunction.java" />
-        <option value="$PROJECT_DIR$/src/com/sm/AnalyticalDF.java" />
         <option value="$PROJECT_DIR$/src/com/sm/SequenceMultiplier.java" />
         <option value="$PROJECT_DIR$/src/com/sm/SequenceDistributionFunctionBuilder.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/ModellingDF.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/CompatibleExperiments.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/math/SMMath.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/DistributionTable.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/DistributionFunction.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/DiscreteRandomValueGenerator.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/AnalyticalDF.java" />
         <option value="$PROJECT_DIR$/test/com/sm/DiscreteRandomValueGeneratorTest.java" />
       </list>
     </option>
@@ -207,6 +233,12 @@
   <component name="ModuleEditorState">
     <option name="LAST_EDITED_MODULE_NAME" />
     <option name="LAST_EDITED_TAB_NAME" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-4" />
+    <option name="y" value="-4" />
+    <option name="width" value="1288" />
+    <option name="height" value="780" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -224,7 +256,7 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -250,9 +282,20 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Favorites" />
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StochasticModelling" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StochasticModelling" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -354,62 +397,6 @@
               <option name="myItemId" value="com" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StochasticModelling" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StochasticModelling" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StochasticModelling" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StochasticModelling" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bpel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -435,6 +422,17 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -446,7 +444,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="preferences.keymap" />
+    <property name="options.lastSelected" value="project.propVCSSupport.VCSs.Git" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -455,9 +453,9 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLanguage" value="Java" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -475,13 +473,13 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.Test StochasticModelling">
-    <configuration default="false" name="DiscreteRandomValueGeneratorTest.test_analytical_MN_parallelism_2_of_2" type="JUnit" factoryName="JUnit" temporary="true">
+    <configuration default="false" name="DiscreteRandomValueGeneratorTest.test_analytical_OR3_parallelism" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="StochasticModelling" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
       <option name="PACKAGE_NAME" value="com.sm" />
       <option name="MAIN_CLASS_NAME" value="com.sm.DiscreteRandomValueGeneratorTest" />
-      <option name="METHOD_NAME" value="test_analytical_MN_parallelism_2_of_2" />
+      <option name="METHOD_NAME" value="test_analytical_OR3_parallelism" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" value="" />
@@ -521,14 +519,37 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="LoaderTest" type="JUnit" factoryName="JUnit" temporary="true">
+    <configuration default="false" name="DiscreteRandomValueGeneratorTest.test_modelling_MN_parallelism_2_of_3_all_same" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="StochasticModelling" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="com.sng.system.bpel" />
-      <option name="MAIN_CLASS_NAME" value="com.sng.system.bpel.LoaderTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="com.sm" />
+      <option name="MAIN_CLASS_NAME" value="com.sm.DiscreteRandomValueGeneratorTest" />
+      <option name="METHOD_NAME" value="test_modelling_MN_parallelism_2_of_3_all_same" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <dir value="$PROJECT_DIR$/test" />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="DiscreteRandomValueGeneratorTest.test_analytical_MN_parallelism_2_of_3_two_quick" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="StochasticModelling" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="com.sm" />
+      <option name="MAIN_CLASS_NAME" value="com.sm.DiscreteRandomValueGeneratorTest" />
+      <option name="METHOD_NAME" value="test_analytical_MN_parallelism_2_of_3_two_quick" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -541,7 +562,7 @@
       <dir value="$PROJECT_DIR$/test" />
       <patterns />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="4573" />
+        <option name="DEBUG_PORT" value="56323" />
         <option name="TRANSPORT" value="0" />
         <option name="LOCAL" value="true" />
       </RunnerSettings>
@@ -550,48 +571,27 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="DiscreteRandomValueGeneratorTest" type="JUnit" factoryName="JUnit" temporary="true">
+    <configuration default="false" name="DiscreteRandomValueGeneratorTest.test_analytical_MN_parallelism_2_of_3_two_quick50_50" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="StochasticModelling" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
       <option name="PACKAGE_NAME" value="com.sm" />
       <option name="MAIN_CLASS_NAME" value="com.sm.DiscreteRandomValueGeneratorTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="DiscreteRandomValueGeneratorTest.test_analytical_sequence_invoke" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="StochasticModelling" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.sm" />
-      <option name="MAIN_CLASS_NAME" value="com.sm.DiscreteRandomValueGeneratorTest" />
-      <option name="METHOD_NAME" value="test_analytical_sequence_invoke" />
+      <option name="METHOD_NAME" value="test_analytical_MN_parallelism_2_of_3_two_quick50_50" />
       <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="moduleWithDependencies" />
       </option>
       <envs />
+      <dir value="$PROJECT_DIR$/test" />
       <patterns />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="1866" />
+        <option name="DEBUG_PORT" value="49254" />
         <option name="TRANSPORT" value="0" />
         <option name="LOCAL" value="true" />
       </RunnerSettings>
@@ -720,13 +720,13 @@
       <method />
     </configuration>
     <list size="7">
-      <item index="0" class="java.lang.String" itemvalue="Application.MainSystemRun" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.Test StochasticModelling" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.DiscreteRandomValueGeneratorTest.test_analytical_MN_parallelism_2_of_2" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.DiscreteRandomValueGeneratorTest.test_analytical_MN_parallelism_2_of_3" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.LoaderTest" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.DiscreteRandomValueGeneratorTest" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.DiscreteRandomValueGeneratorTest.test_analytical_sequence_invoke" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.DiscreteRandomValueGeneratorTest.test_analytical_OR3_parallelism" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.DiscreteRandomValueGeneratorTest.test_analytical_MN_parallelism_2_of_3" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.DiscreteRandomValueGeneratorTest.test_modelling_MN_parallelism_2_of_3_all_same" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.DiscreteRandomValueGeneratorTest.test_analytical_MN_parallelism_2_of_3_two_quick" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.DiscreteRandomValueGeneratorTest.test_analytical_MN_parallelism_2_of_3_two_quick50_50" />
+      <item index="5" class="java.lang.String" itemvalue="Application.MainSystemRun" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.Test StochasticModelling" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -742,7 +742,7 @@
   <component name="StructureViewFactory">
     <option name="ACTIVE_ACTIONS" value="SHOW_NON_PUBLIC,SHOW_INHERITED" />
   </component>
-  <component name="SvnConfiguration" maxAnnotateRevisions="500">
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false">
     <option name="USER" value="" />
     <option name="PASSWORD" value="" />
     <option name="mySSHConnectionTimeout" value="30000" />
@@ -757,7 +757,8 @@
     <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
     <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
     <option name="FORCE_UPDATE" value="false" />
-    <configuration useDefault="true">C:\Documents and Settings\smirnov-n\Application Data\Subversion</configuration>
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <configuration useDefault="true">C:\Users\Nikolai.vera\AppData\Roaming\Subversion</configuration>
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
   </component>
   <component name="TaskManager">
@@ -789,32 +790,38 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1288" height="1032" extended-state="6" />
+    <frame x="-4" y="-4" width="1288" height="780" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24444444" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3222958" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="-1276" y="704" width="1232" height="286" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31707317" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="132" y="145" width="970" height="475" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24960506" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="simpleUML" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32927817" sideWeight="0.76269317" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.28666666" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24551569" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23033252" sideWeight="0.54" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.23033252" sideWeight="0.4511111" order="0" side_tool="false" content_ui="tabs" x="-378" y="4" width="377" height="987" />
-      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.410596" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.28145695" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="-1279" y="668" width="1247" height="325" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22970779" sideWeight="0.75039494" order="0" side_tool="false" content_ui="combo" x="573" y="371" width="195" height="244" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3349131" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="374" y="147" width="531" height="475" />
+      <window_info id="Analyze Dataflow from" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="simpleUML" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32927817" sideWeight="0.76269317" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24390244" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Analyze Dataflow to" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Analyze Dataflow from" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.28658536" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32927817" sideWeight="0.76269317" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.410596" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
@@ -840,7 +847,16 @@
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
+    <option name="SHORT_DIFF_HORISONTALLY" value="true" />
+    <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
+    <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
+    <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
     <option name="LAST_COMMIT_MESSAGE" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -863,96 +879,79 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/com/sng/system/bpel/LoaderTest.java">
+    <entry file="file://$PROJECT_DIR$/src/com/sng/system/bpel/NamedValueGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="18" selection-start="361" selection-end="361" vertical-scroll-proportion="0.41195476" />
+        <state line="11" column="13" selection-start="218" selection-end="218" vertical-scroll-proportion="0.2520593" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/sm/OldClassesTest.java">
+    <entry file="file://$PROJECT_DIR$/src/com/sng/system/GoogleImgSearch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="6" selection-start="310" selection-end="310" vertical-scroll-proportion="0.23101777" />
+        <state line="7" column="13" selection-start="98" selection-end="98" vertical-scroll-proportion="0.19604613" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/ExpectedValue.java">
+    <entry file="file://$PROJECT_DIR$/src/com/sng/system/MainSystemRun.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="23" selection-start="152" selection-end="152" vertical-scroll-proportion="0.17406143">
-          <folding />
-        </state>
+        <state line="12" column="13" selection-start="190" selection-end="190" vertical-scroll-proportion="0.2520593" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionFunctionByValueBuilder.java">
+    <entry file="file://$PROJECT_DIR$/src/com/sng/system/SearchEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="85" selection-start="439" selection-end="439" vertical-scroll-proportion="0.2320819">
-          <folding />
-        </state>
+        <state line="7" column="17" selection-start="102" selection-end="102" vertical-scroll-proportion="0.19604613" />
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.8.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
+    <entry file="file://$PROJECT_DIR$/src/com/sm/CompatibleExperiments.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="40" selection-start="397" selection-end="397" vertical-scroll-proportion="0.27597404">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/ProbabilityDensityFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="555" selection-end="555" vertical-scroll-proportion="0.4254835">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/DiscreteRandomValueGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="287" selection-end="287" vertical-scroll-proportion="0.25315005">
-          <folding />
-        </state>
+        <state line="62" column="20" selection-start="1961" selection-end="1961" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="27" selection-start="900" selection-end="900" vertical-scroll-proportion="0.5670103">
-          <folding />
-        </state>
+        <state line="43" column="26" selection-start="1114" selection-end="1114" vertical-scroll-proportion="0.4398682" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/DiscreteValue.java">
+    <entry file="file://$PROJECT_DIR$/src/com/sm/math/SMMath.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="13" selection-start="876" selection-end="876" vertical-scroll-proportion="0.7789233">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="42" selection-start="1767" selection-end="1767" vertical-scroll-proportion="0.6094946">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/AnalyticalDF.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="154" column="35" selection-start="7337" selection-end="7337" vertical-scroll-proportion="0.89375">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/CompatibleDistributionFunctions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="27" selection-start="909" selection-end="909" vertical-scroll-proportion="0.62480855">
-          <folding />
-        </state>
+        <state line="42" column="0" selection-start="1023" selection-end="1023" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sm/SequenceDistributionFunctionBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="36" selection-start="1006" selection-end="1006" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="12" column="42" selection-start="375" selection-end="375" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/Experiment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="32" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/DiscreteRandomValueGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="79" selection-start="695" selection-end="695" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="0" selection-start="2689" selection-end="2689" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/AnalyticalDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86" column="70" selection-start="3457" selection-end="3457" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionFunctionByValueBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="32" selection-start="563" selection-end="563" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/ModellingDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="12" selection-start="3100" selection-end="3100" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/com/sm/DiscreteRandomValueGeneratorTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="348" column="45" selection-start="15871" selection-end="15871" vertical-scroll-proportion="0.52806413">
+        <state line="501" column="41" selection-start="25221" selection-end="25221" vertical-scroll-proportion="0.6452174">
           <folding />
         </state>
       </provider>
@@ -974,7 +973,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Android</last-edited>
+          <last-edited>No facets are configured</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -998,7 +997,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.6</last-edited>
+          <last-edited>1.7</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -45,7 +45,9 @@ public class DistributionTable<T extends Comparable> {
 
         sb.append("Val" + separator + "Probability\n");
         for (Map.Entry<DiscreteValue<T>, Probability> entry : table.entrySet()) {
-            sb.append(entry.getKey() + separator + entry.getValue() + "\n");
+            if (entry.getValue().getValue() != 0) {
+                sb.append(entry.getKey() + separator + entry.getValue() + "\n");
+            }
         }
 
         return sb.toString();
