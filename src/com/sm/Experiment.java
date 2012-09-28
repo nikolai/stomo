@@ -29,8 +29,12 @@ public class Experiment {
         return measurementsArray;
     }
 
+    public void setMeasurement(DiscreteValue[] measurementsArray) {
+        this.measurementsArray = measurementsArray;
+    }
+
     public int getSize() {
-        return measurements.size();
+        return getMeasurements().length;
     }
 
     public void run(int count) {
@@ -42,5 +46,9 @@ public class Experiment {
 
     public void runOnce() {
         addMeasurement(generator.getNext());
+    }
+
+    public DiscreteRandomValueGenerator getGenerator() {
+        return generator;
     }
 }

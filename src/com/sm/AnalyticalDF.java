@@ -16,14 +16,19 @@ public class AnalyticalDF {
      * Analytical distribution function of several compatibles (AND-parallelism)
      * */
     public DistributionFunction createAND(CompatibleDistributionFunctions<Integer> compatibleDistributionFunctions) {
+        return createAND(compatibleDistributionFunctions, compatibleDistributionFunctions.getSize());
+    }
+
+    private DistributionFunction createAND(CompatibleDistributionFunctions<Integer> cdf, int dfProcessedCount) {
+        assert dfProcessedCount <= cdf.getSize();
         // calc distribution
         DistributionTable distributionTable = new DistributionTable();
 
         double previousEvaluationOfDF = 0;
-        for (DiscreteValue discreteVal : compatibleDistributionFunctions.getDiscreteValueSet()) {
+        for (DiscreteValue discreteVal : cdf.getDiscreteValueSet()) {
             double multiplication = 1;
-            for (DistributionFunction df : compatibleDistributionFunctions.getDistributionFunctions()) {
-                multiplication *= df.eval(discreteVal);
+            for (int i=0; i < dfProcessedCount; i++) {
+                multiplication *= cdf.getDistributionFunctions()[i].eval(discreteVal);
             }
 
             Probability p = new Probability(multiplication - previousEvaluationOfDF);
@@ -39,17 +44,21 @@ public class AnalyticalDF {
      * Analytical distribution function of several compatibles (OR-parallelism)
      * */
     public DistributionFunction createOR(CompatibleDistributionFunctions<Integer> compatibleDistributionFunctions) {
+        return createOR(compatibleDistributionFunctions, compatibleDistributionFunctions.getSize());
+    }
+    private DistributionFunction createOR(CompatibleDistributionFunctions<Integer> cdf, int dfProcessedCount) {
+        assert dfProcessedCount <= cdf.getSize();
+
         // calc distribution
         DistributionTable distributionTable = new DistributionTable();
-        DiscreteValue[] discreteValues = compatibleDistributionFunctions
-                .getDiscreteValueSet().toArray(new DiscreteValue[0]);
+        DiscreteValue[] discreteValues = cdf.getDiscreteValueSet().toArray(new DiscreteValue[0]);
 
         for (int i=0; i < discreteValues.length; i++){
             double mul1 = 1;
             double mul2 = 1;
-            for (int j=0; j < compatibleDistributionFunctions.getSize(); j++) {
-                mul1 *= 1-compatibleDistributionFunctions.getDistributionFunctions()[j].eval(i == 0 ? new LowestDiscreteValue() : discreteValues[i-1]);
-                mul2 *= 1-compatibleDistributionFunctions.getDistributionFunctions()[j].eval(discreteValues[i]);
+            for (int j=0; j < dfProcessedCount; j++) {
+                mul1 *= 1-cdf.getDistributionFunctions()[j].eval(i == 0 ? new LowestDiscreteValue() : discreteValues[i-1]);
+                mul2 *= 1-cdf.getDistributionFunctions()[j].eval(discreteValues[i]);
             }
 
             Probability p = new Probability(mul1 - mul2);
@@ -69,10 +78,10 @@ public class AnalyticalDF {
     }
 
     private DistributionFunction createMNRecursive(CompatibleDistributionFunctions<Integer> cdf, int N, int M, int IND) {
-        if (M == 1) {
-            return createOR(cdf);
-        } else if (M == N) {
-            return createAND(cdf);
+        if (M == N) {
+            return createAND(cdf, N);
+        } else if (M == 1) {
+            return createOR(cdf, N);
         }
         DistributionFunction dfChild1 = createMNRecursive(cdf, N-1, M-1, IND-1);
         DistributionFunction dfChild2 = createMNRecursive(cdf, N-1, M, IND-1);
@@ -84,7 +93,7 @@ public class AnalyticalDF {
         for (int i=0; i < discreteValues.length; i++){
             DiscreteValue dv = discreteValues[i];
 
-            double Find = cdf.getDistributionFunctions()[cdf.getSize()-IND].eval(dv);
+            double Find = cdf.getDistributionFunctions()[IND-1].eval(dv);
             double gVal = Find * dfChild1.eval(dv) + (1-Find) * dfChild2.eval(dv);
             dfBuilder.add(dv, gVal);
         }

@@ -1,11 +1,6 @@
 package com.sm;
 
-import sun.reflect.generics.tree.ArrayTypeSignature;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * User: smirnov-n
@@ -45,20 +40,10 @@ public class CompatibleExperiments {
         return eventsData.toArray(new DiscreteValue[0]);
     }
 
-    public Set<DiscreteValue> getDiscreteValueSet() {
-        List<DistributionFunction> dfList = new ArrayList<DistributionFunction>(getNumberOfExperiments());
-        for (Experiment exp : experiments) {
-            dfList.add(ModellingDF.get().createSingle(exp));
-        }
-        return new CompatibleDistributionFunctions(dfList.toArray(new DistributionFunction[0])).getDiscreteValueSet();
-    }
-
     public CompatibleExperiments run(int count) {
         assert count >= 0;
-        for (int i = 0; i < count; i++) {
-            for (Experiment exp : experiments) {
-                exp.runOnce();
-            }
+        for (Experiment exp : experiments) {
+            MeasurementsRepository.instance.safeRun(exp, count);
         }
         return this;
     }
@@ -71,5 +56,35 @@ public class CompatibleExperiments {
 
         }
         return sb.toString();
+    }
+
+    public Experiment getExperiment(int i) {
+        return experiments[i];
+    }
+
+    private static class MeasurementsRepository {
+        private static MeasurementsRepository instance = new MeasurementsRepository();
+        private Map<DiscreteRandomValueGenerator, DiscreteValue[]> repo
+                = new HashMap<DiscreteRandomValueGenerator, DiscreteValue[]>();
+        private MeasurementsRepository(){}
+
+        public boolean safeRun(Experiment exp, int count) {
+            DiscreteRandomValueGenerator g = exp.getGenerator();
+            // if already run - return measurements
+//            if (repo.containsKey(g)) {
+//                DiscreteValue[] measurements = repo.get(g);
+//                if (measurements.length == count) {
+//                    exp.setMeasurement(measurements);
+//                    return true;
+//                }
+//            }
+
+            // else - run and save measurements
+            exp.run(count);
+            repo.put(g, exp.getMeasurements());
+            return false;
+        }
+
+
     }
 }

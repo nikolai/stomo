@@ -43,13 +43,15 @@ public class DistributionFunction<T extends Comparable> {
     }
 
     public static <T extends Comparable> DistributionFunction<T> createByTable(DistributionTable<T> distributionTable) {
+        checkDT(distributionTable);
         return new DistributionFunction<T>(distributionTable);
     }
 
     public double eval(DiscreteValue<T> discreteValue) {
 //        safeDistributionFunctionCalc();
+        Probability found = distributionFunction.get(discreteValue);
 
-        if (distributionFunction.get(discreteValue) == null){
+        if (found == null){
             if (distributionFunction.firstKey().compareTo(discreteValue) > 0) {
                 return 0;
             }
@@ -65,8 +67,10 @@ public class DistributionFunction<T extends Comparable> {
                 }
                 index--;
             }
+            throw new IllegalStateException("nothing to do here!");
+        } else {
+            return found.getValue();
         }
-        return distributionFunction.get(discreteValue).getValue();
     }
 
     public DistributionTable<T> getDistributionTable() {
