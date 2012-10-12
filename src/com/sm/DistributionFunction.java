@@ -16,7 +16,7 @@ public class DistributionFunction<T extends Comparable> {
     private final DistributionTable distributionTable;
 
     private DistributionFunction(DistributionTable distributionTable) {
-        checkDT(distributionTable);
+        distributionTable.validate();
         this.distributionTable = distributionTable;
 
         // calc distribution function
@@ -31,19 +31,8 @@ public class DistributionFunction<T extends Comparable> {
         }
     }
 
-    public static void checkDT(DistributionTable dt) {
-        double sum = 0;
-        for (int i = 0; i < dt.size(); i++) {
-            sum += dt.getProbabilityInRow(i).getValue();
-        }
-        double error = 0.0000000001;
-        if (Math.abs(sum - 1) > error) {
-            throw new IllegalArgumentException("Invalid distribution table!\n" + dt);
-        }
-    }
-
     public static <T extends Comparable> DistributionFunction<T> createByTable(DistributionTable<T> distributionTable) {
-        checkDT(distributionTable);
+        distributionTable.validate();
         return new DistributionFunction<T>(distributionTable);
     }
 

@@ -30,53 +30,36 @@ public class MonteCarloTest {
 
         Assert.assertEquals(dt_.size(), 5);
 
-        Assert.assertTrue(dt_.getDiscreteValueInRow(0).getValue().equals(1));
-        Assert.assertTrue(dt_.getDiscreteValueInRow(1).getValue().equals(2));
-        Assert.assertTrue(dt_.getDiscreteValueInRow(2).getValue().equals(3));
-        Assert.assertTrue(dt_.getDiscreteValueInRow(3).getValue().equals(4));
-        Assert.assertTrue(dt_.getDiscreteValueInRow(4).getValue().equals(5));
-
-        double error = MODELLING_ERROR;
-
-        Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(0).getValue() - 0.1) < error, true);
-        Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(1).getValue() - 0.1) < error, true);
-        Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(2).getValue() - 0.5) < error, true);
-        Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(3).getValue() - 0.2) < error, true);
-        Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(4).getValue() - 0.1) < error, true);
+        assertEquals(experiment.getGenerator().getDistributionFunction().getDistributionTable(), dt_, MODELLING_ERROR);
     }
 
     @Test
     public void test_modelling_OR2_parallelism() {
-        CompatibleExperiments ce = runService.run(gp.g(1), gp.g(1));
+        CompatibleExperiments ce = runService.run(gp.g(1), gp.g(2));
 
         DistributionFunction orParallelismDF = ModellingDF.get().createOrParallelism(ce);
         System.out.println("OR distribution table (modelling):\n" + orParallelismDF.getDistributionTable());
 
-        double error = MODELLING_ERROR;
-
-        assertEquals(0.1909807731, orParallelismDF.getDistributionTable().getProbabilityInRow(0).getValue(), error);
-        assertEquals(0.1688273568, orParallelismDF.getDistributionTable().getProbabilityInRow(1).getValue(), error);
-        assertEquals(0.550618158, orParallelismDF.getDistributionTable().getProbabilityInRow(2).getValue(), error);
-        assertEquals(0.0795988158, orParallelismDF.getDistributionTable().getProbabilityInRow(3).getValue(), error);
-        assertEquals(0.0099748962, orParallelismDF.getDistributionTable().getProbabilityInRow(4).getValue(), error);
+        assertEquals(new DistributionTable(new int[]{1, 2, 3, 4, 5},
+                new double[]{
+                    0.10039,
+                    0.09983,
+                    0.49877,
+                    0.20167,
+                    0.09934}),
+                orParallelismDF.getDistributionTable(), MODELLING_ERROR);
     }
 
     @Test
     public void test_AND2_parallelism() {
-        CompatibleExperiments ce = runService.run(gp.g(1), gp.g(1));
+        CompatibleExperiments ce = runService.run(gp.g(1), gp.g(2));
 
         DistributionFunction df = ModellingDF.get().createAndParallelism(ce);
 
         DistributionTable dt_ = df.getDistributionTable();
         System.out.println("Compatible events distribution table:\n" + dt_);
 
-        double error = MODELLING_ERROR;
-//        assertEquals(dt_, new double[]{0.01, 0.03, 0.45, 0.32, 0.19});
-        Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(0).getValue() - 0.01) < error, true);
-        Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(1).getValue() - 0.03) < error, true);
-        Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(2).getValue() - 0.45) < error, true);
-        Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(3).getValue() - 0.32) < error, true);
-        Assert.assertEquals(Math.abs(dt_.getProbabilityInRow(4).getValue() - 0.19) < error, true);
+        assertEquals(dt_, new DistributionTable(new int[]{5, 9, 10}, new double[]{0.3, 0.5, 0.2}), MODELLING_ERROR);
     }
 
     @Test
@@ -165,9 +148,10 @@ public class MonteCarloTest {
     @Test
     public void test_modelling_MN_parallelism_2_of_3_two_quick() {
         DiscreteRandomValueGenerator gen1 = DiscreteRandomValueGenerator.get(new int[]{1, 2, 3}, new double[]{0.01, 0.98, 0.01});
-        DiscreteRandomValueGenerator gen2 = DiscreteRandomValueGenerator.get(new int[]{1, 2, 3}, new double[]{0.01, 0.01, 0.98});
+        DiscreteRandomValueGenerator gen2 = DiscreteRandomValueGenerator.get(new int[]{1, 2, 3}, new double[]{0.01, 0.98, 0.01});
+        DiscreteRandomValueGenerator gen3 = DiscreteRandomValueGenerator.get(new int[]{1, 2, 3}, new double[]{0.01, 0.01, 0.98});
 
-        CompatibleExperiments ce = runService.run(gen1, gen1, gen2);
+        CompatibleExperiments ce = runService.run(gen1, gen2, gen3);
 
         DistributionFunction mnParallelismDF = ModellingDF.get().createMNParallelism(ce, 2);
         System.out.println("MN (2 of 3) distribution table (modelling):\n" + mnParallelismDF.getDistributionTable());
@@ -176,6 +160,26 @@ public class MonteCarloTest {
         assertEquals(0.001, mnParallelismDF.getDistributionTable().getProbabilityInRow(0).getValue(), error);
         assertEquals(0.98, mnParallelismDF.getDistributionTable().getProbabilityInRow(1).getValue(), error);
         assertEquals(0.02, mnParallelismDF.getDistributionTable().getProbabilityInRow(2).getValue(), error);
+    }
+
+
+    @Test
+    public void test_modelling_sequence_invoke() {
+        DiscreteRandomValueGenerator gen1 = gp.g(1);
+        DiscreteRandomValueGenerator gen2 = gp.g(2);
+        CompatibleExperiments ce = runService.run(gen1, gen2);
+
+        DistributionFunction sequenceDF = ModellingDF.get().createSequenceProcessing(ce);
+        //System.out.println("Sequence processing distribution table (modelling):\n" + sequenceDF.getDistributionTable());
+        double expVal1 = new ExpectedValue(gen1.getDistributionFunction()).getValue();
+        double expVal2 = new ExpectedValue(gen2.getDistributionFunction()).getValue();
+        double expVal12 = new ExpectedValue(sequenceDF).getValue();
+
+        System.out.println("Expected value of the experiment 1: " + expVal1);
+        System.out.println("Expected value of the experiment 2: " + expVal2);
+        System.out.println("Expected value of the sequence of2: " + expVal12);
+
+        assertEquals(expVal1 + expVal2, expVal12, MODELLING_ERROR);
     }
 
 }

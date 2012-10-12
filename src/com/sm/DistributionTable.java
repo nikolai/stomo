@@ -14,6 +14,16 @@ public class DistributionTable<T extends Comparable> {
     public DistributionTable() {
     }
 
+    public DistributionTable(int[] discreteValues, double[] probabilities) {
+        if (discreteValues.length != probabilities.length) {
+            throw new IllegalArgumentException("invalid length");
+        }
+        for (int i=0; i < discreteValues.length; i++) {
+            put(new IntDiscreteValue(discreteValues[i]), new Probability(probabilities[i]) );
+        }
+        validate();
+    }
+
     public Set<DiscreteValue<T>> sortedValues() {
         return table.keySet();
     }
@@ -61,5 +71,16 @@ public class DistributionTable<T extends Comparable> {
     public int size() {
         safeInitCache();
         return cachedEntries.length;
+    }
+
+    public void validate() {
+        double sum = 0;
+        for (int i = 0; i < size(); i++) {
+            sum += getProbabilityInRow(i).getValue();
+        }
+        double error = 0.0000000001;
+        if (Math.abs(sum - 1) > error) {
+            throw new IllegalArgumentException("Invalid distribution table!\n" + this);
+        }
     }
 }

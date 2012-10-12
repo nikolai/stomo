@@ -174,16 +174,17 @@ public class AnalyticalTest {
     @Test
     public void test_analytical_MN_parallelism_2_of_3_two_quick() {
         DiscreteRandomValueGenerator gen1 = DiscreteRandomValueGenerator.get(new int[]{1, 2, 3}, new double[]{0.01, 0.98, 0.01});
-        DiscreteRandomValueGenerator gen2 = DiscreteRandomValueGenerator.get(new int[]{1, 2, 3}, new double[]{0.01, 0.01, 0.98});
+        DiscreteRandomValueGenerator gen2 = DiscreteRandomValueGenerator.get(new int[]{1, 2, 3}, new double[]{0.01, 0.98, 0.01});
+        DiscreteRandomValueGenerator gen3 = DiscreteRandomValueGenerator.get(new int[]{1, 2, 3}, new double[]{0.01, 0.01, 0.98});
 
-        CompatibleExperiments ce = runService.run(gen1, gen1, gen2);
+        CompatibleExperiments ce = runService.run(gen1, gen2, gen3);
         int M = 2;
         DistributionFunction mnModellingDF = ModellingDF.get().createMNParallelism(ce, M);
 
         CompatibleDistributionFunctions cdf = new CompatibleDistributionFunctions(
-                ce.getExperiment(0).getGenerator().getDistributionFunction(),
-                ce.getExperiment(1).getGenerator().getDistributionFunction(),
-                ce.getExperiment(2).getGenerator().getDistributionFunction());
+                gen1.getDistributionFunction(),
+                gen2.getDistributionFunction(),
+                gen3.getDistributionFunction());
 
 
         DistributionFunction mnParallelismDF = AnalyticalDF.get().createMN(cdf, M);
@@ -208,26 +209,6 @@ public class AnalyticalTest {
         assertEquals(df, builtDF, ANALYTICAL_ERROR);
     }
 
-
-    @Test
-    public void test_modelling_sequence_invoke() {
-        Experiment experiment1 = new Experiment(gp.g(1));
-        Experiment experiment2 = new Experiment(gp.g(2));
-        CompatibleExperiments ce = new CompatibleExperiments(experiment1, experiment2);
-        ce.run(STD_RUN_COUNT);
-
-        DistributionFunction sequenceDF = ModellingDF.get().createSequenceProcessing(ce);
-        System.out.println("Sequence processing distribution table (modelling):\n" + sequenceDF.getDistributionTable());
-        double expVal1 = new ExpectedValue(ModellingDF.get().createSingle(experiment1)).getValue();
-        double expVal2 = new ExpectedValue(ModellingDF.get().createSingle(experiment2)).getValue();
-        double expVal12 = new ExpectedValue(sequenceDF).getValue();
-
-        System.out.println("Expected value of the experiment 1: " + new ExpectedValue(ModellingDF.get().createSingle(experiment1)));
-        System.out.println("Expected value of the experiment 2: " + new ExpectedValue(ModellingDF.get().createSingle(experiment2)));
-        System.out.println("Expected value of the sequence of2: " + new ExpectedValue(sequenceDF));
-
-        assertEquals(expVal1 + expVal2, expVal12, ANALYTICAL_ERROR);
-    }
 
     @Test
     public void test_analytical_sequence_invoke() {

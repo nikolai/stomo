@@ -3,6 +3,7 @@ package com.sm.util;
 import com.sm.CompatibleDistributionFunctions;
 import com.sm.DiscreteValue;
 import com.sm.DistributionFunction;
+import com.sm.DistributionTable;
 import junit.framework.Assert;
 
 /**
@@ -24,5 +25,10 @@ public class AssertUtil {
             assertEquals(df1.eval(dv), df2.eval(dv), error);
         }
         return true;
+    }
+
+    public static boolean assertEquals(DistributionTable dt1, DistributionTable dt2, double error) {
+        return assertEquals(DistributionFunction.createByTable(dt1), DistributionFunction.createByTable(dt2), error);
+
     }
 }

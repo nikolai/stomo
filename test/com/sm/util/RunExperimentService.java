@@ -11,7 +11,7 @@ import com.sm.Experiment;
  */
 public class RunExperimentService {
 
-    public static final int STD_RUN_COUNT = 100000;
+    public static final int STD_RUN_COUNT = 1000000;
 
     private RunExperimentService(){}
     public static RunExperimentService get() {
@@ -19,7 +19,12 @@ public class RunExperimentService {
     }
 
     public CompatibleExperiments run(DiscreteRandomValueGenerator... generator) {
+        return run(STD_RUN_COUNT, generator);
+    }
+
+    public CompatibleExperiments run(int runCount, DiscreteRandomValueGenerator... generator) {
         assert generator != null && generator.length >= 2;
+        assert runCount > 0;
 
         Experiment[] experiments = new Experiment[generator.length];
 
@@ -28,6 +33,7 @@ public class RunExperimentService {
         }
 
         CompatibleExperiments ce = new CompatibleExperiments(experiments);
-        return ce.run(STD_RUN_COUNT);
+        return ce.run(runCount);
     }
+
 }

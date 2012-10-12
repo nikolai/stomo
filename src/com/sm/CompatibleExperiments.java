@@ -71,17 +71,17 @@ public class CompatibleExperiments {
         public boolean safeRun(Experiment exp, int count) {
             DiscreteRandomValueGenerator g = exp.getGenerator();
             // if already run - return measurements
-//            if (repo.containsKey(g)) {
-//                DiscreteValue[] measurements = repo.get(g);
-//                if (measurements.length == count) {
-//                    exp.setMeasurement(measurements);
-//                    return true;
-//                }
-//            }
+            if (repo.containsKey(g)) {
+                DiscreteValue[] measurements = repo.get(g);
+                if (measurements.length == count) {
+                    exp.setMeasurement(measurements);
+                    return true;
+                }
+            }
 
             // else - run and save measurements
             exp.run(count);
-            repo.put(g, exp.getMeasurements());
+            repo.put(g, exp.getMeasurements().clone());
             return false;
         }
 

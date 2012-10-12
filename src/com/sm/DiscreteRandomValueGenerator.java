@@ -21,14 +21,7 @@ public class DiscreteRandomValueGenerator {
     }
 
     public static DiscreteRandomValueGenerator get(int[] discreteValues, double[] probabilities) {
-        if (discreteValues.length != probabilities.length) {
-            throw new IllegalArgumentException("invalid length");
-        }
-        DistributionTable dt = new DistributionTable();
-        for (int i=0; i < discreteValues.length; i++) {
-            dt.put(new IntDiscreteValue(discreteValues[i]), new Probability(probabilities[i]) );
-        }
-        return get(dt);
+        return get(new DistributionTable(discreteValues, probabilities));
     }
 
     public DiscreteValue getNext() {
