@@ -3,7 +3,6 @@ package com.sm;
 import com.sm.math.SMMath;
 
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 /**
@@ -15,7 +14,10 @@ public class ModellingDF {
     private ModellingDF(){}
     public static ModellingDF get() { return new ModellingDF(); }
 
-    public DistributionFunction createSingle(Experiment experiment) {
+    public DistributionFunction createSingle(IExperiment experiment) {
+        if (experiment == null || experiment.getSize() <= 0) {
+            throw new IllegalArgumentException("empty experiment data");
+        }
         DiscreteValue[] vals = experiment.getMeasurements();
         // calc count
         Map<DiscreteValue, Integer> count = new TreeMap();

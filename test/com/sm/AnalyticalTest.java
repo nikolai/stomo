@@ -2,9 +2,8 @@ package com.sm;
 
 import com.sm.util.GeneratorProvider;
 import static com.sm.util.AssertUtil.*;
+import static com.sm.util.AssertUtil.assertEquals;
 
-import com.sm.util.RunExperimentService;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -16,6 +15,26 @@ public class AnalyticalTest {
     public static final int STD_RUN_COUNT = 100000;
     private final GeneratorProvider gp = GeneratorProvider.get();
     private final RunExperimentService runService = RunExperimentService.get();
+
+    @Test
+    public void test_alternative_markov_chain2_analytical() {
+        Probability[] alternativeProbs = new Probability[]{new Probability(0.2), new Probability(0.8)};
+        // modelling
+        AlternativeExperiment ae1 = new AlternativeExperiment(gp.g(1), alternativeProbs[0]);
+        AlternativeExperiment ae2 = new AlternativeExperiment(gp.g(2), alternativeProbs[1]);
+        IExperiment resultExperiment = RunAlternativeService.getOne().run(ae1, ae2);
+        DistributionFunction dfModelling = ModellingDF.get().createSingle(resultExperiment);
+        System.out.println("Alternative distribution table (modelling):\n" + dfModelling.getDistributionTable());
+
+        // analytical
+        CompatibleDistributionFunctions cdf = new CompatibleDistributionFunctions(
+                gp.g(1).getDistributionFunction(), gp.g(2).getDistributionFunction());
+
+        DistributionFunction dfAnalytical = AnalyticalDF.get().createAlternative(cdf, alternativeProbs);
+        System.out.println("Alternative distribution table (analytical):\n" + dfAnalytical.getDistributionTable());
+
+        assertEquals(dfModelling, dfAnalytical, ANALYTICAL_ERROR);
+    }
 
     @Test
     public void test_compatible_distribution_functions_analytical() {

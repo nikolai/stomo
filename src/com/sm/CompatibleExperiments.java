@@ -74,7 +74,7 @@ public class CompatibleExperiments {
             if (repo.containsKey(g)) {
                 DiscreteValue[] measurements = repo.get(g);
                 if (measurements.length == count) {
-                    exp.setMeasurement(measurements);
+                    exp.setMeasurements(measurements);
                     return true;
                 }
             }

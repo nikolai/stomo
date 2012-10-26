@@ -8,7 +8,7 @@ import java.util.List;
  * Date: 08.09.11
  * Time: 20:23
  */
-public class Experiment {
+public class Experiment implements IExperiment {
     private final List<DiscreteValue> measurements = new LinkedList<DiscreteValue>();
     private DiscreteValue[] measurementsArray;
     private final DiscreteRandomValueGenerator generator;
@@ -17,7 +17,7 @@ public class Experiment {
         this.generator = generator;
     }
 
-    public void addMeasurement(DiscreteValue value) {
+    private void addMeasurement(DiscreteValue value) {
         measurementsArray = null;
         measurements.add(value);
     }
@@ -29,7 +29,7 @@ public class Experiment {
         return measurementsArray;
     }
 
-    public void setMeasurement(DiscreteValue[] measurementsArray) {
+    public void setMeasurements(DiscreteValue[] measurementsArray) {
         this.measurementsArray = measurementsArray;
     }
 

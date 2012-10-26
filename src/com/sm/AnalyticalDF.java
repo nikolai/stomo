@@ -1,5 +1,7 @@
 package com.sm;
 
+import java.util.Set;
+
 /**
  * User: smirnov-n
  * Date: 19.09.11
@@ -96,6 +98,21 @@ public class AnalyticalDF {
             double Find = cdf.getDistributionFunctions()[IND-1].eval(dv);
             double gVal = Find * dfChild1.eval(dv) + (1-Find) * dfChild2.eval(dv);
             dfBuilder.add(dv, gVal);
+        }
+
+        return dfBuilder.build();
+    }
+
+    public DistributionFunction createAlternative(CompatibleDistributionFunctions cdf, Probability[] probs){
+        assert cdf.getSize() == probs.length;
+        Set<DiscreteValue> values = cdf.getDiscreteValueSet();
+        DistributionFunctionByValueBuilder dfBuilder = new DistributionFunctionByValueBuilder();
+        for (DiscreteValue dv : values) {
+            double dvAlternativeVal = 0;
+            for (int i = 0; i < probs.length; i++) {
+                dvAlternativeVal += cdf.getDistributionFunctions()[i].eval(dv) * probs[i].getValue();
+            }
+            dfBuilder.add(dv, dvAlternativeVal);
         }
 
         return dfBuilder.build();

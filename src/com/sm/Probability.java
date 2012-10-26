@@ -5,7 +5,7 @@ package com.sm;
  * Date: 08.09.11
  * Time: 16:52
  */
-public class Probability {
+public class Probability implements Comparable<Probability>{
     private final double value;
 
     public Probability(double value) {
@@ -13,7 +13,7 @@ public class Probability {
     }
 
     public Probability plus(Probability operand) {
-        return new Probability(value + operand.value);
+        return new Probability(value + (operand != null?operand.value: 0));
     }
 
     public double getValue() {
@@ -23,5 +23,12 @@ public class Probability {
     @Override
     public String toString() {
         return String.valueOf(value);
+    }
+
+    public int compareTo(Probability o) {
+        return Double.compare(
+                this.getValue(),
+                o.getValue()
+        );
     }
 }

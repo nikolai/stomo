@@ -1,7 +1,6 @@
 package com.sm;
 
 import com.sm.util.GeneratorProvider;
-import com.sm.util.RunExperimentService;
 import junit.framework.Assert;
 import org.junit.Test;
 import static com.sm.util.AssertUtil.*;
@@ -31,6 +30,20 @@ public class MonteCarloTest {
         Assert.assertEquals(dt_.size(), 5);
 
         assertEquals(experiment.getGenerator().getDistributionFunction().getDistributionTable(), dt_, MODELLING_ERROR);
+    }
+
+    @Test
+    public void test_modelling_markov_chain2() {
+        AlternativeExperiment ae1 = new AlternativeExperiment(gp.g(1), new Probability(0.2));
+        AlternativeExperiment ae2 = new AlternativeExperiment(gp.g(2), new Probability(0.8));
+        IExperiment resultExperiment = RunAlternativeService.getOne().run(ae1, ae2);
+        DistributionFunction df = ModellingDF.get().createSingle(resultExperiment);
+
+        System.out.println("Alternative distribution table (modelling):\n" + df.getDistributionTable());
+
+        assertEquals(new DistributionTable(new int[]{1, 2, 3, 4, 5, 9, 10},
+                new double[]{0.02, 0.02, 0.1, 0.04, 0.26, 0.4, 0.16}),
+                df.getDistributionTable(), MODELLING_ERROR);
     }
 
     @Test
