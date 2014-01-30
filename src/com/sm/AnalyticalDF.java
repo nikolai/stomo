@@ -118,27 +118,27 @@ public class AnalyticalDF {
         return dfBuilder.build();
     }
 
-    public DistributionFunction createSequenceProcessing(CompatibleDistributionFunctions cdf) {
-        DistributionTable dt1 = cdf.getDistributionFunctions()[0].getDistributionTable();
-        DistributionTable dt2 = cdf.getDistributionFunctions()[1].getDistributionTable();
-
-        int t01 = ((Integer)dt1.getDiscreteValueInRow(0).getValue()) + ((Integer)dt2.getDiscreteValueInRow(0).getValue());
-        int t02 = ((Integer)dt1.getDiscreteValueInRow(0).getValue()) + ((Integer)dt2.getDiscreteValueInRow(1).getValue());
-        int t11 = ((Integer)dt1.getDiscreteValueInRow(1).getValue()) + ((Integer)dt2.getDiscreteValueInRow(0).getValue());
-        int t12 = ((Integer)dt1.getDiscreteValueInRow(1).getValue()) + ((Integer)dt2.getDiscreteValueInRow(1).getValue());
-
-        double p01 = dt1.getProbabilityInRow(0).getValue() * dt2.getProbabilityInRow(0).getValue();
-        double p02 = dt1.getProbabilityInRow(0).getValue() * dt2.getProbabilityInRow(1).getValue();
-        double p11 = dt1.getProbabilityInRow(1).getValue() * dt2.getProbabilityInRow(0).getValue();
-        double p12 = dt1.getProbabilityInRow(1).getValue() * dt2.getProbabilityInRow(1).getValue();
-
-        DistributionTable dt = new DistributionTable();
-        puttt(dt, new DiscreteValue(t01), new Probability(p01));
-        puttt(dt, new DiscreteValue(t02), new Probability(p02));
-        puttt(dt, new DiscreteValue(t11), new Probability(p11));
-        puttt(dt, new DiscreteValue(t12), new Probability(p12));
-
-        return DistributionFunction.createByTable(dt);
+//    public DistributionFunction createSequenceProcessing(CompatibleDistributionFunctions cdf) {
+//        DistributionTable dt1 = cdf.getDistributionFunctions()[0].getDistributionTable();
+//        DistributionTable dt2 = cdf.getDistributionFunctions()[1].getDistributionTable();
+//
+//        int t01 = ((Integer)dt1.getDiscreteValueInRow(0).getValue()) + ((Integer)dt2.getDiscreteValueInRow(0).getValue());
+//        int t02 = ((Integer)dt1.getDiscreteValueInRow(0).getValue()) + ((Integer)dt2.getDiscreteValueInRow(1).getValue());
+//        int t11 = ((Integer)dt1.getDiscreteValueInRow(1).getValue()) + ((Integer)dt2.getDiscreteValueInRow(0).getValue());
+//        int t12 = ((Integer)dt1.getDiscreteValueInRow(1).getValue()) + ((Integer)dt2.getDiscreteValueInRow(1).getValue());
+//
+//        double p01 = dt1.getProbabilityInRow(0).getValue() * dt2.getProbabilityInRow(0).getValue();
+//        double p02 = dt1.getProbabilityInRow(0).getValue() * dt2.getProbabilityInRow(1).getValue();
+//        double p11 = dt1.getProbabilityInRow(1).getValue() * dt2.getProbabilityInRow(0).getValue();
+//        double p12 = dt1.getProbabilityInRow(1).getValue() * dt2.getProbabilityInRow(1).getValue();
+//
+//        DistributionTable dt = new DistributionTable();
+//        puttt(dt, new DiscreteValue(t01), new Probability(p01));
+//        puttt(dt, new DiscreteValue(t02), new Probability(p02));
+//        puttt(dt, new DiscreteValue(t11), new Probability(p11));
+//        puttt(dt, new DiscreteValue(t12), new Probability(p12));
+//
+//        return DistributionFunction.createByTable(dt);
 
 //        ProbabilityDensityFunctionBuilder pdfBuilder = new ProbabilityDensityFunctionBuilder();
 //        for (int dfIndex = 0; dfIndex < cdf.getDistributionFunctions().length; dfIndex++) {
@@ -156,9 +156,9 @@ public class AnalyticalDF {
 //            pdfBuilder.add(dv, multiplication);
 //        }
 //        return DistributionFunction.createByTable(pdfBuilder.build().getDistributionTable());
-    }
+//    }
 
-    public DistributionFunction createSequenceProcessing1(CompatibleDistributionFunctions<Integer> cdf) {
+    public DistributionFunction createSequenceProcessing(CompatibleDistributionFunctions<Integer> cdf) {
 //        assert cdf.getSize() > 1;
 //        DistributionTable<Integer> dtResult = new DistributionTable<Integer>();
 //        DistributionFunction<Integer> currentDF = cdf.getDistributionFunctions()[0];
@@ -180,11 +180,11 @@ public class AnalyticalDF {
 //        return DistributionFunction.createByTable(dtResult);
         return new SequenceDistributionFunctionBuilder(cdf).build();
     }
-    private static void puttt(DistributionTable dt, DiscreteValue dv, Probability p) {
-        Probability oldP = dt.getProbability(dv);
-        if (oldP != null) {
-            p = new Probability(p.getValue() + oldP.getValue());
-        }
-        dt.put(dv, p);
-    }
+//    private static void puttt(DistributionTable dt, DiscreteValue dv, Probability p) {
+//        Probability oldP = dt.getProbability(dv);
+//        if (oldP != null) {
+//            p = new Probability(p.getValue() + oldP.getValue());
+//        }
+//        dt.put(dv, p);
+//    }
 }

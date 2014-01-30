@@ -8,13 +8,14 @@ import java.util.TreeSet;
  * Date: 13.09.11
  * Time: 13:25
  */
-public class CompatibleDistributionFunctions<T extends Comparable> {
+public class CompatibleDistributionFunctions<T extends Integer> {
     private final Set<DiscreteValue<T>> discreteValueSet;
     private final DistributionFunction[] compatibleDistributionFunctions;
 
     public CompatibleDistributionFunctions(DistributionFunction... compatibleDistributionFunctions) {
         this.compatibleDistributionFunctions = compatibleDistributionFunctions;
-        assert compatibleDistributionFunctions != null && compatibleDistributionFunctions.length > 1;
+        assert compatibleDistributionFunctions != null && compatibleDistributionFunctions.length > 0 :
+        "compatible distribution function count is zero";
 
         // prepare discrete values set
         discreteValueSet = new TreeSet<DiscreteValue<T>>();

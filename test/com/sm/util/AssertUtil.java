@@ -14,21 +14,20 @@ import junit.framework.Assert;
 public class AssertUtil {
     public static final double ANALYTICAL_ERROR = 0.005;
 
-    public static void assertEquals(double a, double b, double error) {
-        Assert.assertEquals(a + " and " + b + " are not equal with error " + error, true, Math.abs(a - b) < error);
+    public static void assertEquals(double expected, double real, double error) {
+        Assert.assertEquals(expected + " and " + real + " are not equal with error " + error, true, Math.abs(expected - real) < error);
     }
 
-    public static boolean assertEquals(DistributionFunction df1, DistributionFunction df2, double error) {
-        CompatibleDistributionFunctions<Integer> cdf = new CompatibleDistributionFunctions<Integer>(df1, df2);
+    public static boolean assertEquals(DistributionFunction expected, DistributionFunction real, double error) {
+        CompatibleDistributionFunctions<Integer> cdf = new CompatibleDistributionFunctions<Integer>(expected, real);
 //        assert df1.getDistributionTable().size() == df2.getDistributionTable().size() : "compared DFs should have the same size";
         for (DiscreteValue<Integer> dv : cdf.getDiscreteValueSet()) {
-            assertEquals(df1.eval(dv), df2.eval(dv), error);
+            assertEquals(expected.eval(dv), real.eval(dv), error);
         }
         return true;
     }
 
-    public static boolean assertEquals(DistributionTable dt1, DistributionTable dt2, double error) {
-        return assertEquals(DistributionFunction.createByTable(dt1), DistributionFunction.createByTable(dt2), error);
-
+    public static boolean assertEquals(DistributionTable expected, DistributionTable real, double error) {
+        return assertEquals(DistributionFunction.createByTable(expected), DistributionFunction.createByTable(real), error);
     }
 }

@@ -23,13 +23,13 @@ public class SequenceDistributionFunctionBuilder {
                 int val = dvFirst.getValue() + dvAnother.getValue();
                 double p = first.getDistributionTable().getProbability(dvFirst).getValue() *
                            another.getDistributionTable().getProbability(dvAnother).getValue();
-                putSafe(result, new DiscreteValue(val), new Probability(p));
+                putSafe(result, new DiscreteValue<Integer>(new Integer(val)), new Probability(p));
             }
         }
         return mul(DistributionFunction.createByTable(result), dfs, ++i);
     }
 
-    private static void putSafe(DistributionTable dt, DiscreteValue dv, Probability p) {
+    private static void putSafe(DistributionTable<Integer> dt, DiscreteValue<Integer> dv, Probability p) {
         Probability oldP = dt.getProbability(dv);
         if (oldP != null) {
             p = new Probability(p.getValue() + oldP.getValue());

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://sm.com/bpel/stomodel-config"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://sm.com/bpel/stomodel-config"
+            elementFormDefault="qualified"
+            blockDefault="#all">
+
+    <element name="BpelStoModelConfiguration" type="tns:StoModelConfig">
+    </element>
+    <complexType name="StoModelConfig">
+        <sequence>
+            <element name="ActivityConfig" type="tns:TAtomicActivityConfig" minOccurs="0" maxOccurs="unbounded"/>
+            <element name="IfActivityConfig" type="tns:TIfBranchConfig" minOccurs="0" maxOccurs="unbounded"/>
+            <element name="FlowActivityConfig" type="tns:TFlowActivityConfig" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <complexType name="TActivityConfig">
+        <sequence>
+            <element name="activityName" type="string"/>
+        </sequence>
+    </complexType>
+    <complexType name="TAtomicActivityConfig">
+        <complexContent>
+            <extension base="tns:TActivityConfig">
+                <sequence>
+                    <element name="TimeDistribution" type="tns:TTimeDistribution" maxOccurs="unbounded"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="TTimeDistribution">
+        <sequence>
+            <element name="time" type="int"/>
+            <element name="probability" type="tns:Probability"/>
+        </sequence>
+    </complexType>
+    <complexType name="TIfBranchConfig">
+        <complexContent>
+            <extension base="tns:TActivityConfig">
+                <sequence>
+                    <element name="probabilityOfBranch" type="tns:Probability" maxOccurs="unbounded"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    <simpleType name="Probability">
+        <restriction base="double"/>
+    </simpleType>
+    <complexType name="TFlowActivityConfig">
+        <complexContent>
+            <extension base="tns:TActivityConfig">
+                <sequence>
+                    <element name="countOfWaitedResults" minOccurs="0" type="unsignedInt"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+</schema>

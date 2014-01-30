@@ -5,5 +5,5 @@ package com.sm.model;
  * Date: 26.10.12
  * Time: 17:46
  */
-public class Sequence {
+public interface Sequence extends ActionContainer {
 }

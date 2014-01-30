@@ -43,7 +43,7 @@ public class CoinsUtil<T> {
             sum += p.getValue();
         }
         if (sum != 1) {
-            throw new IllegalArgumentException("Full probability is not equals 1!");
+            throw new IllegalArgumentException("Full probability is not equal to 1!");
         }
     }
 

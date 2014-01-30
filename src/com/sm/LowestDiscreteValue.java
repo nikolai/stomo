@@ -7,8 +7,8 @@ import java.math.BigDecimal;
  * Date: 20.09.11
  * Time: 18:44
  */
-public class LowestDiscreteValue extends DiscreteValue {
+public class LowestDiscreteValue extends DiscreteValue<Integer> {
     public LowestDiscreteValue() {
-        super(Integer.MIN_VALUE);
+        super(new Integer(Integer.MIN_VALUE));
     }
 }

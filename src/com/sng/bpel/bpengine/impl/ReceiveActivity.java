@@ -5,5 +5,5 @@ package com.sng.bpel.bpengine.impl;
  * Date: 12.10.12
  * Time: 16:45
  */
-public class ReceiveActivity extends ActivityImpl {
+public class ReceiveActivity {
 }

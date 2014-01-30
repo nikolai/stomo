@@ -49,6 +49,6 @@ public class SMMath {
         for (DiscreteValue<Integer> dv : eventsData) {
             sum += dv.getValue();
         }
-        return new DiscreteValue(sum);
+        return new DiscreteValue(new Integer(sum));
     }
 }

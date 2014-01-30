@@ -1,8 +1,16 @@
 package com.sng.bpel.main;
 
-import com.sng.bpel.util.BpelFactory;
+import com.sm.bpelmodeller.BpelModeller;
+import com.sm.bpelmodeller.config.BpelModellingConfigFactory;
+import com.sm.bpelmodeller.config.xsd.StoModelConfig;
+import com.sm.logging.LogService;
+import com.sm.model.StoModellingResult;
+import com.sm.util.XmlUtil;
+import org.oasis_open.docs.wsbpel._2_0.process.executable.ObjectFactory;
+import org.oasis_open.docs.wsbpel._2_0.process.executable.TProcess;
 
 import java.io.File;
+import java.util.logging.Logger;
 
 /**
  * User: mikola
@@ -10,13 +18,27 @@ import java.io.File;
  * Time: 17:11
  */
 public class StoModeller {
+    private static Logger log = LogService.get();
 
-    public void run(StoModellerParams params) throws StoModellerException {
+    public StoModellingResult run(StoModellerParams params) throws StoModellerException {
         try {
             String bpelFilePath = params.getBpelFile();
             File bpelFile = new File(bpelFilePath);
 
-            Object process = BpelFactory.getDefault().createProcess(bpelFile);
+            TProcess process = XmlUtil.unmarshall(bpelFile.getAbsolutePath(), TProcess.class, ObjectFactory.class);
+            log.info("Process read from "+bpelFilePath+": " + process);
+
+
+            String confFile = params.getConfigFile();
+            log.info("Read configuration from "+confFile);
+            StoModelConfig config = BpelModellingConfigFactory.getOne().readConfig(confFile);
+
+
+            BpelModeller modeller = BpelModeller.getDefault(config);
+            StoModellingResult result = modeller.analyse(process);
+            log.info("Modelling result: " + result);
+            LogService.get().stop();
+            return result;
         } catch (Exception e) {
             throw new StoModellerException(e);
         }

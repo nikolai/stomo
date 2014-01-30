@@ -7,18 +7,24 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 
 /**
  * User: smirnov-n
  * Date: 10.10.11
  * Time: 18:38
  */
-public class LogService {
+public class LogService extends Logger{
+    private Level curLogLevel = Level.FINE;
     private final ExecutorService exec = Executors.newSingleThreadExecutor();
     private StringBuffer sb = new StringBuffer();
     private static LogService instance = new LogService();
 
-    private LogService() {}
+    private LogService() {
+        super(LogService.class.getSimpleName(), null);
+    }
     public static LogService get() {
         return instance;
     }
@@ -29,16 +35,32 @@ public class LogService {
         System.out.print(sb);
     }
     public void log(String msg) {
-        try {
-            exec.execute(new WriteTask(msg));
-        } catch (RejectedExecutionException ignored) { }
+        logBase(msg, Level.INFO);
     }
 
-    public void log(Exception e) {
+    @Override
+    public void log(LogRecord record) {
+        logBase(record.getMessage(), record.getLevel());
+    }
+
+    private void logBase(String msg, Level level) {
+        if (level.intValue() >= curLogLevel.intValue()) {
+//            System.out.println(formatMsg(msg));
+            try {
+                exec.execute(new WriteTask(msg));
+            } catch (RejectedExecutionException ignored) { }
+        }
+    }
+
+    public void debug(String msg) {
+        logBase(msg, Level.FINE);
+    }
+
+    public void severe(Exception e) {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         e.printStackTrace(pw);
-        log(sw.toString());
+        logBase(sw.toString(), Level.SEVERE);
     }
 
 
@@ -50,7 +72,12 @@ public class LogService {
         }
 
         public void run() {
-            sb.append(new Date() + ": " + msg + "\n");
+            String message = new Date() + ": " + msg + "\n";
+            sb.append(message);
         }
+    }
+
+    private String formatMsg(String msg) {
+        return new Date() + ": " + "[" + Thread.currentThread().getName() + "] " + msg;
     }
 }

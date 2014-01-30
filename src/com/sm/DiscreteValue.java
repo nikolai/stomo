@@ -5,7 +5,7 @@ package com.sm;
  * Date: 08.09.11
  * Time: 16:57
  */
-public class DiscreteValue<T extends Comparable> implements Comparable<DiscreteValue<T>>{
+public class DiscreteValue<T extends Integer> implements Comparable<DiscreteValue<T>>{
     private final T value;
 
     public DiscreteValue(T value) {
@@ -18,7 +18,7 @@ public class DiscreteValue<T extends Comparable> implements Comparable<DiscreteV
 
     @Override
     public String toString() {
-        return value.toString();
+        return String.valueOf(value);
     }
 
     @Override

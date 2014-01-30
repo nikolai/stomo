@@ -23,7 +23,7 @@ public class InvokeBPTask implements Callable<Object> {
             LogService.get().log(res);
             return res;
         } catch (Exception e) {
-            LogService.get().log(e);
+            LogService.get().severe(e);
             throw e;
         }
     }

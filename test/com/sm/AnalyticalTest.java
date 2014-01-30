@@ -243,7 +243,7 @@ public class AnalyticalTest {
                 ModellingDF.get().createSingle(experiment3)
                 );
 
-        DistributionFunction analyticalSequenceDF = AnalyticalDF.get().createSequenceProcessing1(cdf);
+        DistributionFunction analyticalSequenceDF = AnalyticalDF.get().createSequenceProcessing(cdf);
         DistributionFunction modellingSequenceDF = ModellingDF.get().createSequenceProcessing(ce);
 
         System.out.println("Sequence processing distribution table (analytical):\n" + analyticalSequenceDF.getDistributionTable());

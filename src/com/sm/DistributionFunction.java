@@ -11,7 +11,7 @@ import java.util.*;
  * Date: 08.09.11
  * Time: 16:55
  */
-public class DistributionFunction<T extends Comparable> {
+public class DistributionFunction<T extends Integer> {
     private final SortedMap<DiscreteValue<T>, Probability> distributionFunction;
     private final DistributionTable distributionTable;
 
@@ -31,7 +31,7 @@ public class DistributionFunction<T extends Comparable> {
         }
     }
 
-    public static <T extends Comparable> DistributionFunction<T> createByTable(DistributionTable<T> distributionTable) {
+    public static <T extends Integer> DistributionFunction<T> createByTable(DistributionTable<T> distributionTable) {
         distributionTable.validate();
         return new DistributionFunction<T>(distributionTable);
     }

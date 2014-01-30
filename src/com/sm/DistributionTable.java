@@ -7,7 +7,7 @@ import java.util.*;
  * Date: 08.09.11
  * Time: 16:51
  */
-public class DistributionTable<T extends Comparable> {
+public class DistributionTable<T extends Integer> {
     private SortedMap<DiscreteValue<T>, Probability> table = new TreeMap<DiscreteValue<T>, Probability>();
     private Map.Entry<DiscreteValue<T>, Probability>[] cachedEntries;
 
@@ -63,7 +63,7 @@ public class DistributionTable<T extends Comparable> {
         return sb.toString();
     }
 
-    public void put(DiscreteValue key, Probability p) {
+        public void put(DiscreteValue key, Probability p) {
         cachedEntries = null;
         table.put(key, p);
     }

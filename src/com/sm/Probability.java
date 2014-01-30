@@ -31,4 +31,9 @@ public class Probability implements Comparable<Probability>{
                 o.getValue()
         );
     }
+
+
+    public Probability invert() {
+        return new Probability(1-value);
+    }
 }
