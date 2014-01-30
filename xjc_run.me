@@ -1,0 +1,1 @@
+xjc -p com.sm.bpelmodeller.config.xsd -d src src/bpel-stomodel-config.xsd
