@@ -2,6 +2,7 @@ package com.sm.model;
 
 import com.sm.DistributionTable;
 import com.sm.ExpectedValue;
+import com.sm.Probability;
 import com.sm.Variance;
 
 /**
@@ -13,4 +14,5 @@ public interface StoModellingResult {
     DistributionTable getDistributionTable();
     ExpectedValue getExpectedValue();
     Variance getVariance();
+    Probability evalRisk(int time);
 }

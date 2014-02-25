@@ -14,10 +14,6 @@ public class StoModelImpl extends SequenceImpl implements StoModel {
 
     public StoModellingResult runModelling() {
         final DistributionFunction df = getDistributionFunction();
-        return new StoModellingResultImpl(
-                df.getDistributionTable(),
-                new ExpectedValue(df),
-                new Variance(df)
-        );
+        return new StoModellingResultImpl(df);
     }
 }

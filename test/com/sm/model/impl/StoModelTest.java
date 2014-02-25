@@ -144,13 +144,13 @@ public class StoModelTest {
         par.setCountOfWaitedResults(1);
         result = model.runModelling();
         assertEquals(2.0, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
-        assertEquals(5.02, result.getVariance().getValue(), ANALYTICAL_ERROR);
+        assertEquals(1.02, result.getVariance().getValue(), ANALYTICAL_ERROR);
 
         // check 2 of N
         par.setCountOfWaitedResults(2);
         result = model.runModelling();
         assertEquals(2.97, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
-        assertEquals(1.09, result.getVariance().getValue(), ANALYTICAL_ERROR);
+        assertEquals(0.03, result.getVariance().getValue(), ANALYTICAL_ERROR);
     }
 
 
@@ -184,7 +184,7 @@ public class StoModelTest {
 
         StoModellingResult result = model.runModelling();
         assertEquals(3.09, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
-        assertEquals(87.25, result.getVariance().getValue(), ANALYTICAL_ERROR);
+        assertEquals(28.21, result.getVariance().getValue(), ANALYTICAL_ERROR);
     }
 
 
@@ -197,35 +197,35 @@ public class StoModelTest {
         StoModellingResult result = m.run(params);
 
         assertEquals(3.09, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
-        assertEquals(87.25, result.getVariance().getValue(), ANALYTICAL_ERROR);
+        assertEquals(28.21, result.getVariance().getValue(), ANALYTICAL_ERROR);
     }
 
     @Test
     public void test_N_of_N_bpel_like(){
         StoModellingResult result = test_M_of_N_like_template(4);
         assertEquals(3.18, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
-        assertEquals(83.72, result.getVariance().getValue(), ANALYTICAL_ERROR);
+        assertEquals(49.82, result.getVariance().getValue(), ANALYTICAL_ERROR);
     }
 
     @Test
     public void test_1_of_N_bpel_like(){
         StoModellingResult result = test_M_of_N_like_template(1);
         assertEquals(3.06, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
-        assertEquals(88.49, result.getVariance().getValue(), ANALYTICAL_ERROR);
+        assertEquals(28.8, result.getVariance().getValue(), ANALYTICAL_ERROR);
     }
 
     @Test
     public void test_2_of_N_bpel_like(){
         StoModellingResult result = test_M_of_N_like_template(2);
         assertEquals(3.06, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
-        assertEquals(88.48, result.getVariance().getValue(), ANALYTICAL_ERROR);
+        assertEquals(28.8, result.getVariance().getValue(), ANALYTICAL_ERROR);
     }
 
     @Test
     public void test_3_of_N_bpel_like(){
         StoModellingResult result = test_M_of_N_like_template(3);
         assertEquals(3.06, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
-        assertEquals(88.36, result.getVariance().getValue(), ANALYTICAL_ERROR);
+        assertEquals(28.74, result.getVariance().getValue(), ANALYTICAL_ERROR);
     }
 
     private StoModellingResult test_M_of_N_like_template(int M) {
@@ -272,26 +272,26 @@ public class StoModelTest {
     public void test_N_of_N_bpel_real() throws Exception {
         StoModellingResult result = test_M_of_N_bpel_real_template("./stoMC-NofNBpel.xml");
         assertEquals(3.18, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
-        assertEquals(83.72, result.getVariance().getValue(), ANALYTICAL_ERROR);
+        assertEquals(49.82, result.getVariance().getValue(), ANALYTICAL_ERROR);
     }
 
     @Test
     public void test_1_of_N_bpel_real() throws Exception {
         StoModellingResult result = test_M_of_N_bpel_real_template("./stoMC-1ofNBpel.xml");
         assertEquals(3.06, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
-        assertEquals(88.49, result.getVariance().getValue(), ANALYTICAL_ERROR);
+        assertEquals(28.8, result.getVariance().getValue(), ANALYTICAL_ERROR);
     }
 
     @Test
     public void test_2_of_N_bpel_real() throws Exception {
         StoModellingResult result = test_M_of_N_bpel_real_template("./stoMC-2ofNBpel.xml");
         assertEquals(3.06, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
-        assertEquals(88.48, result.getVariance().getValue(), ANALYTICAL_ERROR);
+        assertEquals(28.8, result.getVariance().getValue(), ANALYTICAL_ERROR);
     }
     @Test
     public void test_3_of_N_bpel_real() throws Exception {
         StoModellingResult result = test_M_of_N_bpel_real_template("./stoMC-3ofNBpel.xml");
         assertEquals(3.06, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
-        assertEquals(88.36, result.getVariance().getValue(), ANALYTICAL_ERROR);
+        assertEquals(28.74, result.getVariance().getValue(), ANALYTICAL_ERROR);
     }
 }

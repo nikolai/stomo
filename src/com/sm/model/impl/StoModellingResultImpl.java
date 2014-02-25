@@ -1,8 +1,6 @@
 package com.sm.model.impl;
 
-import com.sm.DistributionTable;
-import com.sm.ExpectedValue;
-import com.sm.Variance;
+import com.sm.*;
 import com.sm.model.StoModellingResult;
 
 /**
@@ -11,14 +9,14 @@ import com.sm.model.StoModellingResult;
  * Time: 18:31
  */
 public class StoModellingResultImpl implements StoModellingResult {
-    private final DistributionTable distributionTable;
+    private final DistributionTable<Integer> distributionTable;
     private final ExpectedValue expectedValue;
     private final Variance variance;
 
-    public StoModellingResultImpl(DistributionTable distributionTable, ExpectedValue expectedValue, Variance variance) {
-        this.distributionTable = distributionTable;
-        this.expectedValue = expectedValue;
-        this.variance = variance;
+    public StoModellingResultImpl(DistributionFunction df) {
+        this.distributionTable = df.getDistributionTable();
+        this.expectedValue = new ExpectedValue(df);
+        this.variance = new Variance(df);
     }
 
     public DistributionTable getDistributionTable() {
@@ -31,6 +29,16 @@ public class StoModellingResultImpl implements StoModellingResult {
 
     public Variance getVariance() {
         return variance;
+    }
+
+    public Probability evalRisk(int time) {
+        double sum = 0;
+        for (DiscreteValue<Integer> dv : distributionTable.sortedValues()) {
+            if (dv.getValue() <= time) {
+                sum += distributionTable.getProbability(dv).getValue();
+            }
+        }
+        return new Probability(1 - sum);
     }
 
     @Override

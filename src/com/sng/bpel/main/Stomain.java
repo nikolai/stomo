@@ -25,6 +25,8 @@ public class Stomain {
             DFCreatorFactory.getInstance().switchToAnalytical();
         }
 
+        long start = System.currentTimeMillis();
         m.run(params);
+        System.out.println("Modelling time: " + (System.currentTimeMillis()-start));
     }
 }
