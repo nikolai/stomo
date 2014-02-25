@@ -26,7 +26,7 @@ public class StoModeller {
             File bpelFile = new File(bpelFilePath);
 
             TProcess process = XmlUtil.unmarshall(bpelFile.getAbsolutePath(), TProcess.class, ObjectFactory.class);
-            log.info("Process read from "+bpelFilePath+": " + process);
+            log.info("Process read from "+bpelFilePath+": " + process.getName());
 
 
             String confFile = params.getConfigFile();

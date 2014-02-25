@@ -1,6 +1,7 @@
 package com.sm.model.impl;
 
 import com.sm.AnalyticalDF;
+import com.sm.DFCreatorFactory;
 import com.sm.DistributionFunction;
 import com.sm.Probability;
 import com.sm.model.Action;
@@ -36,7 +37,7 @@ public class AlternativeImpl extends AbstractActionContainer implements Alternat
 
     public DistributionFunction getDistributionFunction() {
         CoinsUtil.checkFullProbability(probabilities);
-        return AnalyticalDF.get().createAlternative(
+        return DFCreatorFactory.getInstance().getCreator().createAlternative(
                 getCompatibleDistributionFunctions(),
                 probabilities.toArray(new Probability[0]));
     }

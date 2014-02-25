@@ -65,7 +65,7 @@ public class StoModelTest {
         model.addStoAction(mf.createAction(dt1));
         model.addStoAction(mf.createAction(dt1));
 
-        StoModellingResult result = model.analyticalRun();
+        StoModellingResult result = model.runModelling();
 
         assertEquals(5.0, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
         assertEquals(1.65, result.getVariance().getValue(), ANALYTICAL_ERROR);
@@ -79,7 +79,7 @@ public class StoModelTest {
         model.addStoAction(mf.createAction(dtAlmost3));
         model.addStoAction(mf.createAction(dtAlmost3));
 
-        StoModellingResult result = model.analyticalRun();
+        StoModellingResult result = model.runModelling();
 
         assertEquals(8.91, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
         assertEquals(0.18, result.getVariance().getValue(), ANALYTICAL_ERROR);
@@ -95,7 +95,7 @@ public class StoModelTest {
 
         model.addStoAction(seq1).addStoAction(mf.createAction(dtAlmost3));
 
-        StoModellingResult result = model.analyticalRun();
+        StoModellingResult result = model.runModelling();
 
         assertEquals(8.91, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
         assertEquals(0.18, result.getVariance().getValue(), ANALYTICAL_ERROR);
@@ -114,7 +114,7 @@ public class StoModelTest {
         alter.addStoAction(mf.createAction(dtAlmost2), new Probability(0.9));
             model.addStoAction(alter);
 
-        StoModellingResult result = model.analyticalRun();
+        StoModellingResult result = model.runModelling();
 
         assertEquals(2.39, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
         assertEquals(21.96, result.getVariance().getValue(), ANALYTICAL_ERROR);
@@ -136,19 +136,19 @@ public class StoModelTest {
         model.addStoAction(par);
 
         // check N of N
-        StoModellingResult result = model.analyticalRun();
+        StoModellingResult result = model.runModelling();
         assertEquals(3.98, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
         assertEquals(0.02, result.getVariance().getValue(), ANALYTICAL_ERROR);
 
         // check 1 of N
         par.setCountOfWaitedResults(1);
-        result = model.analyticalRun();
+        result = model.runModelling();
         assertEquals(2.0, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
         assertEquals(5.02, result.getVariance().getValue(), ANALYTICAL_ERROR);
 
         // check 2 of N
         par.setCountOfWaitedResults(2);
-        result = model.analyticalRun();
+        result = model.runModelling();
         assertEquals(2.97, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
         assertEquals(1.09, result.getVariance().getValue(), ANALYTICAL_ERROR);
     }
@@ -182,7 +182,7 @@ public class StoModelTest {
         Action invokeNp1 = mf.createAction(dtAlmost1);
         mainSeq.addStoAction(invokeNp1);
 
-        StoModellingResult result = model.analyticalRun();
+        StoModellingResult result = model.runModelling();
         assertEquals(3.09, result.getExpectedValue().getValue(), ANALYTICAL_ERROR);
         assertEquals(87.25, result.getVariance().getValue(), ANALYTICAL_ERROR);
     }
@@ -256,7 +256,7 @@ public class StoModelTest {
         Action invokeNp1 = mf.createAction(dtAlmost1);
         mainSeq.addStoAction(invokeNp1);
 
-        return model.analyticalRun();
+        return model.runModelling();
     }
 
 

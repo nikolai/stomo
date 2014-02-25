@@ -1,9 +1,6 @@
 package com.sm.model.impl;
 
-import com.sm.DistributionFunction;
-import com.sm.DistributionTable;
-import com.sm.ExpectedValue;
-import com.sm.Variance;
+import com.sm.*;
 import com.sm.model.StoModel;
 import com.sm.model.StoModellingResult;
 
@@ -14,7 +11,8 @@ import com.sm.model.StoModellingResult;
  */
 public class StoModelImpl extends SequenceImpl implements StoModel {
     StoModelImpl(){}
-    public StoModellingResult analyticalRun() {
+
+    public StoModellingResult runModelling() {
         final DistributionFunction df = getDistributionFunction();
         return new StoModellingResultImpl(
                 df.getDistributionTable(),

@@ -2,6 +2,8 @@ package com.sm;
 
 import com.sm.math.SMMath;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -10,44 +12,50 @@ import java.util.TreeMap;
  * Date: 19.09.11
  * Time: 16:08
  */
-public class ModellingDF {
+public class ModellingDF implements DFCreator{
+    private final RunExperimentService runService = RunExperimentService.get();
+    public static final int STD_RUN_COUNT = 100000;
+
     private ModellingDF(){}
     public static ModellingDF get() { return new ModellingDF(); }
 
-    public DistributionFunction createSingle(IExperiment experiment) {
-        if (experiment == null || experiment.getSize() <= 0) {
-            throw new IllegalArgumentException("empty experiment data");
+    public DistributionFunction createAlternative(CompatibleDistributionFunctions cdf, Probability[] probs) {
+        int index = 0;
+        AlternativeExperiment[] experiments = new AlternativeExperiment[probs.length];
+        for (DistributionFunction df : cdf.getDistributionFunctions()) {
+            DiscreteRandomValueGenerator generator = new DiscreteRandomValueGenerator(df.getDistributionTable());
+            experiments[index] = new AlternativeExperiment(generator, probs[index++]);
         }
-        DiscreteValue[] vals = experiment.getMeasurements();
-        // calc count
-        Map<DiscreteValue, Integer> count = new TreeMap();
-        for (DiscreteValue val : vals) {
-            Integer number = count.get(val);
-            number = number != null ? number+1 : 1;
-            count.put(val, number);
-        }
-        // calc distribution
-        return DistributionFunction.createByTable(constructDT(count, experiment.getSize()));
+        IExperiment runExperiment = RunAlternativeService.getOne().run((AlternativeExperiment[]) experiments);
+        return createSingle(runExperiment);
     }
 
-    public DistributionFunction createAndParallelism(CompatibleExperiments compatibleExperiments) {
-        return template(compatibleExperiments, new SelectionAlgo(){
+//    public DistributionFunction createAND(CompatibleExperiments compatibleExperiments) {
+//        return template(compatibleExperiments, new SelectionAlgo(){
+//            public DiscreteValue getAlgoValue(DiscreteValue[] eventsData) {
+//                return SMMath.max(eventsData);
+//            }
+//        });
+//    }
+
+    public DistributionFunction createAND(CompatibleDistributionFunctions<Integer> cdf) {
+        return template(cdf, new SelectionAlgo(){
             public DiscreteValue getAlgoValue(DiscreteValue[] eventsData) {
                 return SMMath.max(eventsData);
             }
         });
     }
 
-    public DistributionFunction createOrParallelism(CompatibleExperiments compatibleExperiments) {
-        return template(compatibleExperiments, new SelectionAlgo(){
+    public DistributionFunction createOR(CompatibleDistributionFunctions<Integer> cdf) {
+        return template(cdf, new SelectionAlgo(){
             public DiscreteValue getAlgoValue(DiscreteValue[] eventsData) {
                 return SMMath.min(eventsData);
             }
         });
     }
 
-    public DistributionFunction createMNParallelism(CompatibleExperiments compatibleExperiments, final int M) {
-        return template(compatibleExperiments, new SelectionAlgo(){
+    public DistributionFunction createMN(CompatibleDistributionFunctions cdf, final int M) {
+        return template(cdf, new SelectionAlgo(){
             public DiscreteValue getAlgoValue(DiscreteValue[] eventsData) {
                 return SMMath.min(M, eventsData);
             }
@@ -55,15 +63,14 @@ public class ModellingDF {
     }
 
 
-    public DistributionFunction createSequenceProcessing(CompatibleExperiments compatibleExperiments) {
-        return template(compatibleExperiments, new SelectionAlgo(){
+    public DistributionFunction createSequenceProcessing(CompatibleDistributionFunctions<Integer> cdf) {
+        return template(cdf, new SelectionAlgo(){
             public DiscreteValue getAlgoValue(DiscreteValue[] eventsData) {
                 return SMMath.sum(eventsData);
             }
         });
     }
-
-    private DistributionTable constructDT(Map<DiscreteValue, Integer> countTable, int experimentCount) {
+    public static DistributionTable constructDT(Map<DiscreteValue, Integer> countTable, int experimentCount) {
         DistributionTable distributionTable = new DistributionTable();
         for (DiscreteValue key : countTable.keySet()) {
             Probability p = new Probability(countTable.get(key) / (double) experimentCount);
@@ -71,8 +78,36 @@ public class ModellingDF {
         }
         return distributionTable;
     }
+//
+//    private DistributionFunction template(CompatibleExperiments compatibleExperiments, SelectionAlgo algo) {
+//        // calc count
+//        Map<DiscreteValue, Integer> count = new TreeMap();
+//
+//        int numOfMeasurements = compatibleExperiments.getSizeOfExperiments();
+//        for (int i = 0; i < numOfMeasurements; i++) {
+//
+//            DiscreteValue[] eventsData = compatibleExperiments.getExperimentsData(i);
+//            DiscreteValue algoValue = algo.getAlgoValue(eventsData);
+//            Integer number = count.get(algoValue);
+//
+//            number = number != null ? number+1 : 1;
+//            count.put(algoValue, number);
+//        }
+//
+//        // calc distribution
+//        return DistributionFunction.createByTable(constructDT(count, numOfMeasurements));
+//    }
 
-    private DistributionFunction template(CompatibleExperiments compatibleExperiments, SelectionAlgo algo) {
+    private DistributionFunction template(CompatibleDistributionFunctions cdf, SelectionAlgo algo) {
+        int index = 0;
+        Experiment[] experiments = new Experiment[cdf.getSize()];
+        for (DistributionFunction df : cdf.getDistributionFunctions()) {
+            DiscreteRandomValueGenerator generator = new DiscreteRandomValueGenerator(df.getDistributionTable());
+            experiments[index] = new Experiment(generator);
+            index++;
+        }
+
+        CompatibleExperiments compatibleExperiments = new CompatibleExperiments(experiments).run(STD_RUN_COUNT);
         // calc count
         Map<DiscreteValue, Integer> count = new TreeMap();
 
@@ -94,4 +129,21 @@ public class ModellingDF {
     private abstract static class SelectionAlgo {
         public abstract DiscreteValue getAlgoValue(DiscreteValue[] eventsData);
     }
+
+    private static DistributionFunction createSingle(IExperiment experiment) {
+        if (experiment == null || experiment.getSize() <= 0) {
+            throw new IllegalArgumentException("empty experiment data");
+        }
+        DiscreteValue[] vals = experiment.getMeasurements();
+        // calc count
+        Map<DiscreteValue, Integer> count = new TreeMap();
+        for (DiscreteValue val : vals) {
+            Integer number = count.get(val);
+            number = number != null ? number+1 : 1;
+            count.put(val, number);
+        }
+        // calc distribution
+        return DistributionFunction.createByTable(constructDT(count, experiment.getSize()));
+    }
+
 }

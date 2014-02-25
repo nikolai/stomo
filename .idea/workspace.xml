@@ -2,52 +2,49 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df206f26-1a78-43ee-89b5-35a17be0be72" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\Nikki\edu\Disser\code\StochasticModelling\xjc_run.bat" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/model/impl/AbstractActionContainer.java" afterPath="$PROJECT_DIR$/src/com/sm/model/impl/AbstractActionContainer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/model/Action.java" afterPath="$PROJECT_DIR$/src/com/sm/model/Action.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/model/ActionContainer.java" afterPath="$PROJECT_DIR$/src/com/sm/model/ActionContainer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/model/impl/ActionImpl.java" afterPath="$PROJECT_DIR$/src/com/sm/model/impl/ActionImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/bpelmodeller/ActivityProcessorFactory.java" afterPath="$PROJECT_DIR$/src/com/sm/bpelmodeller/ActivityProcessorFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/model/Alternative.java" afterPath="$PROJECT_DIR$/src/com/sm/model/Alternative.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/sm/DFCreator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/sm/DFCreatorFactory.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/com/sm/VarianceTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/model/impl/AlternativeImpl.java" afterPath="$PROJECT_DIR$/src/com/sm/model/impl/AlternativeImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/AnalyticalDF.java" afterPath="$PROJECT_DIR$/src/com/sm/AnalyticalDF.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/sm/AnalyticalTest.java" afterPath="$PROJECT_DIR$/test/com/sm/AnalyticalTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/sm/util/AssertUtil.java" afterPath="$PROJECT_DIR$/test/com/sm/util/AssertUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/bpelmodeller/Bpel2StoModelConverter.java" afterPath="$PROJECT_DIR$/src/com/sm/bpelmodeller/Bpel2StoModelConverter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/bpelmodeller/BpelActivityType.java" afterPath="$PROJECT_DIR$/src/com/sm/bpelmodeller/BpelActivityType.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/bpelmodeller/BpelModeller.java" afterPath="$PROJECT_DIR$/src/com/sm/bpelmodeller/BpelModeller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/bpelmodeller/ChildActivitySelector.java" afterPath="$PROJECT_DIR$/src/com/sm/bpelmodeller/ChildActivitySelector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/util/CoinsUtil.java" afterPath="$PROJECT_DIR$/src/com/sm/util/CoinsUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/CompatibleDistributionFunctions.java" afterPath="$PROJECT_DIR$/src/com/sm/CompatibleDistributionFunctions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/bpelmodeller/config/ConfigHelper.java" afterPath="$PROJECT_DIR$/src/com/sm/bpelmodeller/config/ConfigHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/model/impl/DefaultModelFactory.java" afterPath="$PROJECT_DIR$/src/com/sm/model/impl/DefaultModelFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/DiscreteValue.java" afterPath="$PROJECT_DIR$/src/com/sm/DiscreteValue.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/DistributionFunction.java" afterPath="$PROJECT_DIR$/src/com/sm/DistributionFunction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/CompatibleExperiments.java" afterPath="$PROJECT_DIR$/src/com/sm/CompatibleExperiments.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/DistributionTable.java" afterPath="$PROJECT_DIR$/src/com/sm/DistributionTable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sng/bpel/bpel/InvokeBPTask.java" afterPath="$PROJECT_DIR$/src/com/sng/bpel/bpel/InvokeBPTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/logging/LogService.java" afterPath="$PROJECT_DIR$/src/com/sm/logging/LogService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/LowestDiscreteValue.java" afterPath="$PROJECT_DIR$/src/com/sm/LowestDiscreteValue.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/model/ModelFactory.java" afterPath="$PROJECT_DIR$/src/com/sm/model/ModelFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/Probability.java" afterPath="$PROJECT_DIR$/src/com/sm/Probability.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sng/bpel/bpengine/impl/ReceiveActivity.java" afterPath="$PROJECT_DIR$/src/com/sng/bpel/bpengine/impl/ReceiveActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/math/SMMath.java" afterPath="$PROJECT_DIR$/src/com/sm/math/SMMath.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/model/Sequence.java" afterPath="$PROJECT_DIR$/src/com/sm/model/Sequence.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/SequenceDistributionFunctionBuilder.java" afterPath="$PROJECT_DIR$/src/com/sm/SequenceDistributionFunctionBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/Experiment.java" afterPath="$PROJECT_DIR$/src/com/sm/Experiment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/ModellingDF.java" afterPath="$PROJECT_DIR$/src/com/sm/ModellingDF.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/sm/MonteCarloTest.java" afterPath="$PROJECT_DIR$/test/com/sm/MonteCarloTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/model/impl/ParallelImpl.java" afterPath="$PROJECT_DIR$/src/com/sm/model/impl/ParallelImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/model/impl/SequenceImpl.java" afterPath="$PROJECT_DIR$/src/com/sm/model/impl/SequenceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/model/StoModel.java" afterPath="$PROJECT_DIR$/src/com/sm/model/StoModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/model/impl/StoModelImpl.java" afterPath="$PROJECT_DIR$/src/com/sm/model/impl/StoModelImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/sm/model/impl/StoModelTest.java" afterPath="$PROJECT_DIR$/test/com/sm/model/impl/StoModelTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sng/bpel/main/StoModeller.java" afterPath="$PROJECT_DIR$/src/com/sng/bpel/main/StoModeller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sng/bpel/main/StoModellerParams.java" afterPath="$PROJECT_DIR$/src/com/sng/bpel/main/StoModellerParams.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/model/impl/StoModellingResultImpl.java" afterPath="$PROJECT_DIR$/src/com/sm/model/impl/StoModellingResultImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sng/bpel/main/Stomain.java" afterPath="$PROJECT_DIR$/src/com/sng/bpel/main/Stomain.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/Variance.java" afterPath="$PROJECT_DIR$/src/com/sm/Variance.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/util/XmlUtil.java" afterPath="$PROJECT_DIR$/src/com/sm/util/XmlUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bpel-stomodel-config.xsd" afterPath="$PROJECT_DIR$/src/bpel-stomodel-config.xsd" />
-      <change type="MOVED" beforePath="D:\Nikki\edu\Disser\code\StochasticModelling\src\com\sm\bpelmodeller\config\BpelModellingConfigfACTORY.java" afterPath="$PROJECT_DIR$/src/com/sm/bpelmodeller/config/BpelModellingConfigFactory.java" />
     </list>
     <ignored path="StochasticModelling.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1390993011615" ignored="false" />
+    <file path="/Dummy.txt" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393344581232" ignored="false" />
+    <file path="/fragment.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393354869275" ignored="false" />
+    <file path="/ModellingDF.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393255472441" ignored="false" />
+    <file path="/DFCreatorFactory.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393250286490" ignored="false" />
+    <file path="/AlternativeImpl.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393250353266" ignored="false" />
+    <file path="/ParallelImpl.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393250427492" ignored="false" />
+    <file path="/SequenceImpl.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393250456470" ignored="false" />
+    <file path="/StoModel.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393250627505" ignored="false" />
+    <file path="/StoModelImpl.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393250717485" ignored="false" />
+    <file path="/BpelModeller.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393250861803" ignored="false" />
+    <file path="/StoModeller.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393251758726" ignored="false" />
+    <file path="/Stomain.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393251283005" ignored="false" />
+    <file path="/AnalyticalTest.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393256282785" ignored="false" />
+    <file path="/MonteCarloTest.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393344335625" ignored="false" />
+    <file path="/IExperiment.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393253748257" ignored="false" />
+    <file path="/Experiment.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393254020605" ignored="false" />
+    <file path="/a.dummy" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393344762672" ignored="false" />
+    <file path="/VarianceTest.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393351195943" ignored="false" />
+    <file path="/Variance.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393355050633" ignored="false" />
+    <file path="/DistributionTable.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393354818383" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +96,23 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
+    <line_breakpoints>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/sm/Variance.java" line="15" class="com.sm.Variance" package="com.sm">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -108,46 +122,76 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="StoModelTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/com/sm/model/impl/StoModelTest.java">
+      <file leaf-file-name="ModellingDF.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sm/ModellingDF.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="267" column="18" selection-start="9928" selection-end="9928" vertical-scroll-proportion="0.0">
+            <state line="66" column="0" selection-start="2472" selection-end="2472" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#2501#2668#0" expanded="true" />
+                <element signature="e#2657#2658#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CompatibleExperiments.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sm/CompatibleExperiments.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="17" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StoModeller.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sng/bpel/main/StoModeller.java">
+      <file leaf-file-name="Variance.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sm/Variance.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="19" selection-start="1250" selection-end="1250" vertical-scroll-proportion="0.0">
+            <state line="12" column="71" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BpelModeller.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sm/bpelmodeller/BpelModeller.java">
+      <file leaf-file-name="DistributionFunction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionFunction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="21" selection-start="713" selection-end="713" vertical-scroll-proportion="0.0">
+            <state line="15" column="30" selection-start="378" selection-end="378" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StoModellingResult.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sm/model/StoModellingResult.java">
+      <file leaf-file-name="DistributionTable.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="8" selection-start="8" selection-end="20" vertical-scroll-proportion="0.0">
+            <state line="22" column="5" selection-start="685" selection-end="685" vertical-scroll-proportion="0.6081301">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bpel-stomodel-config.xsd" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/bpel-stomodel-config.xsd">
+      <file leaf-file-name="VarianceTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/com/sm/VarianceTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="93" selection-start="254" selection-end="254" vertical-scroll-proportion="0.13333334">
+            <state line="12" column="6" selection-start="186" selection-end="186" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DFCreator.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sm/DFCreator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="25" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnalyticalTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/com/sm/AnalyticalTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="213" column="97" selection-start="10283" selection-end="10283" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -174,21 +218,21 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/sm/bpelmodeller/ChildActivitySelector.java" />
-        <option value="$PROJECT_DIR$/src/com/sm/bpelmodeller/BpelActivityType.java" />
-        <option value="$PROJECT_DIR$/src/com/sm/Probability.java" />
-        <option value="$PROJECT_DIR$/src/com/sm/bpelmodeller/Bpel2StoModelConverter.java" />
-        <option value="$PROJECT_DIR$/src/com/sm/model/Alternative.java" />
-        <option value="$PROJECT_DIR$/src/com/sm/model/impl/AlternativeImpl.java" />
-        <option value="$PROJECT_DIR$/testBpelModelConfig1.xml" />
-        <option value="$PROJECT_DIR$/src/com/sng/bpel/main/Stomod.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/model/impl/ParallelImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/model/impl/SequenceImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/bpelmodeller/BpelModeller.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/model/StoModel.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/model/impl/StoModelImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sng/bpel/main/Stomain.java" />
         <option value="$PROJECT_DIR$/src/com/sng/bpel/main/StoModeller.java" />
-        <option value="$PROJECT_DIR$/src/bpel-stomodel-config.xsd" />
-        <option value="$PROJECT_DIR$/src/com/sm/bpelmodeller/ActivityProcessorFactory.java" />
-        <option value="$PROJECT_DIR$/src/com/sm/bpelmodeller/config/ConfigHelper.java" />
-        <option value="$PROJECT_DIR$/stoMC-NofNbpel.xml" />
-        <option value="$PROJECT_DIR$/test/com/sm/model/impl/StoModelTest.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/IExperiment.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/Experiment.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/ModellingDF.java" />
+        <option value="$PROJECT_DIR$/test/com/sm/AnalyticalTest.java" />
+        <option value="$PROJECT_DIR$/test/com/sm/MonteCarloTest.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/CompatibleExperiments.java" />
+        <option value="$PROJECT_DIR$/test/com/sm/VarianceTest.java" />
+        <option value="$PROJECT_DIR$/src/com/sm/Variance.java" />
         <option value="$PROJECT_DIR$/src/com/sm/DistributionTable.java" />
       </list>
     </option>
@@ -401,6 +445,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -569,98 +623,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StochasticModelling" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StochasticModelling" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StochasticModelling" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StochasticModelling" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bpelmodeller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StochasticModelling" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StochasticModelling" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bpelmodeller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane">
@@ -696,6 +658,7 @@
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLanguage" value="Java" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="false" />
@@ -705,12 +668,18 @@
     <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="com.sng.system.bpel" />
       <recent name="com.sm" />
+      <recent name="com.sng.system.bpel" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="com.sm" />
+    </key>
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="com.sm.ModellingDF" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.sng.system" />
@@ -724,30 +693,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Test All">
-    <configuration default="false" name="AnalyticalTest.test_analytical_MN_parallelism_2_of_3" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="StochasticModelling" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="com.sm" />
-      <option name="MAIN_CLASS_NAME" value="com.sm.AnalyticalTest" />
-      <option name="METHOD_NAME" value="test_analytical_MN_parallelism_2_of_3" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <dir value="$PROJECT_DIR$/test" />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Application.Stomain">
     <configuration default="false" name="AnalyticalTest.test_modelling_MN_parallelism_2_of_3_all_same" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="StochasticModelling" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -852,6 +798,28 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
+    <configuration default="false" name="AnalyticalTest.test_alternative_markov_chain2_analytical" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="StochasticModelling" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.sm" />
+      <option name="MAIN_CLASS_NAME" value="com.sm.AnalyticalTest" />
+      <option name="METHOD_NAME" value="test_alternative_markov_chain2_analytical" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -910,7 +878,7 @@
     <configuration default="false" name="Stomain" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.sng.bpel.main.Stomain" />
       <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PROGRAM_PARAMETERS" value="D:\Nikki\edu\Disser\Samples\src\Proc1ofN.bpel D:\Nikki\edu\Disser\code\StochasticModelling\stoMC-AlterBpel.xml" />
+      <option name="PROGRAM_PARAMETERS" value="D:\Nikki\edu\Disser\code\Samples\src\Proc1ofN.bpel D:\Nikki\edu\Disser\code\StochasticModelling\stoMC-AlterBpel.xml " />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -991,12 +959,17 @@
       <item index="0" class="java.lang.String" itemvalue="Application.Stomain" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.Test All" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.StoModelTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.AnalyticalTest.test_analytical_MN_parallelism_2_of_3" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.AnalyticalTest.test_modelling_MN_parallelism_2_of_3_all_same" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.AnalyticalTest.test_analytical_MN_parallelism_2_of_3_two_quick" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.AnalyticalTest.test_analytical_MN_parallelism_2_of_3_two_quick50_50" />
-      <item index="7" class="java.lang.String" itemvalue="JUnit.StoModelTest.test_N_of_N_bpel_real" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.AnalyticalTest.test_modelling_MN_parallelism_2_of_3_all_same" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.AnalyticalTest.test_analytical_MN_parallelism_2_of_3_two_quick" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.AnalyticalTest.test_analytical_MN_parallelism_2_of_3_two_quick50_50" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.StoModelTest.test_N_of_N_bpel_real" />
+      <item index="7" class="java.lang.String" itemvalue="JUnit.AnalyticalTest.test_alternative_markov_chain2_analytical" />
     </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.AnalyticalTest.test_alternative_markov_chain2_analytical" />
+      </list>
+    </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -1064,18 +1037,18 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328594" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19033232" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36404833" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.3524962" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="132" y="145" width="970" height="475" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.35196376" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="132" y="145" width="970" height="475" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44391784" sideWeight="0.5008117" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328594" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.2854985" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.28700906" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24486572" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24068071" sideWeight="0.3942598" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24068071" sideWeight="0.4879154" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24068071" sideWeight="0.41389728" order="0" side_tool="false" content_ui="combo" x="573" y="371" width="195" height="244" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24068071" sideWeight="0.51057404" order="0" side_tool="false" content_ui="combo" x="573" y="371" width="195" height="244" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.31570998" sideWeight="0.4935065" order="2" side_tool="false" content_ui="tabs" x="374" y="147" width="531" height="475" />
       <window_info id="Analyze Dataflow from" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="simpleUML" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32927817" sideWeight="0.76269317" order="2" side_tool="false" content_ui="tabs" />
@@ -1153,114 +1126,115 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/sm/model/impl/StoModellingResultImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/com/sm/model/impl/AlternativeImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="225" selection-end="225" vertical-scroll-proportion="0.20858896">
+        <state line="39" column="15" selection-start="1110" selection-end="1153" vertical-scroll-proportion="0.5265823" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/DFCreatorFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="25" selection-start="181" selection-end="181" vertical-scroll-proportion="0.29113925">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/ExpectedValue.java">
+    <entry file="file://$PROJECT_DIR$/src/com/sm/AlternativeExperiment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="26" selection-start="660" selection-end="660" vertical-scroll-proportion="0.48670757">
+        <state line="10" column="32" selection-start="190" selection-end="190" vertical-scroll-proportion="0.37433156">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/Experiment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="62" selection-start="140" selection-end="140" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/IExperiment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="38" selection-start="143" selection-end="143" vertical-scroll-proportion="0.36363637">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/RunAlternativeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="23" selection-start="413" selection-end="413" vertical-scroll-proportion="0.56962025">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/DiscreteRandomValueGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="13" selection-start="290" selection-end="290" vertical-scroll-proportion="0.43037975">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/DFCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="25" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/com/sm/AnalyticalTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="16" selection-start="1779" selection-end="1779" vertical-scroll-proportion="0.17857143">
+        <state line="213" column="97" selection-start="10283" selection-end="10283" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/CompatibleExperiments.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="17" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/com/sm/MonteCarloTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="166" column="41" selection-start="7130" selection-end="7130" vertical-scroll-proportion="0.32890365">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/ModellingDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="0" selection-start="2472" selection-end="2472" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#2501#2668#0" expanded="true" />
+            <element signature="e#2657#2658#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="30" selection-start="378" selection-end="378" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/com/sm/VarianceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="6" selection-start="186" selection-end="186" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/Variance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="71" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="25" selection-start="123" selection-end="123" vertical-scroll-proportion="-0.8607843">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="32" selection-start="2546" selection-end="2546" vertical-scroll-proportion="2.1030927">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/sm/util/GeneratorProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="24" selection-start="471" selection-end="471" vertical-scroll-proportion="0.56666666">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/model/impl/StoModelImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="39" selection-start="317" selection-end="317" vertical-scroll-proportion="0.3">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/test/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="17" selection-start="615" selection-end="615" vertical-scroll-proportion="0.16666667">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sng/bpel/main/StoModellerParams.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="11" selection-start="190" selection-end="190" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/sm/model/impl/StoModelTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="267" column="18" selection-start="9928" selection-end="9928" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/bpelmodeller/config/xsd/StoModelConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="13" selection-start="1698" selection-end="1698" vertical-scroll-proportion="0.33199194">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/bpelmodeller/config/BpelModellingConfigFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="44" selection-start="487" selection-end="513" vertical-scroll-proportion="0.36666667">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sng/bpel/main/StoModeller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="19" selection-start="1250" selection-end="1250" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/bpelmodeller/BpelModeller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="21" selection-start="713" selection-end="713" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/model/StoModellingResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="8" selection-start="8" selection-end="20" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bpel-stomodel-config.xsd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="93" selection-start="254" selection-end="254" vertical-scroll-proportion="0.13333334">
+        <state line="22" column="5" selection-start="685" selection-end="685" vertical-scroll-proportion="0.6081301">
           <folding />
         </state>
       </provider>

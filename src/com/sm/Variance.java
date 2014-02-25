@@ -13,7 +13,9 @@ public class Variance<T extends Integer> {
         double var = 0;
 
         for (DiscreteValue dv : df.getDistributionTable().sortedValues()) {
-            var += Math.pow(dv.getValue() - expected.getValue(), 2) * df.eval(dv);
+            if (df.getDistributionTable().getProbability(dv).getValue() > DistributionTable.ERROR) {
+                var += Math.pow(dv.getValue() - expected.getValue(), 2) * df.eval(dv);
+            }
         }
         variance = var;
     }

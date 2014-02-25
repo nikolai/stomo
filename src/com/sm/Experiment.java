@@ -2,6 +2,8 @@ package com.sm;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * User: smirnov-n
@@ -51,4 +53,19 @@ public class Experiment implements IExperiment {
     public DiscreteRandomValueGenerator getGenerator() {
         return generator;
     }
+
+    public DistributionFunction getDF() {
+        DiscreteValue[] vals = getMeasurements();
+        // calc count
+        Map<DiscreteValue, Integer> count = new TreeMap();
+        for (DiscreteValue val : vals) {
+            Integer number = count.get(val);
+            number = number != null ? number+1 : 1;
+            count.put(val, number);
+        }
+        // calc distribution
+        return DistributionFunction.createByTable(ModellingDF.constructDT(count, getSize()));
+    }
+
+
 }

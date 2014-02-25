@@ -23,7 +23,7 @@ public class BpelModeller {
 
     public StoModellingResult analyse(TProcess process){
         StoModel stoModel = Bpel2StoModelConverter.getOne(config).convert(process);
-        StoModellingResult modelRes = stoModel.analyticalRun();
+        StoModellingResult modelRes = stoModel.runModelling();
         return modelRes;
     }
 

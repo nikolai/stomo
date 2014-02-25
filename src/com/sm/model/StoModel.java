@@ -6,5 +6,5 @@ package com.sm.model;
  * Time: 17:42
  */
 public interface StoModel extends ActionContainer {
-    StoModellingResult analyticalRun();
+    StoModellingResult runModelling();
 }

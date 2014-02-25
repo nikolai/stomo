@@ -1,8 +1,6 @@
 package com.sm.model.impl;
 
-import com.sm.AnalyticalDF;
-import com.sm.CompatibleDistributionFunctions;
-import com.sm.DistributionFunction;
+import com.sm.*;
 import com.sm.model.Parallel;
 
 /**
@@ -27,12 +25,13 @@ public class ParallelImpl extends AbstractActionContainer implements Parallel {
             countOfWaitedResults = actionsCount;
         }
 
+        DFCreator dfCreator = DFCreatorFactory.getInstance().getCreator();
         if (countOfWaitedResults == 1) {
-            return AnalyticalDF.get().createOR(cdf);
+            return dfCreator.createOR(cdf);
         }
         if (countOfWaitedResults < actionsCount) {
-            return AnalyticalDF.get().createMN(cdf, countOfWaitedResults);
+            return dfCreator.createMN(cdf, countOfWaitedResults);
         }
-        return AnalyticalDF.get().createAND(cdf);
+        return dfCreator.createAND(cdf);
     }
 }

@@ -10,6 +10,7 @@ import java.util.*;
 public class DistributionTable<T extends Integer> {
     private SortedMap<DiscreteValue<T>, Probability> table = new TreeMap<DiscreteValue<T>, Probability>();
     private Map.Entry<DiscreteValue<T>, Probability>[] cachedEntries;
+    public static double ERROR = 0.00001;
 
     public DistributionTable() {
     }
@@ -78,8 +79,7 @@ public class DistributionTable<T extends Integer> {
         for (int i = 0; i < size(); i++) {
             sum += getProbabilityInRow(i).getValue();
         }
-        double error = 0.0000000001;
-        if (Math.abs(sum - 1) > error) {
+        if (Math.abs(sum - 1) > ERROR) {
             throw new IllegalArgumentException("Invalid distribution table!\n" + this);
         }
     }

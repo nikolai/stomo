@@ -7,7 +7,7 @@ import java.util.Set;
  * Date: 19.09.11
  * Time: 16:02
  */
-public class AnalyticalDF {
+public class AnalyticalDF implements DFCreator {
 
     private AnalyticalDF(){}
     public static AnalyticalDF get() {

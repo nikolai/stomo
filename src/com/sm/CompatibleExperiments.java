@@ -12,7 +12,7 @@ public class CompatibleExperiments {
 
     public CompatibleExperiments(Experiment... experiments) {
         this.experiments = experiments;
-        assert experiments.length > 1;
+        assert experiments.length > 0;
 
         // assert that experiments have equal sizes
         int trackSize = experiments[0].getSize();
