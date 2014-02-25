@@ -37,6 +37,9 @@ public class StoModeller {
             BpelModeller modeller = BpelModeller.getDefault(config);
             StoModellingResult result = modeller.analyse(process);
             log.info("Modelling result: " + result);
+            if (params.getRiskTime() != null) {
+                log.info("Risk of excess " + params.getRiskTime() + ": " + result.evalRisk(params.getRiskTime()));
+            }
             LogService.get().stop();
             return result;
         } catch (Exception e) {

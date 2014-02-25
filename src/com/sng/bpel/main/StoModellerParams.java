@@ -8,6 +8,7 @@ package com.sng.bpel.main;
 public class StoModellerParams {
     private String bpelFile;
     private String configFile;
+    private Integer riskTime;
 
     public StoModellerParams() {
     }
@@ -26,5 +27,13 @@ public class StoModellerParams {
 
     public String getConfigFile() {
         return configFile;
+    }
+
+    public void setRiskTime(int riskTime) {
+        this.riskTime = riskTime;
+    }
+
+    public Integer getRiskTime() {
+        return riskTime;
     }
 }

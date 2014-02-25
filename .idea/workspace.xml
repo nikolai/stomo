@@ -6,6 +6,8 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/com/sm/model/impl/StoModellingResultImplTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/model/impl/StoModelImpl.java" afterPath="$PROJECT_DIR$/src/com/sm/model/impl/StoModelImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/sm/model/impl/StoModelTest.java" afterPath="$PROJECT_DIR$/test/com/sm/model/impl/StoModelTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sng/bpel/main/StoModeller.java" afterPath="$PROJECT_DIR$/src/com/sng/bpel/main/StoModeller.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sng/bpel/main/StoModellerParams.java" afterPath="$PROJECT_DIR$/src/com/sng/bpel/main/StoModellerParams.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/model/StoModellingResult.java" afterPath="$PROJECT_DIR$/src/com/sm/model/StoModellingResult.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sm/model/impl/StoModellingResultImpl.java" afterPath="$PROJECT_DIR$/src/com/sm/model/impl/StoModellingResultImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/sng/bpel/main/Stomain.java" afterPath="$PROJECT_DIR$/src/com/sng/bpel/main/Stomain.java" />
@@ -13,7 +15,7 @@
     <ignored path="StochasticModelling.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393344581232" ignored="false" />
-    <file path="/fragment.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393362874973" ignored="false" />
+    <file path="/fragment.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393365785822" ignored="false" />
     <file path="/ModellingDF.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393255472441" ignored="false" />
     <file path="/DFCreatorFactory.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393250286490" ignored="false" />
     <file path="/AlternativeImpl.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393250353266" ignored="false" />
@@ -22,8 +24,8 @@
     <file path="/StoModel.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393250627505" ignored="false" />
     <file path="/StoModelImpl.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393250717485" ignored="false" />
     <file path="/BpelModeller.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393250861803" ignored="false" />
-    <file path="/StoModeller.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393251758726" ignored="false" />
-    <file path="/Stomain.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393356633714" ignored="false" />
+    <file path="/StoModeller.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393365683877" ignored="false" />
+    <file path="/Stomain.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393366412494" ignored="false" />
     <file path="/AnalyticalTest.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393256282785" ignored="false" />
     <file path="/MonteCarloTest.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393344335625" ignored="false" />
     <file path="/IExperiment.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393253748257" ignored="false" />
@@ -35,6 +37,7 @@
     <file path="/StoModellingResult.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393361490278" ignored="false" />
     <file path="/StoModellingResultImpl.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393362453596" ignored="false" />
     <file path="/StoModellingResultImplTest.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393363811507" ignored="false" />
+    <file path="/StoModellerParams.java" changelist="df206f26-1a78-43ee-89b5-35a17be0be72" time="1393365491217" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,40 +115,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ModellingDF.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sm/ModellingDF.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="0" selection-start="2472" selection-end="2472" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#2501#2668#0" expanded="true" />
-                <element signature="e#2657#2658#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Variance.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sm/Variance.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="71" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="DistributionFunction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionFunction.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="17" column="12" selection-start="416" selection-end="416" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DistributionTable.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sm/DistributionTable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="33" selection-start="844" selection-end="844" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -169,13 +142,40 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StoModellingResultImplTest.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="StoModellingResultImplTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/com/sm/model/impl/StoModellingResultImplTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="25" selection-start="765" selection-end="765" vertical-scroll-proportion="0.33251232">
+            <state line="27" column="25" selection-start="765" selection-end="765" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Stomain.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/sng/bpel/main/Stomain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="65" column="0" selection-start="1940" selection-end="1940" vertical-scroll-proportion="0.45566502">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StoModeller.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sng/bpel/main/StoModeller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="49" column="50" selection-start="1768" selection-end="1768" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StoModellerParams.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sng/bpel/main/StoModellerParams.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="18" selection-start="672" selection-end="672" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -228,8 +228,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/sng/bpel/main/StoModeller.java" />
-        <option value="$PROJECT_DIR$/src/com/sm/IExperiment.java" />
         <option value="$PROJECT_DIR$/src/com/sm/Experiment.java" />
         <option value="$PROJECT_DIR$/src/com/sm/ModellingDF.java" />
         <option value="$PROJECT_DIR$/test/com/sm/AnalyticalTest.java" />
@@ -238,12 +236,14 @@
         <option value="$PROJECT_DIR$/test/com/sm/VarianceTest.java" />
         <option value="$PROJECT_DIR$/src/com/sm/Variance.java" />
         <option value="$PROJECT_DIR$/src/com/sm/DistributionTable.java" />
-        <option value="$PROJECT_DIR$/src/com/sng/bpel/main/Stomain.java" />
         <option value="$PROJECT_DIR$/src/com/sm/model/StoModellingResult.java" />
         <option value="$PROJECT_DIR$/src/com/sm/model/impl/StoModelImpl.java" />
         <option value="$PROJECT_DIR$/test/com/sm/model/impl/StoModelTest.java" />
         <option value="$PROJECT_DIR$/src/com/sm/model/impl/StoModellingResultImpl.java" />
         <option value="$PROJECT_DIR$/test/com/sm/model/impl/StoModellingResultImplTest.java" />
+        <option value="$PROJECT_DIR$/src/com/sng/bpel/main/StoModellerParams.java" />
+        <option value="$PROJECT_DIR$/src/com/sng/bpel/main/StoModeller.java" />
+        <option value="$PROJECT_DIR$/src/com/sng/bpel/main/Stomain.java" />
       </list>
     </option>
   </component>
@@ -704,7 +704,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Test All">
+  <component name="RunManager" selected="Application.Stomain">
     <configuration default="false" name="AnalyticalTest.test_modelling_MN_parallelism_2_of_3_all_same" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="StochasticModelling" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -889,7 +889,7 @@
     <configuration default="false" name="Stomain" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.sng.bpel.main.Stomain" />
       <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PROGRAM_PARAMETERS" value="D:\Nikki\edu\Disser\code\Samples\src\Proc1ofN.bpel D:\Nikki\edu\Disser\code\StochasticModelling\stoMC-AlterBpel.xml " />
+      <option name="PROGRAM_PARAMETERS" value="D:\Nikki\edu\Disser\code\Samples\src\Proc1ofN.bpel D:\Nikki\edu\Disser\code\StochasticModelling\stoMC-AlterBpel.xml -risk 4" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -1060,7 +1060,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24068071" sideWeight="0.3489426" order="0" side_tool="false" content_ui="combo" x="573" y="371" width="195" height="244" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31570998" sideWeight="0.4935065" order="2" side_tool="false" content_ui="tabs" x="374" y="147" width="531" height="475" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31570998" sideWeight="0.4935065" order="2" side_tool="false" content_ui="tabs" x="374" y="147" width="531" height="475" />
       <window_info id="Analyze Dataflow from" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="simpleUML" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32927817" sideWeight="0.76269317" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959481" sideWeight="0.80966765" order="2" side_tool="false" content_ui="tabs" />
@@ -1137,27 +1137,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/com/sm/VarianceTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="6" selection-start="186" selection-end="186" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sng/bpel/main/Stomain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="12" selection-start="785" selection-end="785" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sng/bpel/main/StoModeller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="27" selection-start="1337" selection-end="1337" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sm/model/StoModellingResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="22" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0">
@@ -1217,13 +1196,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sm/model/impl/StoModelImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="36" selection-start="414" selection-end="414" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/com/sm/util/AssertUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="0" selection-start="422" selection-end="422" vertical-scroll-proportion="0.0">
@@ -1245,12 +1217,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sm/model/impl/StoModelImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="36" selection-start="414" selection-end="414" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/com/sm/model/impl/StoModellingResultImplTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="25" selection-start="765" selection-end="765" vertical-scroll-proportion="0.33251232">
+        <state line="27" column="25" selection-start="765" selection-end="765" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sng/bpel/main/StoModellerParams.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="18" selection-start="672" selection-end="672" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sng/bpel/main/StoModeller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="50" selection-start="1768" selection-end="1768" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sng/bpel/main/Stomain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="0" selection-start="1940" selection-end="1940" vertical-scroll-proportion="0.45566502">
+          <folding />
         </state>
       </provider>
     </entry>
