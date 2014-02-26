@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * Time: 18:38
  */
 public class LogService extends Logger{
-    private Level curLogLevel = Level.FINE;
+    private Level curLogLevel = Level.INFO;
     private final ExecutorService exec = Executors.newSingleThreadExecutor();
     private StringBuffer sb = new StringBuffer();
     private static LogService instance = new LogService();
@@ -29,9 +29,17 @@ public class LogService extends Logger{
         return instance;
     }
 
-    public void stop() throws InterruptedException {
+    public void setCurLogLevel(Level curLogLevel) {
+        this.curLogLevel = curLogLevel;
+    }
+
+    public void stop() {
         exec.shutdown();
-        exec.awaitTermination(35, TimeUnit.SECONDS);
+        try {
+            exec.awaitTermination(35, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.print(sb);
     }
     public void log(String msg) {

@@ -10,7 +10,7 @@ import java.util.*;
 public class DistributionTable<T extends Integer> {
     private SortedMap<DiscreteValue<T>, Probability> table = new TreeMap<DiscreteValue<T>, Probability>();
     private Map.Entry<DiscreteValue<T>, Probability>[] cachedEntries;
-    public static double ERROR = 0.00001;
+    public static double ERROR = 10/Probability.round;
 
     public DistributionTable() {
     }

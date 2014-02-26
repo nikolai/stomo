@@ -26,11 +26,11 @@ public class StoModeller {
             File bpelFile = new File(bpelFilePath);
 
             TProcess process = XmlUtil.unmarshall(bpelFile.getAbsolutePath(), TProcess.class, ObjectFactory.class);
-            log.info("Process read from "+bpelFilePath+": " + process.getName());
+            log.config("Process read from "+bpelFilePath+": " + process.getName());
 
 
             String confFile = params.getConfigFile();
-            log.info("Read configuration from "+confFile);
+            log.config("Read configuration from "+confFile);
             StoModelConfig config = BpelModellingConfigFactory.getOne().readConfig(confFile);
 
 
@@ -40,7 +40,7 @@ public class StoModeller {
             if (params.getRiskTime() != null) {
                 log.info("Risk of excess " + params.getRiskTime() + ": " + result.evalRisk(params.getRiskTime()));
             }
-            LogService.get().stop();
+            //LogService.get().stop();
             return result;
         } catch (Exception e) {
             throw new StoModellerException(e);

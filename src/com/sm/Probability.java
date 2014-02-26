@@ -6,10 +6,15 @@ package com.sm;
  * Time: 16:52
  */
 public class Probability implements Comparable<Probability>{
+    public static final double round = Math.pow(10, Integer.parseInt(System.getProperty("probability.accuracy", "4")));
     private final double value;
 
     public Probability(double value) {
-        this.value = value;
+        this.value = round(value < 0 ? 0 : value);
+    }
+
+    public static double round(double value) {
+        return Math.round (value * round)/ round;
     }
 
     public Probability plus(Probability operand) {

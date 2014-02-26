@@ -17,7 +17,7 @@ public class Variance<T extends Integer> {
                 var += Math.pow(dv.getValue() - expected.getValue(), 2) * df.eval(dv);
             }
         }
-        variance = var;
+        variance = Probability.round(var);
     }
 
     public double getValue(){

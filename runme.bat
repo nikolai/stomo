@@ -1,0 +1,1 @@
+java -Dmontecarlo.run.count=100000 -Dprobability.accuracy=4 -jar out/stomo.jar "D:\Nikki\edu\Disser\code\Samples\src\Proc1ofN.bpel" "D:\Nikki\edu\Disser\code\StochasticModelling\stoMC-AlterBpel.xml" %*

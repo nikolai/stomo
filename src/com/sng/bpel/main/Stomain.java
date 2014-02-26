@@ -1,10 +1,13 @@
 package com.sng.bpel.main;
 
 import com.sm.DFCreatorFactory;
+import com.sm.logging.LogService;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * User: mikola
@@ -12,6 +15,23 @@ import java.util.List;
  * Time: 17:10
  */
 public class Stomain {
+    private static enum ParamDic {
+        MONTECARLO("-montecarlo"),
+        RISK("-risk"),
+        VERBOSE("-v");
+        public final String key;
+
+        ParamDic(String key) {
+            this.key = key;
+        }
+
+        public static boolean contains(String key) {
+            for (ParamDic v : values()) {
+                if (v.key.equalsIgnoreCase(key)) return true;
+            }
+            return false;
+        }
+    }
     public static void main(String[] args) throws StoModellerException {
         StoModeller m = new StoModeller();
         StoModellerParams params = new StoModellerParams();
@@ -30,14 +50,28 @@ public class Stomain {
 
         if (args.length > 2) {
             for (int i = 2; i < args.length; i++) {
-                if ("-montecarlo".equals(args[i])) {
+                String p = args[i];
+
+                if (!ParamDic.contains(p)){
+                    error("unknown parameter " + p);
+                }
+
+                if (p.equals(ParamDic.VERBOSE.key)) {
+                    LogService.get().setCurLogLevel(Level.FINE);
+                }
+                if (p.equals(ParamDic.MONTECARLO.key)) {
                     DFCreatorFactory.getInstance().switchToMonteCarlo();
                     continue;
                 }
-                if ("-risk".equals(args[i])) {
+                if (p.equals(ParamDic.RISK.key)) {
                     try {
                         if (i < args.length-1) {
-                            params.setRiskTime(Integer.parseInt(args[i+1]));
+                            try {
+                                i++;
+                                params.setRiskTime(Integer.parseInt(args[i]));
+                            } catch (Exception e) {
+                                throw new IllegalArgumentException("invalid time value for -risk: " + e.getMessage());
+                            }
                         } else throw new IllegalArgumentException("missing time value for -risk");
                     } catch (Exception e) {
                         error(e.getMessage());
@@ -48,7 +82,8 @@ public class Stomain {
 
         long start = System.currentTimeMillis();
         m.run(params);
-        System.out.println("Modelling time: " + (System.currentTimeMillis()-start));
+        LogService.get().log("Modelling time: " + (System.currentTimeMillis()-start));
+        LogService.get().stop();
     }
 
     private static boolean needHelp(String[] args) {

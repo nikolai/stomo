@@ -19,10 +19,10 @@ public class ExpectedValue {
         while (i < dtSize) {
             DiscreteValue val = distribution.getDiscreteValueInRow(i);
             Probability prob = distribution.getProbabilityInRow(i);
-            expected += (Integer)val.getValue() * prob.getValue();
+            expected += val.getValue() * prob.getValue();
             i++;
         }
-        expectedValue = expected;
+        expectedValue = Probability.round(expected);
     }
 
     public String toString() {
