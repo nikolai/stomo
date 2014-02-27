@@ -15,4 +15,5 @@ public interface StoModellingResult {
     ExpectedValue getExpectedValue();
     Variance getVariance();
     Probability evalRisk(int time);
+    double getCIDelta();
 }

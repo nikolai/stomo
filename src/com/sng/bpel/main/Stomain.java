@@ -1,12 +1,7 @@
 package com.sng.bpel.main;
 
-import com.sm.DFCreatorFactory;
 import com.sm.logging.LogService;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.logging.Level;
 
 /**
@@ -60,7 +55,7 @@ public class Stomain {
                     LogService.get().setCurLogLevel(Level.FINE);
                 }
                 if (p.equals(ParamDic.MONTECARLO.key)) {
-                    DFCreatorFactory.getInstance().switchToMonteCarlo();
+                    params.setUseMonteCarlo();
                     continue;
                 }
                 if (p.equals(ParamDic.RISK.key)) {

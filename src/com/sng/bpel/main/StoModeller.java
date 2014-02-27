@@ -1,5 +1,7 @@
 package com.sng.bpel.main;
 
+import com.sm.DFCreatorFactory;
+import com.sm.Probability;
 import com.sm.bpelmodeller.BpelModeller;
 import com.sm.bpelmodeller.config.BpelModellingConfigFactory;
 import com.sm.bpelmodeller.config.xsd.StoModelConfig;
@@ -28,15 +30,24 @@ public class StoModeller {
             TProcess process = XmlUtil.unmarshall(bpelFile.getAbsolutePath(), TProcess.class, ObjectFactory.class);
             log.config("Process read from "+bpelFilePath+": " + process.getName());
 
-
             String confFile = params.getConfigFile();
             log.config("Read configuration from "+confFile);
             StoModelConfig config = BpelModellingConfigFactory.getOne().readConfig(confFile);
 
+            if (params.isUseMonteCarlo()) {
+                DFCreatorFactory.getInstance().switchToMonteCarlo();
+            }
 
             BpelModeller modeller = BpelModeller.getDefault(config);
             StoModellingResult result = modeller.analyse(process);
             log.info("Modelling result: " + result);
+            if (params.isUseMonteCarlo()) {
+                double mean = result.getExpectedValue().getValue();
+                log.info("95% confidence interval: ["+
+                        Probability.round(mean - result.getCIDelta()) + ", " +
+                        Probability.round(mean + result.getCIDelta()) + "]");
+            }
+
             if (params.getRiskTime() != null) {
                 log.info("Risk of excess " + params.getRiskTime() + ": " + result.evalRisk(params.getRiskTime()));
             }

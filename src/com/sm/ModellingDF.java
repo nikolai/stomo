@@ -1,5 +1,6 @@
 package com.sm;
 
+import com.sm.logging.LogService;
 import com.sm.math.SMMath;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.TreeMap;
 public class ModellingDF implements DFCreator{
     private final RunExperimentService runService = RunExperimentService.get();
     public static final int STD_RUN_COUNT = Integer.parseInt(System.getProperty("montecarlo.run.count", "100000"));
+    static { LogService.get().debug("montecarlo.run.count = " + STD_RUN_COUNT);}
 
     private ModellingDF(){}
     public static ModellingDF get() { return new ModellingDF(); }

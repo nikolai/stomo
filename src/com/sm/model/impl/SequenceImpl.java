@@ -1,10 +1,7 @@
 package com.sm.model.impl;
 
-import com.sm.AnalyticalDF;
-import com.sm.CompatibleDistributionFunctions;
 import com.sm.DFCreatorFactory;
 import com.sm.DistributionFunction;
-import com.sm.model.Action;
 import com.sm.model.Sequence;
 
 import java.util.LinkedList;

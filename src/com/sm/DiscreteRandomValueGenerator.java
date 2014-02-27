@@ -33,7 +33,8 @@ public class DiscreteRandomValueGenerator {
                 return val;
             }
         }
-        throw new RuntimeException("Distribution function must be evaluated in 0..1 for all discrete getMeasurements.");
+        throw new RuntimeException("Distribution function must be evaluated in 0..1 for all discrete values: " + r);
+
     }
 
     public DistributionFunction getDistributionFunction() {

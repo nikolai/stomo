@@ -12,6 +12,7 @@ public class StoModellingResultImpl implements StoModellingResult {
     private final DistributionTable<Integer> distributionTable;
     private final ExpectedValue expectedValue;
     private final Variance variance;
+    private Double ciDelta, ciLow;
 
     public StoModellingResultImpl(DistributionFunction df) {
         this.distributionTable = df.getDistributionTable();
@@ -39,6 +40,14 @@ public class StoModellingResultImpl implements StoModellingResult {
             }
         }
         return new Probability(1 - sum);
+    }
+
+    public double getCIDelta() {
+        if (ciDelta == null) {
+            //http://en.wikipedia.org/wiki/Confidence_interval
+            ciDelta = Probability.round(1.96*(Math.sqrt(getVariance().getValue()/(ModellingDF.STD_RUN_COUNT-1))));
+        }
+        return ciDelta;
     }
 
     @Override

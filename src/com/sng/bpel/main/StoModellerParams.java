@@ -9,6 +9,7 @@ public class StoModellerParams {
     private String bpelFile;
     private String configFile;
     private Integer riskTime;
+    private boolean switchToMonteCarlo;
 
     public StoModellerParams() {
     }
@@ -35,5 +36,13 @@ public class StoModellerParams {
 
     public Integer getRiskTime() {
         return riskTime;
+    }
+
+    public void setUseMonteCarlo() {
+        this.switchToMonteCarlo = true;
+    }
+
+    public boolean isUseMonteCarlo() {
+        return switchToMonteCarlo;
     }
 }

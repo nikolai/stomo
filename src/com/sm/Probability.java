@@ -1,12 +1,17 @@
 package com.sm;
 
+import com.sm.logging.LogService;
+
 /**
  * User: smirnov-n
  * Date: 08.09.11
  * Time: 16:52
  */
 public class Probability implements Comparable<Probability>{
-    public static final double round = Math.pow(10, Integer.parseInt(System.getProperty("probability.accuracy", "4")));
+    private static final int ACCURACY = Integer.parseInt(System.getProperty("probability.accuracy", "4"));
+    public static final double round = Math.pow(10, ACCURACY);
+    static { LogService.get().debug("probability.accuracy = " + ACCURACY);}
+
     private final double value;
 
     public Probability(double value) {
