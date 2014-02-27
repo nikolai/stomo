@@ -14,10 +14,10 @@ public class Variance<T extends Integer> {
 
         for (DiscreteValue dv : df.getDistributionTable().sortedValues()) {
             if (df.getDistributionTable().getProbability(dv).getValue() > DistributionTable.ERROR) {
-                var += Math.pow(dv.getValue() - expected.getValue(), 2) * df.eval(dv);
+            var += Math.pow(dv.getValue() - expected.getValue(), 2) * df.eval(dv);
             }
         }
-        variance = Probability.round(var);
+        variance = var;
     }
 
     public double getValue(){

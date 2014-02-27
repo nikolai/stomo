@@ -13,8 +13,9 @@ public class Stomain {
     private static enum ParamDic {
         MONTECARLO("-montecarlo"),
         RISK("-risk"),
+        RUN_COUNT("-runcount"),
         VERBOSE("-v");
-        public final String key;
+        private final String key;
 
         ParamDic(String key) {
             this.key = key;
@@ -25,6 +26,9 @@ public class Stomain {
                 if (v.key.equalsIgnoreCase(key)) return true;
             }
             return false;
+        }
+        public boolean eq(String s) {
+            return key.equals(s);
         }
     }
     public static void main(String[] args) throws StoModellerException {
@@ -49,37 +53,37 @@ public class Stomain {
 
                 if (!ParamDic.contains(p)){
                     error("unknown parameter " + p);
-                }
-
-                if (p.equals(ParamDic.VERBOSE.key)) {
+                }else if (ParamDic.VERBOSE.eq(p)) {
                     LogService.get().setCurLogLevel(Level.FINE);
-                }
-                if (p.equals(ParamDic.MONTECARLO.key)) {
+                } else if (ParamDic.MONTECARLO.eq(p)) {
                     params.setUseMonteCarlo();
-                    continue;
-                }
-                if (p.equals(ParamDic.RISK.key)) {
-                    try {
-                        if (i < args.length-1) {
-                            try {
-                                i++;
-                                params.setRiskTime(Integer.parseInt(args[i]));
-                            } catch (Exception e) {
-                                throw new IllegalArgumentException("invalid time value for -risk: " + e.getMessage());
-                            }
-                        } else throw new IllegalArgumentException("missing time value for -risk");
-                    } catch (Exception e) {
-                        error(e.getMessage());
-                    }
+                } else if (ParamDic.RISK.eq(p)) {
+                    params.setRiskTime(readValue(args, ++i, ParamDic.RISK));
+                    LogService.get().setCurLogLevel(Level.WARNING);
+                } else if (ParamDic.RUN_COUNT.eq(p)) {
+                    params.setRunCount(readValue(args, ++i, ParamDic.RUN_COUNT));
                 }
             }
         }
-
-        long start = System.currentTimeMillis();
         m.run(params);
-        LogService.get().log("Modelling time: " + (System.currentTimeMillis()-start));
         LogService.get().stop();
     }
+
+    private static int readValue(String[] args, int i, ParamDic param) {
+        try {
+            if (i <= args.length-1) {
+                try {
+                    return Integer.parseInt(args[i]);
+                } catch (Exception e) {
+                    throw new IllegalArgumentException("invalid time value for " + param.key + ": " + e.getMessage());
+                }
+            } else throw new IllegalArgumentException("missing value for " + param.key);
+        } catch (Exception e) {
+            error(e.getMessage());
+            return -1;
+        }
+    }
+
 
     private static boolean needHelp(String[] args) {
         for (String a : args) {

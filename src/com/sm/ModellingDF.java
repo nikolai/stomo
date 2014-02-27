@@ -15,7 +15,7 @@ import java.util.TreeMap;
  */
 public class ModellingDF implements DFCreator{
     private final RunExperimentService runService = RunExperimentService.get();
-    public static final int STD_RUN_COUNT = Integer.parseInt(System.getProperty("montecarlo.run.count", "100000"));
+    public static final int STD_RUN_COUNT = Integer.parseInt(System.getProperty("montecarlo.run.count", "300000"));
     static { LogService.get().debug("montecarlo.run.count = " + STD_RUN_COUNT);}
 
     private ModellingDF(){}

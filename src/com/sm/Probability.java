@@ -8,14 +8,14 @@ import com.sm.logging.LogService;
  * Time: 16:52
  */
 public class Probability implements Comparable<Probability>{
-    private static final int ACCURACY = Integer.parseInt(System.getProperty("probability.accuracy", "4"));
+    private static final int ACCURACY = Integer.parseInt(System.getProperty("probability.accuracy", "5"));
     public static final double round = Math.pow(10, ACCURACY);
     static { LogService.get().debug("probability.accuracy = " + ACCURACY);}
 
     private final double value;
 
     public Probability(double value) {
-        this.value = round(value < 0 ? 0 : value);
+        this.value = value < 0 ? 0 : value;
     }
 
     public static double round(double value) {

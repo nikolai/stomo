@@ -10,6 +10,7 @@ public class StoModellerParams {
     private String configFile;
     private Integer riskTime;
     private boolean switchToMonteCarlo;
+    private int runCount = 1;
 
     public StoModellerParams() {
     }
@@ -44,5 +45,13 @@ public class StoModellerParams {
 
     public boolean isUseMonteCarlo() {
         return switchToMonteCarlo;
+    }
+
+    public void setRunCount(int runCount) {
+        this.runCount = runCount;
+    }
+
+    public int getRunCount() {
+        return runCount;
     }
 }
