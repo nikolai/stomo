@@ -4,9 +4,6 @@ import com.sm.DFCreatorFactory;
 import com.sm.DistributionFunction;
 import com.sm.model.Sequence;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * User: mikola
  * Date: 26.10.12

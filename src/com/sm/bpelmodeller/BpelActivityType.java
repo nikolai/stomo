@@ -2,7 +2,6 @@ package com.sm.bpelmodeller;
 
 import com.sm.logging.LogService;
 import com.sm.model.Action;
-import com.sm.model.ActionContainer;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.*;
 
 /**

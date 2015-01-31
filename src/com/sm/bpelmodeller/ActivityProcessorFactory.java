@@ -6,7 +6,10 @@ import com.sm.bpelmodeller.config.ConfigHelper;
 import com.sm.bpelmodeller.config.xsd.StoModelConfig;
 import com.sm.model.*;
 import com.sm.model.impl.DefaultModelFactory;
-import org.oasis_open.docs.wsbpel._2_0.process.executable.*;
+import org.oasis_open.docs.wsbpel._2_0.process.executable.TActivity;
+import org.oasis_open.docs.wsbpel._2_0.process.executable.TFlow;
+import org.oasis_open.docs.wsbpel._2_0.process.executable.TIf;
+import org.oasis_open.docs.wsbpel._2_0.process.executable.TSequence;
 
 import java.util.HashMap;
 import java.util.List;

@@ -2,7 +2,6 @@ package com.sm.model.impl;
 
 import com.sm.DistributionFunction;
 import com.sm.DistributionTable;
-import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 

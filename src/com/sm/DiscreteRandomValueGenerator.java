@@ -1,8 +1,6 @@
 package com.sm;
 
-import java.util.Map;
 import java.util.Set;
-import java.util.prefs.PreferenceChangeListener;
 
 /**
  * User: smirnov-n

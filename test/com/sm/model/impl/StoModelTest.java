@@ -10,7 +10,7 @@ import com.sng.bpel.main.StoModellerException;
 import com.sng.bpel.main.StoModellerParams;
 import org.junit.Test;
 
-import static com.sm.util.AssertUtil.*;
+import static com.sm.util.AssertUtil.ANALYTICAL_ERROR;
 import static com.sm.util.AssertUtil.assertEquals;
 
 /**

@@ -1,6 +1,5 @@
 package com.sm.model.impl;
 
-import com.sm.AnalyticalDF;
 import com.sm.DFCreatorFactory;
 import com.sm.DistributionFunction;
 import com.sm.Probability;

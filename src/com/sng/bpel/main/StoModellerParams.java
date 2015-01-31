@@ -11,6 +11,7 @@ public class StoModellerParams {
     private Integer riskTime;
     private boolean switchToMonteCarlo;
     private int runCount = 1;
+    private boolean useBpelEnhancer;
 
     public StoModellerParams() {
     }
@@ -53,5 +54,13 @@ public class StoModellerParams {
 
     public int getRunCount() {
         return runCount;
+    }
+
+    public boolean isUseBpelEnhancer() {
+        return useBpelEnhancer;
+    }
+
+    public void setUseBpelEnhancer(boolean useBpelEnhancer) {
+        this.useBpelEnhancer = useBpelEnhancer;
     }
 }

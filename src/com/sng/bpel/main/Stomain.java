@@ -14,7 +14,8 @@ public class Stomain {
         MONTECARLO("-montecarlo"),
         RISK("-risk"),
         RUN_COUNT("-runcount"),
-        VERBOSE("-v");
+        VERBOSE("-v"),
+        USE_ENHANCER("-enhance");
         private final String key;
 
         ParamDic(String key) {
@@ -57,6 +58,8 @@ public class Stomain {
                     LogService.get().setCurLogLevel(Level.FINE);
                 } else if (ParamDic.MONTECARLO.eq(p)) {
                     params.setUseMonteCarlo();
+                } else if (ParamDic.USE_ENHANCER.eq(p)) {
+                    params.setUseBpelEnhancer(true);
                 } else if (ParamDic.RISK.eq(p)) {
                     params.setRiskTime(readValue(args, ++i, ParamDic.RISK));
                     LogService.get().setCurLogLevel(Level.WARNING);

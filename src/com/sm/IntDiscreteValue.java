@@ -1,7 +1,5 @@
 package com.sm;
 
-import com.sm.DiscreteValue;
-
 /**
  * User: smirnov-n
  * Date: 08.09.11

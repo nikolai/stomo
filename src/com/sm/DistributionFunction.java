@@ -1,10 +1,7 @@
 package com.sm;
 
-import com.sm.math.SMMath;
-import com.sm.profiling.AccumulatingProfiler;
-import com.sm.profiling.SimpleProfiler;
-
-import java.util.*;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * User: smirnov-n

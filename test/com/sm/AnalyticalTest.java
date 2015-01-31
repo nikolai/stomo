@@ -1,10 +1,10 @@
 package com.sm;
 
 import com.sm.util.GeneratorProvider;
-import static com.sm.util.AssertUtil.*;
-import static com.sm.util.AssertUtil.assertEquals;
-
 import org.junit.Test;
+
+import static com.sm.util.AssertUtil.ANALYTICAL_ERROR;
+import static com.sm.util.AssertUtil.assertEquals;
 
 /**
  * User: smirnov-n

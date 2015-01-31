@@ -4,12 +4,6 @@ import com.sm.bpelmodeller.config.xsd.ObjectFactory;
 import com.sm.bpelmodeller.config.xsd.StoModelConfig;
 import com.sm.util.XmlUtil;
 
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-
 /**
  * User: mikola
  * Date: 05.11.12

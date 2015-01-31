@@ -8,14 +8,11 @@
 
 package org.oasis_open.docs.wsbpel._2_0.process.executable;
 
+import org.w3c.dom.Element;
+
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlMixed;
-import javax.xml.bind.annotation.XmlType;
-import org.w3c.dom.Element;
 
 
 /**

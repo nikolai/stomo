@@ -2,9 +2,11 @@ package com.sm.bpelmodeller;
 
 import com.sm.bpelmodeller.config.xsd.StoModelConfig;
 import com.sm.logging.LogService;
-import com.sm.model.*;
+import com.sm.model.Action;
+import com.sm.model.ModelFactory;
+import com.sm.model.StoModel;
 import com.sm.model.impl.DefaultModelFactory;
-import org.oasis_open.docs.wsbpel._2_0.process.executable.*;
+import org.oasis_open.docs.wsbpel._2_0.process.executable.TProcess;
 
 /**
  * User: mikola

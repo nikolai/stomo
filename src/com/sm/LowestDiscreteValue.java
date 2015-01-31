@@ -1,7 +1,5 @@
 package com.sm;
 
-import java.math.BigDecimal;
-
 /**
  * User: smirnov-n
  * Date: 20.09.11

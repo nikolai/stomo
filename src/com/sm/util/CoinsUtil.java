@@ -1,11 +1,9 @@
 package com.sm.util;
 
-import com.sm.DiscreteValue;
 import com.sm.Probability;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 /**

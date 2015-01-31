@@ -1,11 +1,8 @@
 package com.sm.bpelmodeller;
 
-import org.oasis_open.docs.wsbpel._2_0.process.executable.*;
+import org.oasis_open.docs.wsbpel._2_0.process.executable.TActivity;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * User: mikola

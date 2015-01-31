@@ -1,15 +1,14 @@
 package com.sng.bpel.main;
 
 import com.sm.DFCreatorFactory;
-import com.sm.DistributionFunction;
-import com.sm.DistributionTable;
 import com.sm.Probability;
+import com.sm.bpelenhancer.ProcessEnhancer;
+import com.sm.bpelenhancer.ProcessEnhancerResult;
 import com.sm.bpelmodeller.BpelModeller;
 import com.sm.bpelmodeller.config.BpelModellingConfigFactory;
 import com.sm.bpelmodeller.config.xsd.StoModelConfig;
 import com.sm.logging.LogService;
 import com.sm.model.StoModellingResult;
-import com.sm.model.impl.StoModellingResultImpl;
 import com.sm.util.XmlUtil;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.ObjectFactory;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TProcess;
@@ -32,6 +31,15 @@ public class StoModeller {
 
             TProcess process = XmlUtil.unmarshall(bpelFile.getAbsolutePath(), TProcess.class, ObjectFactory.class);
             log.config("Process read from "+bpelFilePath+": " + process.getName());
+
+            if (params.isUseBpelEnhancer()) {
+                ProcessEnhancerResult enhancerResult = ProcessEnhancer.getDefault().runAnalyzer(process);
+                if (enhancerResult.hasEnhancements()) {
+                    log.info("BP " + bpelFilePath + " can be enhanced. Recommendations:\n");
+                    log.info(enhancerResult.getRecommendations());
+                    enhancerResult.storeEnhancements(bpelFile.getParent(), "Enhanced" + bpelFile.getName());
+                }
+            }
 
             String confFile = params.getConfigFile();
             log.config("Read configuration from "+confFile);

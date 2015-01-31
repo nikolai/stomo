@@ -1,9 +1,5 @@
 package com.sm;
 
-import com.test.Distribution;
-
-import java.util.Map;
-
 /**
  * User: Nikolai
  * Date: 23.10.11

@@ -1,6 +1,6 @@
 package com.sm.model.impl;
 
-import com.sm.*;
+import com.sm.DistributionFunction;
 import com.sm.model.StoModel;
 import com.sm.model.StoModellingResult;
 
