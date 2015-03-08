@@ -1,7 +1,5 @@
 package com.sm.bpelmodeller;
 
-import com.sm.logging.LogService;
-import com.sm.model.Action;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.*;
 
 /**
@@ -32,12 +30,10 @@ public enum BpelActivityType {
 
     private final String getter;
     private final Class<? extends TActivity> clazz;
-    private final ActivityProcessorFactory.ActivityProcessor processor;
 
     private BpelActivityType(String getter, Class<? extends TActivity> clazz) {
         this.getter = getter;
         this.clazz = clazz;
-        this.processor = ActivityProcessorFactory.getActivityProcessorFor(clazz);
     }
 
     public static BpelActivityType valueOf(TActivity a) {
@@ -57,13 +53,13 @@ public enum BpelActivityType {
         return clazz;
     }
 
-    public Action process(TActivity act) {
-        if (act != null) {
-            String n = act.getName();
-            LogService.get().debug("Process "+act.getClass().getSimpleName()+" conversion... " + (n!=null?n : ""));
-            return processor.processActivity(act);
-        }
-        //return null;
-        throw new IllegalArgumentException("cannot process null activity");
-    }
+//    public Action process(TActivity act) {
+//        if (act != null) {
+//            String n = act.getName();
+//            LogService.get().debug("Process "+act.getClass().getSimpleName()+" conversion... " + (n!=null?n : ""));
+//            return ActivityProcessorFactory.getActivityProcessorFor(getClazz()).processMe(act);
+//        }
+//        //return null;
+//        throw new IllegalArgumentException("cannot process null activity");
+//    }
 }

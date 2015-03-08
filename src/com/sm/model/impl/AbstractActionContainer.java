@@ -25,6 +25,6 @@ public abstract class AbstractActionContainer implements ActionContainer {
         for (Action a : actions){
             dfs.add(a.getDistributionFunction());
         }
-        return new CompatibleDistributionFunctions(dfs.toArray(new DistributionFunction[0]));
+        return new CompatibleDistributionFunctions(dfs.toArray(new DistributionFunction[dfs.size()]));
     }
 }

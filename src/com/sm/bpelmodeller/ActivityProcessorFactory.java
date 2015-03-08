@@ -45,6 +45,10 @@ public class ActivityProcessorFactory {
         return ConfigHelper.getOne(config);
     }
 
+    public static Action processMe(TActivity activity) {
+        return getActivityProcessorFor(activity.getClass()).processActivity(activity);
+    }
+
     static interface ActivityProcessor<T extends TActivity> {
         Action processActivity(T a);
     }
@@ -61,10 +65,7 @@ public class ActivityProcessorFactory {
             List<Object> activities = a.getActivity();
 
             for (Object av : activities){
-                TActivity act = (TActivity) av;
-                BpelActivityType type = BpelActivityType.valueOf(act);
-                Action childAction = type.process(act);
-                mSeq.addStoAction(childAction);
+                mSeq.addStoAction(processMe((TActivity) av));
             }
 
             return mSeq;
@@ -82,10 +83,7 @@ public class ActivityProcessorFactory {
             List<Object> activities = a.getActivity();
 
             for (Object av : activities){
-                TActivity act = (TActivity) av;
-                BpelActivityType type = BpelActivityType.valueOf(act);
-                Action childAction = type.process(act);
-                parallel.addStoAction(childAction);
+                parallel.addStoAction(processMe((TActivity) av));
             }
 
             return parallel;
@@ -101,13 +99,11 @@ public class ActivityProcessorFactory {
             Probability probability = getConfig().findBranchProbability(a);
             // process if true
             ChildActivitySelector.SelectedChild ifTrueBranch = ChildActivitySelector.getOne().selectChild(a);
-            Action ifTrueAction = ifTrueBranch.getType().process(ifTrueBranch.getActivity());
-            alternative.addStoAction(ifTrueAction, probability);
+            alternative.addStoAction(processMe(ifTrueBranch.getActivity()), probability);
 
             // process else
             ChildActivitySelector.SelectedChild elseBranch = ChildActivitySelector.getOne().selectChild(a.getElse());
-            Action elseAction = elseBranch.getType().process(elseBranch.getActivity());
-            alternative.addStoAction(elseAction, probability.invert());
+            alternative.addStoAction(processMe(elseBranch.getActivity()), probability.invert());
             return alternative;
         }
     }
@@ -115,8 +111,7 @@ public class ActivityProcessorFactory {
     public static class DefaultProcessor implements ActivityProcessor<TActivity> {
         public Action processActivity(TActivity a) {
             DistributionTable<Integer> dt = getConfig().findDT(a);
-            Action action = mf.createAction(dt);
-            return action;
+            return mf.createAction(dt);
         }
     }
 }

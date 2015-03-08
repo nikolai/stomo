@@ -33,7 +33,7 @@ public class StoModeller {
             log.config("Process read from "+bpelFilePath+": " + process.getName());
 
             if (params.isUseBpelEnhancer()) {
-                ProcessEnhancerResult enhancerResult = ProcessEnhancer.getDefault().runAnalyzer(process);
+                ProcessEnhancerResult enhancerResult = ProcessEnhancer.getDefault().runEnhancer(process);
                 if (enhancerResult.hasEnhancements()) {
                     log.info("BP " + bpelFilePath + " can be enhanced. Recommendations:\n");
                     log.info(enhancerResult.getRecommendations());
