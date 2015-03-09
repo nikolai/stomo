@@ -14,25 +14,25 @@ import java.util.Map;
 public class ActivityRunner {
     private ActivityProcessor defaultProcessor;
 
-    private Map<Class<? extends TActivity>, ActivityProcessor> activityProcessorMap
-            = new HashMap<Class<? extends TActivity>, ActivityProcessor>();
+    private Map<Class<? extends TActivity>, ActivityProcessor> activityProcessorMap = new HashMap<>();
 
-    public ActivityRunner(ActivityProcessor defaultProcessor) {
+    private ActivityRunner(ActivityProcessor defaultProcessor) {
         this.defaultProcessor = defaultProcessor;
     }
 
     public static ActivityRunner getOne(ActivityProcessor defaultProcessor) {
         return new ActivityRunner(defaultProcessor);
     }
+
     public Action goAhead(TActivity activity) {
         return getActivityProcessorFor(activity.getClass()).processActivity(activity, this);
     }
 
-    public <T extends TActivity> void registerActivityProcessor(Class<T> activyClass, ActivityProcessor<T> processor) {
-        activityProcessorMap.put(activyClass, processor);
+    public <T extends TActivity> void registerActivityProcessor(Class<T> activityClass, ActivityProcessor<T> processor) {
+        activityProcessorMap.put(activityClass, processor);
     }
 
-    public <T extends TActivity> ActivityProcessor getActivityProcessorFor(Class<T> clazz){
+    private <T extends TActivity> ActivityProcessor getActivityProcessorFor(Class<T> clazz){
         ActivityProcessor ap = activityProcessorMap.get(clazz);
         return ap != null ? ap : defaultProcessor;
     }
