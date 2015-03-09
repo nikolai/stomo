@@ -16,7 +16,7 @@ public class ProcessEnhancerResult {
         return recommendations;
     }
 
-    public void storeEnhancements(String parent, String s) {
+    public void storeEnhancements(String parentDir, String newBpelFileName) {
 
     }
 }

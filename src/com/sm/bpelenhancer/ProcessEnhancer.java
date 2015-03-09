@@ -17,7 +17,7 @@ public class ProcessEnhancer {
     public ProcessEnhancerResult runEnhancer(TProcess process) {
         ProcessEnhancerResult res = new ProcessEnhancerResult();
         ChildActivitySelector.SelectedChild child = ChildActivitySelector.getOne().selectChild(process);
-        //child.getType().process()
+
         // serial to parallel
 
         return res;

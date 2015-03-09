@@ -53,13 +53,4 @@ public enum BpelActivityType {
         return clazz;
     }
 
-//    public Action process(TActivity act) {
-//        if (act != null) {
-//            String n = act.getName();
-//            LogService.get().debug("Process "+act.getClass().getSimpleName()+" conversion... " + (n!=null?n : ""));
-//            return ActivityProcessorFactory.getActivityProcessorFor(getClazz()).processMe(act);
-//        }
-//        //return null;
-//        throw new IllegalArgumentException("cannot process null activity");
-//    }
 }
