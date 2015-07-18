@@ -36,7 +36,7 @@ public class ConfigHelper {
                     times[idx] = td.getTime();
                     probs[idx++] = td.getProbability();
                 }
-                LogService.get().debug("Config was found for " + a.getName());
+                LogService.get().config("Config was found for " + a.getName());
                 return new DistributionTable<Integer>(times, probs);
             }
         }
@@ -47,7 +47,7 @@ public class ConfigHelper {
     public Probability findBranchProbability(TIf ifActivity) {
         for (TIfBranchConfig ifBranch : conf.getIfActivityConfig()) {
             if (ifBranch.getActivityName().equals(ifActivity.getName())) {
-                LogService.get().debug("Config was found for " + ifActivity.getName());
+                LogService.get().config("Config was found for " + ifActivity.getName());
                 return new Probability(ifBranch.getProbabilityOfBranch());
             }
         }
@@ -57,7 +57,7 @@ public class ConfigHelper {
     public Long findCountOfWaitedResults(TFlow a) {
         for (TFlowActivityConfig flowConfig : conf.getFlowActivityConfig()) {
             if (flowConfig.getActivityName().equals(a.getName())){
-                LogService.get().debug("Config was found for " + a.getName());
+                LogService.get().config("Config was found for " + a.getName());
                 return flowConfig.getCountOfWaitedResults();
             }
         }

@@ -11,33 +11,32 @@ public class StoModellerParams {
     private Integer riskTime;
     private boolean switchToMonteCarlo;
     private int runCount = 1;
-    private boolean useBpelEnhancer;
 
     public StoModellerParams() {
-    }
-
-    public void setBpelFile(String bpelFile) {
-        this.bpelFile = bpelFile;
     }
 
     public String getBpelFile() {
         return bpelFile;
     }
 
-    public void setConfigFile(String configFile) {
-        this.configFile = configFile;
+    public void setBpelFile(String bpelFile) {
+        this.bpelFile = bpelFile;
     }
 
     public String getConfigFile() {
         return configFile;
     }
 
-    public void setRiskTime(int riskTime) {
-        this.riskTime = riskTime;
+    public void setConfigFile(String configFile) {
+        this.configFile = configFile;
     }
 
     public Integer getRiskTime() {
         return riskTime;
+    }
+
+    public void setRiskTime(int riskTime) {
+        this.riskTime = riskTime;
     }
 
     public void setUseMonteCarlo() {
@@ -48,19 +47,11 @@ public class StoModellerParams {
         return switchToMonteCarlo;
     }
 
-    public void setRunCount(int runCount) {
-        this.runCount = runCount;
-    }
-
     public int getRunCount() {
         return runCount;
     }
 
-    public boolean isUseBpelEnhancer() {
-        return useBpelEnhancer;
-    }
-
-    public void setUseBpelEnhancer(boolean useBpelEnhancer) {
-        this.useBpelEnhancer = useBpelEnhancer;
+    public void setRunCount(int runCount) {
+        this.runCount = runCount;
     }
 }

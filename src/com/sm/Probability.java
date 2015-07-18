@@ -10,7 +10,10 @@ import com.sm.logging.LogService;
 public class Probability implements Comparable<Probability>{
     private static final int ACCURACY = Integer.parseInt(System.getProperty("probability.accuracy", "5"));
     public static final double round = Math.pow(10, ACCURACY);
-    static { LogService.get().debug("probability.accuracy = " + ACCURACY);}
+
+    static {
+        LogService.get().config("probability.accuracy = " + ACCURACY);
+    }
 
     private final double value;
 

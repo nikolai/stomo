@@ -12,12 +12,49 @@ import java.util.TreeMap;
  * Time: 16:08
  */
 public class ModellingDF implements DFCreator{
-    private final RunExperimentService runService = RunExperimentService.get();
     public static final int STD_RUN_COUNT = Integer.parseInt(System.getProperty("montecarlo.run.count", "300000"));
-    static { LogService.get().debug("montecarlo.run.count = " + STD_RUN_COUNT);}
+
+    static {
+        LogService.get().config(("montecarlo.run.count = " + STD_RUN_COUNT));
+    }
+
+    private final RunExperimentService runService = RunExperimentService.get();
 
     private ModellingDF(){}
     public static ModellingDF get() { return new ModellingDF(); }
+
+    public static DistributionTable constructDT(Map<DiscreteValue, Integer> countTable, int experimentCount) {
+        DistributionTable distributionTable = new DistributionTable();
+        for (DiscreteValue key : countTable.keySet()) {
+            Probability p = new Probability(countTable.get(key) / (double) experimentCount);
+            distributionTable.put(key, p);
+        }
+        return distributionTable;
+    }
+
+//    public DistributionFunction createAND(CompatibleExperiments compatibleExperiments) {
+//        return template(compatibleExperiments, new SelectionAlgo(){
+//            public DiscreteValue getAlgoValue(DiscreteValue[] eventsData) {
+//                return SMMath.max(eventsData);
+//            }
+//        });
+//    }
+
+    private static DistributionFunction createSingle(IExperiment experiment) {
+        if (experiment == null || experiment.getSize() <= 0) {
+            throw new IllegalArgumentException("empty experiment data");
+        }
+        DiscreteValue[] vals = experiment.getMeasurements();
+        // calc count
+        Map<DiscreteValue, Integer> count = new TreeMap();
+        for (DiscreteValue val : vals) {
+            Integer number = count.get(val);
+            number = number != null ? number + 1 : 1;
+            count.put(val, number);
+        }
+        // calc distribution
+        return DistributionFunction.createByTable(constructDT(count, experiment.getSize()));
+    }
 
     public DistributionFunction createAlternative(CompatibleDistributionFunctions cdf, Probability[] probs) {
         int index = 0;
@@ -29,14 +66,6 @@ public class ModellingDF implements DFCreator{
         IExperiment runExperiment = RunAlternativeService.getOne().run((AlternativeExperiment[]) experiments);
         return createSingle(runExperiment);
     }
-
-//    public DistributionFunction createAND(CompatibleExperiments compatibleExperiments) {
-//        return template(compatibleExperiments, new SelectionAlgo(){
-//            public DiscreteValue getAlgoValue(DiscreteValue[] eventsData) {
-//                return SMMath.max(eventsData);
-//            }
-//        });
-//    }
 
     public DistributionFunction createAND(CompatibleDistributionFunctions<Integer> cdf) {
         return template(cdf, new SelectionAlgo(){
@@ -61,23 +90,6 @@ public class ModellingDF implements DFCreator{
             }
         });
     }
-
-
-    public DistributionFunction createSequenceProcessing(CompatibleDistributionFunctions<Integer> cdf) {
-        return template(cdf, new SelectionAlgo(){
-            public DiscreteValue getAlgoValue(DiscreteValue[] eventsData) {
-                return SMMath.sum(eventsData);
-            }
-        });
-    }
-    public static DistributionTable constructDT(Map<DiscreteValue, Integer> countTable, int experimentCount) {
-        DistributionTable distributionTable = new DistributionTable();
-        for (DiscreteValue key : countTable.keySet()) {
-            Probability p = new Probability(countTable.get(key) / (double) experimentCount);
-            distributionTable.put(key, p);
-        }
-        return distributionTable;
-    }
 //
 //    private DistributionFunction template(CompatibleExperiments compatibleExperiments, SelectionAlgo algo) {
 //        // calc count
@@ -97,6 +109,14 @@ public class ModellingDF implements DFCreator{
 //        // calc distribution
 //        return DistributionFunction.createByTable(constructDT(count, numOfMeasurements));
 //    }
+
+    public DistributionFunction createSequenceProcessing(CompatibleDistributionFunctions<Integer> cdf) {
+        return template(cdf, new SelectionAlgo() {
+            public DiscreteValue getAlgoValue(DiscreteValue[] eventsData) {
+                return SMMath.sum(eventsData);
+            }
+        });
+    }
 
     private DistributionFunction template(CompatibleDistributionFunctions cdf, SelectionAlgo algo) {
         int index = 0;
@@ -128,22 +148,6 @@ public class ModellingDF implements DFCreator{
 
     private abstract static class SelectionAlgo {
         public abstract DiscreteValue getAlgoValue(DiscreteValue[] eventsData);
-    }
-
-    private static DistributionFunction createSingle(IExperiment experiment) {
-        if (experiment == null || experiment.getSize() <= 0) {
-            throw new IllegalArgumentException("empty experiment data");
-        }
-        DiscreteValue[] vals = experiment.getMeasurements();
-        // calc count
-        Map<DiscreteValue, Integer> count = new TreeMap();
-        for (DiscreteValue val : vals) {
-            Integer number = count.get(val);
-            number = number != null ? number+1 : 1;
-            count.put(val, number);
-        }
-        // calc distribution
-        return DistributionFunction.createByTable(constructDT(count, experiment.getSize()));
     }
 
 }

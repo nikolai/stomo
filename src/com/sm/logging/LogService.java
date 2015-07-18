@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * Time: 18:38
  */
 public class LogService extends Logger{
-    private Level curLogLevel = Level.INFO;
+    private static LogService instance = new LogService();
     private final ExecutorService exec = Executors.newCachedThreadPool(new ThreadFactory() {
         public Thread newThread(Runnable r) {
             Thread t = new Thread(r);
@@ -22,14 +22,15 @@ public class LogService extends Logger{
             return t;
         }
     });
+    private Level curLogLevel = Level.INFO;
     private StringBuffer sb = new StringBuffer();
-    private static LogService instance = new LogService();
 
     private LogService() {
         super(LogService.class.getSimpleName(), null);
     }
-    public static LogService get() {
-        return instance;
+
+    public static Logger get() {
+        return Logger.getAnonymousLogger();
     }
 
     public void setCurLogLevel(Level curLogLevel) {
@@ -74,6 +75,9 @@ public class LogService extends Logger{
         logBase(sw.toString(), Level.SEVERE);
     }
 
+    private String formatMsg(String msg) {
+        return new Date() + ": " + "[" + Thread.currentThread().getName() + "] " + msg;
+    }
 
     private class WriteTask implements Runnable {
         private final String msg;
@@ -86,9 +90,5 @@ public class LogService extends Logger{
             String message = new Date() + ": " + msg + "\n";
             sb.append(message);
         }
-    }
-
-    private String formatMsg(String msg) {
-        return new Date() + ": " + "[" + Thread.currentThread().getName() + "] " + msg;
     }
 }

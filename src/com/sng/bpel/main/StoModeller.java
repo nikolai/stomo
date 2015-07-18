@@ -2,8 +2,6 @@ package com.sng.bpel.main;
 
 import com.sm.DFCreatorFactory;
 import com.sm.Probability;
-import com.sm.bpelenhancer.ProcessEnhancer;
-import com.sm.bpelenhancer.ProcessEnhancerResult;
 import com.sm.bpelmodeller.BpelModeller;
 import com.sm.bpelmodeller.config.BpelModellingConfigFactory;
 import com.sm.bpelmodeller.config.xsd.StoModelConfig;
@@ -32,14 +30,14 @@ public class StoModeller {
             TProcess process = XmlUtil.unmarshall(bpelFile.getAbsolutePath(), TProcess.class, ObjectFactory.class);
             log.config("Process read from "+bpelFilePath+": " + process.getName());
 
-            if (params.isUseBpelEnhancer()) {
-                ProcessEnhancerResult enhancerResult = ProcessEnhancer.getDefault().runEnhancer(process);
-                if (enhancerResult.hasEnhancements()) {
-                    log.info("BP " + bpelFilePath + " can be enhanced. Recommendations:\n");
-                    log.info(enhancerResult.getRecommendations());
-                    enhancerResult.storeEnhancements(bpelFile.getParent(), "Enhanced" + bpelFile.getName());
-                }
-            }
+//            if (params.isUseBpelEnhancer()) {
+//                ProcessEnhancerResult enhancerResult = ProcessEnhancer.getDefault().runEnhancer(process);
+//                if (enhancerResult.hasEnhancements()) {
+//                    log.info("BP " + bpelFilePath + " can be enhanced. Recommendations:\n");
+//                    log.info(enhancerResult.getRecommendations());
+//                    enhancerResult.storeEnhancements(bpelFile.getParent(), "Enhanced" + bpelFile.getName());
+//                }
+//            }
 
             String confFile = params.getConfigFile();
             log.config("Read configuration from "+confFile);
@@ -58,7 +56,7 @@ public class StoModeller {
 
             long start = System.currentTimeMillis();
             StoModellingResult result = modeller.analyse(process);
-            LogService.get().log("Modelling time: " + (System.currentTimeMillis()-start));
+            LogService.get().info("Modelling time: " + (System.currentTimeMillis() - start));
 
             log.info("Modelling result: " + result);
             if (params.isUseMonteCarlo()) {
