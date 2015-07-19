@@ -9,5 +9,5 @@ import org.oasis_open.docs.wsbpel._2_0.process.executable.TActivity;
  * Time: 17:33
  */
 public interface ActivityProcessor<T extends TActivity> {
-    public Action processActivity(T a, ActivityRunner processorFactory);
+    Action processActivity(T a, ActivityRunner processorFactory);
 }

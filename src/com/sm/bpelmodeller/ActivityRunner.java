@@ -20,6 +20,10 @@ public class ActivityRunner {
         this.defaultProcessor = defaultProcessor;
     }
 
+    public static ActivityRunner getOne() {
+        return getOne(null);
+    }
+
     public static ActivityRunner getOne(ActivityProcessor defaultProcessor) {
         return new ActivityRunner(defaultProcessor);
     }
@@ -32,9 +36,18 @@ public class ActivityRunner {
         activityProcessorMap.put(activityClass, processor);
     }
 
+    public void setDefaultProcessor(ActivityProcessor defaultProcessor) {
+        this.defaultProcessor = defaultProcessor;
+    }
+
     private <T extends TActivity> ActivityProcessor getActivityProcessorFor(Class<T> clazz){
         ActivityProcessor ap = activityProcessorMap.get(clazz);
-        return ap != null ? ap : defaultProcessor;
+        if (ap != null) {
+            return ap;
+        } else if (defaultProcessor != null) {
+            return defaultProcessor;
+        }
+        throw new IllegalStateException("No suitable activityProcessor for activity type " + clazz);
     }
 
 }

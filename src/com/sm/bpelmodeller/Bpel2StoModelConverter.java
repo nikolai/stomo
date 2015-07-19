@@ -37,7 +37,7 @@ public class Bpel2StoModelConverter {
         return new Bpel2StoModelConverter(config);
     }
 
-    public StoModel convert(TProcess process){
+    public StoModel convert(TProcess process) {
         LogService.get().config("Converting BPEL model to StoModel...");
         StoModel stoModel = mf.createStoModel();
         ChildActivitySelector.SelectedChild selected = ChildActivitySelector.getOne().selectChild(process);

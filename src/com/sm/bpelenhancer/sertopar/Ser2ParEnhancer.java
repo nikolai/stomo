@@ -1,12 +1,15 @@
 package com.sm.bpelenhancer.sertopar;
 
+import com.sm.DistributionFunction;
 import com.sm.bpelenhancer.BPELEnhancer;
 import com.sm.bpelenhancer.ChangeLog;
 import com.sm.bpelenhancer.depgraph.ActivityDependencyGraph;
 import com.sm.bpelenhancer.depgraph.DependencyGraphNode;
-import org.oasis_open.docs.wsbpel._2_0.process.executable.TActivity;
-import org.oasis_open.docs.wsbpel._2_0.process.executable.TProcess;
-import org.oasis_open.docs.wsbpel._2_0.process.executable.TSequence;
+import com.sm.bpelmodeller.ActivityProcessor;
+import com.sm.bpelmodeller.ActivityRunner;
+import com.sm.bpelmodeller.smprocessors.DefaultProcessor;
+import com.sm.model.Action;
+import org.oasis_open.docs.wsbpel._2_0.process.executable.*;
 
 import java.util.List;
 
@@ -19,16 +22,23 @@ public class Ser2ParEnhancer implements BPELEnhancer {
 
     @Override
     public void enhance(TProcess process, BPELEnhancer nextEnhancer, ChangeLog changeLog) {
-//        остановился тут!!!
-//                Построить граф зависимостей
-
         TSequence sequence = process.getSequence();
-        List<Object> activities = sequence.getActivity();
-        TActivity firstActivity = (TActivity) activities.get(0);
+        ActivityRunner activityRunner = ActivityRunner.getOne();
 
-        DependencyGraphNode<TActivity> root = new DependencyGraphNode<>(firstActivity);
+        ActivityDependencyGraph dependencyGraph = new ActivityDependencyGraph();
+
+        activityRunner.registerActivityProcessor(TReceive.class, new S2PReceiveProcessor(dependencyGraph));
+        activityRunner.registerActivityProcessor(TSequence.class, new S2PSequenceProcessor(dependencyGraph));
+        activityRunner.registerActivityProcessor(TAssign.class, new S2PAssignProcessor(dependencyGraph));
+        activityRunner.registerActivityProcessor(TInvoke.class, new S2PInvokeProcessor(dependencyGraph));
+        activityRunner.registerActivityProcessor(TReply.class, new S2ReplyProcessor(dependencyGraph));
+
+        activityRunner.goAhead(sequence);
+
+
         TActivity next = (TActivity) activities.get(1);
         DependencyGraphNode<TActivity> nextNode = new DependencyGraphNode<>(next);
+
 
         // RAW
         try {
@@ -45,6 +55,5 @@ public class Ser2ParEnhancer implements BPELEnhancer {
             e.printStackTrace();
         }
 
-        ActivityDependencyGraph dependencyGraph = new ActivityDependencyGraph(root);
     }
 }

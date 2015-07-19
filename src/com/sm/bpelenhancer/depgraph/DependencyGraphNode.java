@@ -14,6 +14,8 @@ import java.util.List;
 public class DependencyGraphNode<T extends TActivity> {
     private final T n;
     private final List<DependencyGraphNode> kids = new ArrayList<>();
+    private final List<String> writeVars = new ArrayList<>();
+    private final List<String> readVars = new ArrayList<>();
 
     public DependencyGraphNode(T nodeValue) {
         this.n = nodeValue;
@@ -45,13 +47,18 @@ public class DependencyGraphNode<T extends TActivity> {
     }
 
     public List<String> getWriteVars() throws Exception {
-        if (n instanceof TReceive) {
-            return Collections.singletonList(((TReceive) n).getVariable());
-        }
-        return Collections.emptyList();
+        return writeVars;
     }
 
     public List<DependencyGraphNode> getKids() {
         return kids;
+    }
+
+    public void addWriteVar(String varName) {
+        writeVars.add(varName);
+    }
+
+    public void addReadVar(String varName) {
+        readVars.add(varName);
     }
 }
