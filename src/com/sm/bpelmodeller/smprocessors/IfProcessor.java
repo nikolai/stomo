@@ -26,18 +26,18 @@ public class IfProcessor implements ActivityProcessor<TIf> {
         this.configHelper = configHelper;
     }
 
-    public Action processActivity(TIf a, ActivityRunner processorFactory) {
+    public Action processActivity(TIf a, ActivityRunner activityRunner) {
         Alternative alternative = mf.createAlternative();
 
         // find dt and probability of branch by name
         Probability probability = configHelper.findBranchProbability(a);
         // process if true
         ChildActivitySelector.SelectedChild ifTrueBranch = ChildActivitySelector.getOne().selectChild(a);
-        alternative.addStoAction(processorFactory.goAhead(ifTrueBranch.getActivity()), probability);
+        alternative.addStoAction(activityRunner.goAhead(ifTrueBranch.getActivity()), probability);
 
         // process else
         ChildActivitySelector.SelectedChild elseBranch = ChildActivitySelector.getOne().selectChild(a.getElse());
-        alternative.addStoAction(processorFactory.goAhead(elseBranch.getActivity()), probability.invert());
+        alternative.addStoAction(activityRunner.goAhead(elseBranch.getActivity()), probability.invert());
         return alternative;
     }
 }

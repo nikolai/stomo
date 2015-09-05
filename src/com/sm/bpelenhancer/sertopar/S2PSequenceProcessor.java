@@ -21,13 +21,10 @@ public class S2PSequenceProcessor extends S2PAbstractProcessor implements Activi
     }
 
     @Override
-    public Action processActivity(TSequence sequence, ActivityRunner processorFactory) {
+    public Action processActivity(TSequence sequence, ActivityRunner activityRunner) {
         List<Object> activities = sequence.getActivity();
         for (Object a : activities) {
-            TActivity activity = (TActivity) a;
-            DependencyGraphNode<TActivity> graphNode = new DependencyGraphNode<>(activity);
-            dependencyGraph.addNode(graphNode);
-            processorFactory.goAhead(activity);
+            activityRunner.goAhead((TActivity) a);
         }
         return null;
     }

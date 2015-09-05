@@ -34,26 +34,10 @@ public class Ser2ParEnhancer implements BPELEnhancer {
         activityRunner.registerActivityProcessor(TReply.class, new S2ReplyProcessor(dependencyGraph));
 
         activityRunner.goAhead(sequence);
-
-
-        TActivity next = (TActivity) activities.get(1);
-        DependencyGraphNode<TActivity> nextNode = new DependencyGraphNode<>(next);
-
-
-        // RAW
-        try {
-            for (String wVar : root.getWriteVars()) {
-                for (String rVar : nextNode.getReadVars()) {
-                    if (rVar.contains("$" + wVar)) {
-                        // has RAW deps
-                        root.getKids().add(nextNode);
-                        break;
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        !!!!! остановился тут!!! DependencyGraph строится правильно для примера
+                Не доделано: учитывать, что зависимость может быть не на один уровень вверх
+        (сейчас просмотр идет только до родителя на один уровень вверх!)
+        Но это потом. Сначала надо проверить Enhancer - изменение модели по графу зависимости
+                и сохранение её на диск!!!
     }
 }

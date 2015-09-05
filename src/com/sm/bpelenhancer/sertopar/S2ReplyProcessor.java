@@ -18,7 +18,7 @@ public class S2ReplyProcessor extends S2PAbstractProcessor implements ActivityPr
     }
 
     @Override
-    public Action processActivity(TReply a, ActivityRunner processorFactory) {
+    public Action processActivity(TReply a, ActivityRunner activityRunner) {
         DependencyGraphNode<TReply> graphNode = new DependencyGraphNode<>(a);
         graphNode.addReadVar(a.getVariable());
         dependencyGraph.addNode(graphNode);

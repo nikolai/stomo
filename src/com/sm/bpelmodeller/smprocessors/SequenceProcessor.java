@@ -22,13 +22,13 @@ public class SequenceProcessor implements ActivityProcessor<TSequence> {
         this.mf = mf;
     }
 
-    public Action processActivity(TSequence a, ActivityRunner processorFactory) {
+    public Action processActivity(TSequence a, ActivityRunner activityRunner) {
         Sequence mSeq = mf.createSequence();
 
         List<Object> activities = a.getActivity();
 
         for (Object av : activities) {
-            mSeq.addStoAction(processorFactory.goAhead((TActivity) av));
+            mSeq.addStoAction(activityRunner.goAhead((TActivity) av));
         }
 
         return mSeq;

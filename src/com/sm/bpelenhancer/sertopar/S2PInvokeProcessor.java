@@ -18,7 +18,7 @@ public class S2PInvokeProcessor extends S2PAbstractProcessor implements Activity
     }
 
     @Override
-    public Action processActivity(TInvoke a, ActivityRunner processorFactory) {
+    public Action processActivity(TInvoke a, ActivityRunner activityRunner) {
         DependencyGraphNode<TInvoke> graphNode = new DependencyGraphNode<>(a);
         graphNode.addReadVar(a.getInputVariable());
         graphNode.addWriteVar(a.getOutputVariable());

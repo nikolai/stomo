@@ -22,7 +22,7 @@ public class DefaultProcessor implements ActivityProcessor<TActivity> {
         this.configHelper = configHelper;
     }
 
-    public Action processActivity(TActivity a, ActivityRunner processorFactory) {
+    public Action processActivity(TActivity a, ActivityRunner activityRunner) {
         DistributionTable<Integer> dt = configHelper.findDT(a);
         return mf.createAction(dt);
     }

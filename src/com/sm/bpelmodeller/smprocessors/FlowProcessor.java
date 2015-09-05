@@ -25,7 +25,7 @@ public class FlowProcessor implements ActivityProcessor<TFlow> {
         this.configHelper = configHelper;
     }
 
-    public Action processActivity(TFlow a, ActivityRunner processorFactory) {
+    public Action processActivity(TFlow a, ActivityRunner activityRunner) {
         Parallel parallel = mf.createParallel();
 
         Long countOfWaitedResults = configHelper.findCountOfWaitedResults(a);
@@ -35,7 +35,7 @@ public class FlowProcessor implements ActivityProcessor<TFlow> {
         List<Object> activities = a.getActivity();
 
         for (Object av : activities){
-            parallel.addStoAction(processorFactory.goAhead((TActivity) av));
+            parallel.addStoAction(activityRunner.goAhead((TActivity) av));
         }
 
         return parallel;

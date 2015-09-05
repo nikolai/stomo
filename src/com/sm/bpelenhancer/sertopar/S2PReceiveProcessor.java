@@ -18,7 +18,7 @@ public class S2PReceiveProcessor extends S2PAbstractProcessor implements Activit
     }
 
     @Override
-    public Action processActivity(TReceive a, ActivityRunner processorFactory) {
+    public Action processActivity(TReceive a, ActivityRunner activityRunner) {
         DependencyGraphNode<TReceive> graphNode = new DependencyGraphNode<>(a);
         graphNode.addWriteVar(a.getVariable());
         dependencyGraph.addNode(graphNode);
