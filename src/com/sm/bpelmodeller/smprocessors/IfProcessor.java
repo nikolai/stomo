@@ -15,7 +15,7 @@ import org.oasis_open.docs.wsbpel._2_0.process.executable.TIf;
  * Date: 09.03.15
  * Time: 17:34
  */
-public class IfProcessor implements ActivityProcessor<TIf> {
+public class IfProcessor implements ActivityProcessor<TIf, Action> {
 
     private final ModelFactory mf;
     private final ConfigHelper configHelper;
@@ -26,7 +26,7 @@ public class IfProcessor implements ActivityProcessor<TIf> {
         this.configHelper = configHelper;
     }
 
-    public Action processActivity(TIf a, ActivityRunner activityRunner) {
+    public Action processActivity(TIf a, ActivityRunner<Action> activityRunner) {
         Alternative alternative = mf.createAlternative();
 
         // find dt and probability of branch by name

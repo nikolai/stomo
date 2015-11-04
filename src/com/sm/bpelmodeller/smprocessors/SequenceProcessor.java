@@ -15,14 +15,14 @@ import java.util.List;
  * Date: 09.03.15
  * Time: 17:31
  */
-public class SequenceProcessor implements ActivityProcessor<TSequence> {
+public class SequenceProcessor implements ActivityProcessor<TSequence, Action> {
     private final ModelFactory mf;
 
     public SequenceProcessor(ModelFactory mf) {
         this.mf = mf;
     }
 
-    public Action processActivity(TSequence a, ActivityRunner activityRunner) {
+    public Action processActivity(TSequence a, ActivityRunner<Action> activityRunner) {
         Sequence mSeq = mf.createSequence();
 
         List<Object> activities = a.getActivity();

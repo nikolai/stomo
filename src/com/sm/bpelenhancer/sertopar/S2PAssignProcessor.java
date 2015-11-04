@@ -17,7 +17,7 @@ import java.util.List;
  * Date: 20.07.15
  * Time: 0:20
  */
-public class S2PAssignProcessor extends S2PAbstractProcessor implements ActivityProcessor<TAssign> {
+public class S2PAssignProcessor extends S2PAbstractProcessor implements ActivityProcessor<TAssign, Action> {
     protected S2PAssignProcessor(ActivityDependencyGraph dependencyGraph) {
         super(dependencyGraph);
     }

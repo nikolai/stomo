@@ -8,5 +8,5 @@ import org.oasis_open.docs.wsbpel._2_0.process.executable.TProcess;
  * Time: 16:36
  */
 public interface BPELEnhancer {
-    void enhance(TProcess process, BPELEnhancer nextEnhancer, ChangeLog changeLog);
+    void enhance(TProcess process, ChangeLog changeLog);
 }

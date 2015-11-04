@@ -24,7 +24,7 @@ import org.oasis_open.docs.wsbpel._2_0.process.executable.TSequence;
 public class Bpel2StoModelConverter {
 
     private final ModelFactory mf = DefaultModelFactory.getDefault();
-    private final ActivityRunner activityRunner;
+    private final ActivityRunner<Action> activityRunner;
 
     private Bpel2StoModelConverter(StoModelConfig config){
         ConfigHelper configHelper = ConfigHelper.getOne(config);

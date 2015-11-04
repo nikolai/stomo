@@ -1,6 +1,5 @@
 package com.sm.bpelmodeller;
 
-import com.sm.model.*;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TActivity;
 
 import java.util.HashMap;
@@ -11,7 +10,7 @@ import java.util.Map;
  * Date: 24.11.12
  * Time: 1:03
  */
-public class ActivityRunner {
+public class ActivityRunner<R> {
     private ActivityProcessor defaultProcessor;
 
     private Map<Class<? extends TActivity>, ActivityProcessor> activityProcessorMap = new HashMap<>();
@@ -28,11 +27,12 @@ public class ActivityRunner {
         return new ActivityRunner(defaultProcessor);
     }
 
-    public Action goAhead(TActivity activity) {
-        return getActivityProcessorFor(activity.getClass()).processActivity(activity, this);
+    public <T extends TActivity> R goAhead(T activity) {
+        ActivityProcessor<T, R> activityProcessorFor = (ActivityProcessor<T, R>) getActivityProcessorFor(activity.getClass());
+        return activityProcessorFor.processActivity(activity, this);
     }
 
-    public <T extends TActivity> void registerActivityProcessor(Class<T> activityClass, ActivityProcessor<T> processor) {
+    public <T extends TActivity> void registerActivityProcessor(Class<T> activityClass, ActivityProcessor<T, R> processor) {
         activityProcessorMap.put(activityClass, processor);
     }
 
@@ -40,7 +40,7 @@ public class ActivityRunner {
         this.defaultProcessor = defaultProcessor;
     }
 
-    private <T extends TActivity> ActivityProcessor getActivityProcessorFor(Class<T> clazz){
+    private <T extends TActivity> ActivityProcessor<T, R> getActivityProcessorFor(Class<T> clazz){
         ActivityProcessor ap = activityProcessorMap.get(clazz);
         if (ap != null) {
             return ap;

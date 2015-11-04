@@ -23,7 +23,7 @@ public class EnhancerChain {
         Iterator<BPELEnhancer> it = enhancers.iterator();
         ChangeLog changeLog = new ChangeLog();
         if (it.hasNext()) {
-            it.next().enhance(process, it.hasNext() ? it.next() : null, changeLog);
+            it.next().enhance(process, changeLog);
         }
         return changeLog;
     }

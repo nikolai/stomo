@@ -16,7 +16,7 @@ import java.util.List;
  * Date: 09.03.15
  * Time: 17:33
  */
-public class FlowProcessor implements ActivityProcessor<TFlow> {
+public class FlowProcessor implements ActivityProcessor<TFlow, Action> {
     private final ModelFactory mf;
     private final ConfigHelper configHelper;
 
@@ -25,7 +25,8 @@ public class FlowProcessor implements ActivityProcessor<TFlow> {
         this.configHelper = configHelper;
     }
 
-    public Action processActivity(TFlow a, ActivityRunner activityRunner) {
+    @Override
+    public Action processActivity(TFlow a, ActivityRunner<Action> activityRunner) {
         Parallel parallel = mf.createParallel();
 
         Long countOfWaitedResults = configHelper.findCountOfWaitedResults(a);

@@ -13,7 +13,7 @@ import java.util.TreeMap;
 public class ChangeLog {
     private SortedMap<Date, ChangeLogRecord> changelog = new TreeMap<>();
 
-    void addChangesComment(BPELEnhancer currentEnhancer, String comment) {
+    public void addChangesComment(BPELEnhancer currentEnhancer, String comment) {
         changelog.put(new Date(), new ChangeLogRecord(currentEnhancer, comment));
     }
 
@@ -28,6 +28,10 @@ public class ChangeLog {
                     .append("(").append(record.getValue().enhancer).append(")");
         }
         return sb.toString();
+    }
+
+    public boolean isEmpty() {
+        return changelog.isEmpty();
     }
 
     private static class ChangeLogRecord {

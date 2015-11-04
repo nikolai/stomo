@@ -12,8 +12,10 @@ import com.sng.bpel.main.param.StringParameter;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.ObjectFactory;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TProcess;
 
+import javax.xml.bind.JAXBElement;
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,7 +34,7 @@ public class BPELEnhancerMain {
     }
 
     public static void main(String[] args) throws AppArgumentReaderException {
-        AppArgumentReader params = new AppArgumentReader("java -jar bpel-enhancer.jar", args, Arrays.asList(BPEL_FILE));
+        AppArgumentReader params = new AppArgumentReader("java -jar bpel-enhancer.jar", args, Collections.singletonList(BPEL_FILE));
         if (!params.parse()) {
             System.exit(0);
         }
@@ -46,15 +48,21 @@ public class BPELEnhancerMain {
             log.info("Running enhancer against business process '" + process.getName() + "'");
             ChangeLog changeLog = enhancerChain.start(process);
             log.info("Enhancing changelog:\n" + changeLog);
+
+            ObjectFactory factory = new ObjectFactory();
+            if (!changeLog.isEmpty()) {
+                String newName = bpelFilePath.replaceFirst("\\.bpel", "_enhanced\\.bpel");
+                File enhancedFile = new File(newName);
+                log.info("Saving changes to BPEL file " + enhancedFile.getAbsolutePath() + "...");
+                XmlUtil.marshall(newName, factory.createProcess(process), ObjectFactory.class);
+
+                XmlAliasSaver xas = new XmlAliasSaver(bpelFile, enhancedFile);
+                xas.patch();
+            }
+
         } catch (Exception e) {
-            log.log(Level.SEVERE, "Cannot create JAXB model of the BPEL file", e);
-
+            log.log(Level.SEVERE, "Error occurs: ", e);
         }
-
-
-//        ChildActivitySelector.SelectedChild child = ChildActivitySelector.getOne().selectChild(process);
-//        TSequence seq = (TSequence) child.getActivity();
-//        enhancerChain.start();
     }
 
 }

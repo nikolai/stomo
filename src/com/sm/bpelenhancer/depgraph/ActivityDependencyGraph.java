@@ -13,6 +13,10 @@ public class ActivityDependencyGraph {
     private DependencyGraphNode root;
     private DependencyGraphNode lastAdded;
 
+    public DependencyGraphNode getRoot() {
+        return root;
+    }
+
     public <T extends TActivity> void addNode(DependencyGraphNode<T> addingNode) {
         if (root == null) {
             root = addingNode;

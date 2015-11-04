@@ -22,6 +22,7 @@ public class XmlUtil {
     public static <T> void marshall(String file, JAXBElement<T> object, Class context) throws Exception {
         JAXBContext ctx = JAXBContext.newInstance(context);
         Marshaller marshaller = ctx.createMarshaller();
+        marshaller.setProperty("jaxb.formatted.output", true);
         marshaller.marshal(object, new File(file));
     }
 }
