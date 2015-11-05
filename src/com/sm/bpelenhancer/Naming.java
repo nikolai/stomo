@@ -13,7 +13,9 @@ public enum Naming {
     flow,
     assign,
     sequence,
-    invoke;
+    invoke,
+    process,
+    receive, reply;
 
     private static Map<Naming, AtomicInteger> counts = new HashMap<>();
 

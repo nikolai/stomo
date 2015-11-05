@@ -31,12 +31,14 @@ public class S2PModifier implements ProcessModifier {
     }
 
     private <T extends TActivity> void tryFlow(TProcess p, DependencyGraphNode<T> dependencyGraphNode) {
-        List<DependencyGraphNode<T>> currentKids = dependencyGraphNode.getKids();
-        if (currentKids.size() > 1) {
-            changeLog.addChangesComment(enhancer, "replace sequence with flow");
-            bpelModifyHelper.cutAndPasteInFlow(getFlowsContent(dependencyGraphNode), dependencyGraphNode.getNodeValue());
-        } else if (!dependencyGraphNode.getKids().isEmpty()) {
-            tryFlow(p, dependencyGraphNode.getKids().get(0));
+        if (dependencyGraphNode != null) {
+            List<DependencyGraphNode<T>> currentKids = dependencyGraphNode.getKids();
+            if (currentKids.size() > 1) {
+                changeLog.addChangesComment(enhancer, "replace sequence with flow");
+                bpelModifyHelper.cutAndPasteInFlow(getFlowsContent(dependencyGraphNode), dependencyGraphNode.getNodeValue());
+            } else if (!dependencyGraphNode.getKids().isEmpty()) {
+                tryFlow(p, dependencyGraphNode.getKids().get(0));
+            }
         }
     }
 
