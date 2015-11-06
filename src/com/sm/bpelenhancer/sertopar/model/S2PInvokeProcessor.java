@@ -1,7 +1,5 @@
-package com.sm.bpelenhancer.sertopar;
+package com.sm.bpelenhancer.sertopar.model;
 
-import com.sm.bpelenhancer.depgraph.ActivityDependencyGraph;
-import com.sm.bpelenhancer.depgraph.DependencyGraphNode;
 import com.sm.bpelmodeller.ActivityProcessor;
 import com.sm.bpelmodeller.ActivityRunner;
 import com.sm.model.Action;
@@ -13,7 +11,7 @@ import org.oasis_open.docs.wsbpel._2_0.process.executable.TInvoke;
  * Time: 0:20
  */
 public class S2PInvokeProcessor extends S2PAbstractProcessor implements ActivityProcessor<TInvoke, Action> {
-    protected S2PInvokeProcessor(ActivityDependencyGraph dependencyGraph) {
+    public S2PInvokeProcessor(ActivityDependencyGraph dependencyGraph) {
         super(dependencyGraph);
     }
 

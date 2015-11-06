@@ -51,6 +51,7 @@ public class Ser2ParEnhancerTest {
             TInvoke invoke2 = (TInvoke) addedFlow.getActivity().get(1);
             TReply reply = (TReply) process.getDelegate().getSequence().getActivity().get(4);
         } catch (Exception e) {
+            e.printStackTrace(System.out);
             Assert.fail("invalid enhanced BPEL structure");
         }
     }

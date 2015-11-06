@@ -1,6 +1,6 @@
-package com.sm.bpelenhancer.sertopar;
+package com.sm.bpelenhancer.sertopar.model;
 
-import com.sm.bpelenhancer.depgraph.ActivityDependencyGraph;
+import com.sm.bpelenhancer.sertopar.model.ActivityDependencyGraph;
 
 /**
  * User: mikola

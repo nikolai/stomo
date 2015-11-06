@@ -1,7 +1,5 @@
-package com.sm.bpelenhancer.sertopar;
+package com.sm.bpelenhancer.sertopar.model;
 
-import com.sm.bpelenhancer.depgraph.ActivityDependencyGraph;
-import com.sm.bpelenhancer.depgraph.DependencyGraphNode;
 import com.sm.bpelmodeller.ActivityProcessor;
 import com.sm.bpelmodeller.ActivityRunner;
 import com.sm.model.Action;
@@ -18,7 +16,7 @@ import java.util.List;
  * Time: 0:20
  */
 public class S2PAssignProcessor extends S2PAbstractProcessor implements ActivityProcessor<TAssign, Action> {
-    protected S2PAssignProcessor(ActivityDependencyGraph dependencyGraph) {
+    public S2PAssignProcessor(ActivityDependencyGraph dependencyGraph) {
         super(dependencyGraph);
     }
 

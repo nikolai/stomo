@@ -1,7 +1,5 @@
-package com.sm.bpelenhancer.sertopar;
+package com.sm.bpelenhancer.sertopar.model;
 
-import com.sm.bpelenhancer.depgraph.ActivityDependencyGraph;
-import com.sm.bpelenhancer.depgraph.DependencyGraphNode;
 import com.sm.bpelmodeller.ActivityProcessor;
 import com.sm.bpelmodeller.ActivityRunner;
 import com.sm.model.Action;
@@ -13,7 +11,7 @@ import org.oasis_open.docs.wsbpel._2_0.process.executable.TReceive;
  * Time: 0:18
  */
 public class S2PReceiveProcessor extends S2PAbstractProcessor implements ActivityProcessor<TReceive, Action> {
-    protected S2PReceiveProcessor(ActivityDependencyGraph dependencyGraph) {
+    public S2PReceiveProcessor(ActivityDependencyGraph dependencyGraph) {
         super(dependencyGraph);
     }
 

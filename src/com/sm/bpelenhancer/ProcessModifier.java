@@ -1,6 +1,6 @@
 package com.sm.bpelenhancer;
 
-import com.sm.bpelenhancer.depgraph.ActivityDependencyGraph;
+import com.sm.bpelenhancer.sertopar.model.ActivityDependencyGraph;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TProcess;
 
 /**

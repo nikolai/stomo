@@ -2,7 +2,7 @@ package com.sm.bpelenhancer.sertopar;
 
 import com.sm.bpelenhancer.BPELEnhancer;
 import com.sm.bpelenhancer.ChangeLog;
-import com.sm.bpelenhancer.depgraph.ActivityDependencyGraph;
+import com.sm.bpelenhancer.sertopar.model.*;
 import com.sm.bpelmodeller.ActivityRunner;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.*;
 

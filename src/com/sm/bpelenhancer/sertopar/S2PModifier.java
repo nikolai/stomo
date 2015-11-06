@@ -4,8 +4,8 @@ import com.sm.bpelenhancer.BPELEnhancer;
 import com.sm.bpelenhancer.ChangeLog;
 import com.sm.bpelenhancer.ProcessModifier;
 import com.sm.bpelenhancer.bpelmodifier.BPELModifyHelper;
-import com.sm.bpelenhancer.depgraph.ActivityDependencyGraph;
-import com.sm.bpelenhancer.depgraph.DependencyGraphNode;
+import com.sm.bpelenhancer.sertopar.model.ActivityDependencyGraph;
+import com.sm.bpelenhancer.sertopar.model.DependencyGraphNode;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TActivity;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TProcess;
 

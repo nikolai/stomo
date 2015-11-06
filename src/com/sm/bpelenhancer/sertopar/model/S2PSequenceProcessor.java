@@ -1,6 +1,5 @@
-package com.sm.bpelenhancer.sertopar;
+package com.sm.bpelenhancer.sertopar.model;
 
-import com.sm.bpelenhancer.depgraph.ActivityDependencyGraph;
 import com.sm.bpelmodeller.ActivityProcessor;
 import com.sm.bpelmodeller.ActivityRunner;
 import com.sm.model.Action;
@@ -15,7 +14,7 @@ import java.util.List;
  * Time: 0:14
  */
 public class S2PSequenceProcessor extends S2PAbstractProcessor implements ActivityProcessor<TSequence, Action> {
-    protected S2PSequenceProcessor(ActivityDependencyGraph dependencyGraph) {
+    public S2PSequenceProcessor(ActivityDependencyGraph dependencyGraph) {
         super(dependencyGraph);
     }
 

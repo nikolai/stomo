@@ -1,11 +1,8 @@
-package com.sm.bpelenhancer.sertopar;
+package com.sm.bpelenhancer.sertopar.model;
 
-import com.sm.bpelenhancer.depgraph.ActivityDependencyGraph;
-import com.sm.bpelenhancer.depgraph.DependencyGraphNode;
 import com.sm.bpelmodeller.ActivityProcessor;
 import com.sm.bpelmodeller.ActivityRunner;
 import com.sm.model.Action;
-import org.oasis_open.docs.wsbpel._2_0.process.executable.TActivity;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TReply;
 
 /**
@@ -14,7 +11,7 @@ import org.oasis_open.docs.wsbpel._2_0.process.executable.TReply;
  * Time: 0:20
  */
 public class S2PReplyProcessor extends S2PAbstractProcessor implements ActivityProcessor<TReply, Action> {
-    protected S2PReplyProcessor(ActivityDependencyGraph dependencyGraph) {
+    public S2PReplyProcessor(ActivityDependencyGraph dependencyGraph) {
         super(dependencyGraph);
     }
 
