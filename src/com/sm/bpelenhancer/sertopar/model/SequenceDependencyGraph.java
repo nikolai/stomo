@@ -11,7 +11,6 @@ import java.util.*;
  */
 public class SequenceDependencyGraph {
     private DependencyGraphNode root;
-    private DependencyGraphNode lastAdded;
 
     public DependencyGraphNode getRoot() {
         return root;
@@ -20,7 +19,6 @@ public class SequenceDependencyGraph {
     public <T extends TActivity> void addNode(DependencyGraphNode<T> addingNode) {
         if (root == null) {
             root = addingNode;
-            lastAdded = addingNode;
             return;
         }
 
@@ -29,7 +27,6 @@ public class SequenceDependencyGraph {
             parent.addKid(addingNode);
             addingNode.addParent(parent);
         }
-        lastAdded = addingNode;
     }
 
     private <T extends TActivity> List<DependencyGraphNode<T>> findParents(DependencyGraphNode<T> addingNode) {
@@ -40,27 +37,6 @@ public class SequenceDependencyGraph {
         addParents(addingNode, root, parents);
 
 //        // todo: не учитывается глубина, вернее учитывается только 2 - до "родителей родителя".
-//        if (addingNode.isDependingOn(lastAdded)) {
-//            for (DependencyGraphNode<T> p : lastAdded.getParents()) {
-//                if (addingNode.isDependingOn(p)) {
-//                    parents.add(p);
-//                }
-//                for (DependencyGraphNode<T> k : p.getKids()) {
-//                    if (addingNode.isDependingOn(k) && !parents.contains(k)) {
-//                        parents.add(k);
-//                    }
-//                }
-//            }
-//            if (parents.isEmpty()) {
-//                parents.add(lastAdded);
-//            }
-//        } else {
-//            for (DependencyGraphNode<T> p : lastAdded.getParents()) {
-//                if (addingNode.isDependingOnParent(p)) {
-//                    parents.add(p);
-//                }
-//            }
-//        }
 
         return parents;
     }
@@ -74,7 +50,4 @@ public class SequenceDependencyGraph {
             addParents(addingNode, kid, parents);
         }
     }
-
-
-
 }
