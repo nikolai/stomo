@@ -6,16 +6,16 @@ import com.sm.bmc.BPELModelCreator;
 import com.sm.bpelenhancer.ChangeLog;
 import org.junit.Assert;
 import org.junit.Test;
-import org.oasis_open.docs.wsbpel._2_0.process.executable.TFlow;
-import org.oasis_open.docs.wsbpel._2_0.process.executable.TInvoke;
-import org.oasis_open.docs.wsbpel._2_0.process.executable.TReply;
+import org.oasis_open.docs.wsbpel._2_0.process.executable.*;
+
+import java.util.List;
 
 /**
  * User: mikola
  * Date: 05.11.15
  * Time: 14:32
  */
-public class Ser2ParEnhancerTest {
+public class S2PEnhancerTest {
 
     @Test
     public void testEnhance() throws Exception {
@@ -40,16 +40,21 @@ public class Ser2ParEnhancerTest {
                 .add(bp.createTAssign().addCopy(inv1VarOut, bpVarOut).addCopy(inv2VarOut, bpVarOut))
                 .add(bp.createTReply().setReadVars(bpVarOut));
 
-        Ser2ParEnhancer enhancer = new Ser2ParEnhancer();
+        S2PEnhancer enhancer = new S2PEnhancer();
         ChangeLog log = new ChangeLog();
         enhancer.enhance(process.getDelegate(), log);
 
         Assert.assertTrue("no modifications found in log", !log.isEmpty());
         try {
-            TFlow addedFlow = (TFlow) process.getDelegate().getSequence().getActivity().get(2);
+            List<Object>  mainSeq = process.getDelegate().getSequence().getActivity();
+            Assert.assertEquals("wrong main sequence size" , 5, mainSeq.size());
+            TReceive receive = (TReceive) mainSeq.get(0);
+            TAssign assign1 = (TAssign) mainSeq.get(1);
+            TFlow addedFlow = (TFlow) mainSeq.get(2);
             TInvoke invoke1 = (TInvoke) addedFlow.getActivity().get(0);
             TInvoke invoke2 = (TInvoke) addedFlow.getActivity().get(1);
-            TReply reply = (TReply) process.getDelegate().getSequence().getActivity().get(4);
+            TAssign assign2 = (TAssign) mainSeq.get(3);
+            TReply reply = (TReply) mainSeq.get(4);
         } catch (Exception e) {
             e.printStackTrace(System.out);
             Assert.fail("invalid enhanced BPEL structure");

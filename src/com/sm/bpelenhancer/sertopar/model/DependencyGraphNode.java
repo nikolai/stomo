@@ -40,7 +40,7 @@ public class DependencyGraphNode<T extends TActivity> {
         return getWriteVars(true);
     }
 
-    public List<String> getReadVars(boolean includeKids) {
+    private List<String> getReadVars(boolean includeKids) {
         List<String> result = new LinkedList<>(readVars);
         if (includeKids) {
             for (DependencyGraphNode kid : getKids()) {
@@ -53,7 +53,7 @@ public class DependencyGraphNode<T extends TActivity> {
         return getWriteVars(false);
     }
 
-    public List<String> getWriteVars(boolean includeKids) {
+    private List<String> getWriteVars(boolean includeKids) {
         List<String> result = new LinkedList<>(writeVars);
         if (includeKids) {
             for (DependencyGraphNode kid : getKids()) {

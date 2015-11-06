@@ -11,7 +11,7 @@ import org.oasis_open.docs.wsbpel._2_0.process.executable.TReply;
  * Time: 0:20
  */
 public class S2PReplyProcessor extends S2PAbstractProcessor implements ActivityProcessor<TReply, Action> {
-    public S2PReplyProcessor(ActivityDependencyGraph dependencyGraph) {
+    public S2PReplyProcessor(SequenceDependencyGraph dependencyGraph) {
         super(dependencyGraph);
     }
 

@@ -11,7 +11,7 @@ import org.oasis_open.docs.wsbpel._2_0.process.executable.TInvoke;
  * Time: 0:20
  */
 public class S2PInvokeProcessor extends S2PAbstractProcessor implements ActivityProcessor<TInvoke, Action> {
-    public S2PInvokeProcessor(ActivityDependencyGraph dependencyGraph) {
+    public S2PInvokeProcessor(SequenceDependencyGraph dependencyGraph) {
         super(dependencyGraph);
     }
 

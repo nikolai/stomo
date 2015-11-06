@@ -11,7 +11,7 @@ import org.oasis_open.docs.wsbpel._2_0.process.executable.TReceive;
  * Time: 0:18
  */
 public class S2PReceiveProcessor extends S2PAbstractProcessor implements ActivityProcessor<TReceive, Action> {
-    public S2PReceiveProcessor(ActivityDependencyGraph dependencyGraph) {
+    public S2PReceiveProcessor(SequenceDependencyGraph dependencyGraph) {
         super(dependencyGraph);
     }
 

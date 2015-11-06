@@ -4,7 +4,7 @@ import com.sm.bpelenhancer.BPELEnhancer;
 import com.sm.bpelenhancer.ChangeLog;
 import com.sm.bpelenhancer.ProcessModifier;
 import com.sm.bpelenhancer.bpelmodifier.BPELModifyHelper;
-import com.sm.bpelenhancer.sertopar.model.ActivityDependencyGraph;
+import com.sm.bpelenhancer.sertopar.model.SequenceDependencyGraph;
 import com.sm.bpelenhancer.sertopar.model.DependencyGraphNode;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TActivity;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TProcess;
@@ -23,7 +23,7 @@ public class S2PModifier implements ProcessModifier {
     private BPELModifyHelper bpelModifyHelper;
 
     @Override
-    public void modify(TProcess bp, ChangeLog changeLog, ActivityDependencyGraph graph, BPELEnhancer enhancer) {
+    public void modify(TProcess bp, ChangeLog changeLog, SequenceDependencyGraph graph, BPELEnhancer enhancer) {
         this.changeLog = changeLog;
         this.enhancer = enhancer;
         bpelModifyHelper = BPELModifyHelper.getOne(bp);

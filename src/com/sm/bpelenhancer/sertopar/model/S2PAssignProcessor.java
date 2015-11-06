@@ -16,7 +16,7 @@ import java.util.List;
  * Time: 0:20
  */
 public class S2PAssignProcessor extends S2PAbstractProcessor implements ActivityProcessor<TAssign, Action> {
-    public S2PAssignProcessor(ActivityDependencyGraph dependencyGraph) {
+    public S2PAssignProcessor(SequenceDependencyGraph dependencyGraph) {
         super(dependencyGraph);
     }
 

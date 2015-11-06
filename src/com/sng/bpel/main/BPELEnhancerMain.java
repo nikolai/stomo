@@ -2,7 +2,7 @@ package com.sng.bpel.main;
 
 import com.sm.bpelenhancer.ChangeLog;
 import com.sm.bpelenhancer.EnhancerChain;
-import com.sm.bpelenhancer.sertopar.Ser2ParEnhancer;
+import com.sm.bpelenhancer.sertopar.S2PEnhancer;
 import com.sm.logging.LogService;
 import com.sm.util.XmlUtil;
 import com.sng.bpel.main.param.AppArgumentReader;
@@ -12,9 +12,7 @@ import com.sng.bpel.main.param.StringParameter;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.ObjectFactory;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TProcess;
 
-import javax.xml.bind.JAXBElement;
 import java.io.File;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +28,7 @@ public class BPELEnhancerMain {
     private static Logger log = LogService.get();
 
     static {
-        enhancerChain.addEnhancer(new Ser2ParEnhancer());
+        enhancerChain.addEnhancer(new S2PEnhancer());
     }
 
     public static void main(String[] args) throws AppArgumentReaderException {

@@ -14,7 +14,7 @@ import java.util.List;
  * Time: 0:14
  */
 public class S2PSequenceProcessor extends S2PAbstractProcessor implements ActivityProcessor<TSequence, Action> {
-    public S2PSequenceProcessor(ActivityDependencyGraph dependencyGraph) {
+    public S2PSequenceProcessor(SequenceDependencyGraph dependencyGraph) {
         super(dependencyGraph);
     }
 
