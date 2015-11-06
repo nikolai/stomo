@@ -1,6 +1,6 @@
 package com.sm.bpelenhancer;
 
-import com.sm.bpelenhancer.sertopar.model.SequenceDependencyGraph;
+import com.sm.bpelenhancer.sertopar.model.DependencyGraphComplexNode;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TProcess;
 
 /**
@@ -9,5 +9,5 @@ import org.oasis_open.docs.wsbpel._2_0.process.executable.TProcess;
  * Time: 17:01
  */
 public interface ProcessModifier {
-    void modify(TProcess bp, ChangeLog changeLog, SequenceDependencyGraph graph, BPELEnhancer enhancer);
+    void modify(TProcess bp, ChangeLog changeLog, DependencyGraphComplexNode model, BPELEnhancer enhancer);
 }

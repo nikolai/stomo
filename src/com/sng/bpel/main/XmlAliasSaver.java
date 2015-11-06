@@ -49,7 +49,7 @@ public class XmlAliasSaver {
                     Attr addedAttr = targetDoc.createAttribute(srcAttr.getNodeName());
                     addedAttr.setValue(srcAttr.getNodeValue());
                     targetAttrs.setNamedItem(addedAttr);
-                    Logger.getLogger(XmlAliasSaver.class.getSimpleName()).info("Saved attr: " + srcAttr);
+                    Logger.getLogger(XmlAliasSaver.class.getSimpleName()).fine("Saved attr: " + srcAttr);
                 }
             }
 

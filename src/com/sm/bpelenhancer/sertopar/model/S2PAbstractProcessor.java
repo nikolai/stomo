@@ -6,9 +6,6 @@ package com.sm.bpelenhancer.sertopar.model;
  * Time: 0:23
  */
 public abstract class S2PAbstractProcessor {
-    protected final SequenceDependencyGraph dependencyGraph;
-
-    protected S2PAbstractProcessor(SequenceDependencyGraph dependencyGraph) {
-        this.dependencyGraph = dependencyGraph;
+    protected S2PAbstractProcessor() {
     }
 }

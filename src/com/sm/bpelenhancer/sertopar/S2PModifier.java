@@ -4,7 +4,7 @@ import com.sm.bpelenhancer.BPELEnhancer;
 import com.sm.bpelenhancer.ChangeLog;
 import com.sm.bpelenhancer.ProcessModifier;
 import com.sm.bpelenhancer.bpelmodifier.BPELModifyHelper;
-import com.sm.bpelenhancer.sertopar.model.SequenceDependencyGraph;
+import com.sm.bpelenhancer.sertopar.model.DependencyGraphComplexNode;
 import com.sm.bpelenhancer.sertopar.model.DependencyGraphNode;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TActivity;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TProcess;
@@ -23,21 +23,28 @@ public class S2PModifier implements ProcessModifier {
     private BPELModifyHelper bpelModifyHelper;
 
     @Override
-    public void modify(TProcess bp, ChangeLog changeLog, SequenceDependencyGraph graph, BPELEnhancer enhancer) {
+    public void modify(TProcess bp, ChangeLog changeLog, DependencyGraphComplexNode model, BPELEnhancer enhancer) {
         this.changeLog = changeLog;
         this.enhancer = enhancer;
         bpelModifyHelper = BPELModifyHelper.getOne(bp);
-        tryFlow(bp, graph.getRoot());
+        tryFlow(bp, model);
     }
 
     private <T extends TActivity> void tryFlow(TProcess p, DependencyGraphNode<T> dependencyGraphNode) {
         if (dependencyGraphNode != null) {
-            List<DependencyGraphNode<T>> currentKids = dependencyGraphNode.getKids();
-            if (currentKids.size() > 1) {
-                changeLog.addChangesComment(enhancer, "replace sequence with flow");
-                bpelModifyHelper.cutAndPasteInFlow(getFlowsContent(dependencyGraphNode), dependencyGraphNode.getNodeValue());
-            } else if (!dependencyGraphNode.getKids().isEmpty()) {
-                tryFlow(p, dependencyGraphNode.getKids().get(0));
+            if (dependencyGraphNode instanceof DependencyGraphComplexNode) {
+                DependencyGraphComplexNode<T> complexNode = ((DependencyGraphComplexNode<T>) dependencyGraphNode);
+                if (!complexNode.getContainedElements().isEmpty()) {
+                    tryFlow(p, complexNode.getContainedElements().get(0));
+                }
+            } else {
+                List<DependencyGraphNode<T>> currentKids = dependencyGraphNode.getKids();
+                if (currentKids.size() > 1) {
+                    changeLog.addChangesComment(enhancer, "replace sequence with flow");
+                    bpelModifyHelper.cutAndPasteInFlow(getFlowsContent(dependencyGraphNode), dependencyGraphNode.getNodeValue());
+                } else if (!dependencyGraphNode.getKids().isEmpty()) {
+                    tryFlow(p, dependencyGraphNode.getKids().get(0));
+                }
             }
         }
     }

@@ -2,7 +2,6 @@ package com.sm.bpelenhancer.sertopar.model;
 
 import com.sm.bpelmodeller.ActivityProcessor;
 import com.sm.bpelmodeller.ActivityRunner;
-import com.sm.model.Action;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TAssign;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TCopy;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TExtensibleElements;
@@ -15,13 +14,13 @@ import java.util.List;
  * Date: 20.07.15
  * Time: 0:20
  */
-public class S2PAssignProcessor extends S2PAbstractProcessor implements ActivityProcessor<TAssign, Action> {
-    public S2PAssignProcessor(SequenceDependencyGraph dependencyGraph) {
-        super(dependencyGraph);
+public class S2PAssignProcessor extends S2PAbstractProcessor implements ActivityProcessor<TAssign, DependencyGraphNode> {
+    public S2PAssignProcessor() {
+        super();
     }
 
     @Override
-    public Action processActivity(TAssign a, ActivityRunner activityRunner) {
+    public DependencyGraphNode processActivity(TAssign a, ActivityRunner activityRunner) {
         DependencyGraphNode<TAssign> graphNode = new DependencyGraphNode<>(a);
         List<TExtensibleElements> copyElems = a.getCopyOrExtensionAssignOperation();
         for (TExtensibleElements extEl : copyElems) {
@@ -35,8 +34,7 @@ public class S2PAssignProcessor extends S2PAbstractProcessor implements Activity
                 }
             }
         }
-        dependencyGraph.addNode(graphNode);
-        return null;
+        return graphNode;
     }
 
     private String[] extractVarName(String expression) {

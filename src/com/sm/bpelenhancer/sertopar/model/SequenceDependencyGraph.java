@@ -10,6 +10,8 @@ import java.util.*;
  * Time: 16:28
  */
 public class SequenceDependencyGraph {
+
+    //TODO: refactor - move enhancer to another module, also CMDParam parser
     private DependencyGraphNode root;
 
     public DependencyGraphNode getRoot() {
@@ -23,7 +25,7 @@ public class SequenceDependencyGraph {
         }
 
         List<DependencyGraphNode<T>> parents = findParents(addingNode);
-        for (DependencyGraphNode parent : parents) {
+        for (DependencyGraphNode<T> parent : parents) {
             parent.addKid(addingNode);
             addingNode.addParent(parent);
         }
@@ -31,18 +33,14 @@ public class SequenceDependencyGraph {
 
     private <T extends TActivity> List<DependencyGraphNode<T>> findParents(DependencyGraphNode<T> addingNode) {
         List<DependencyGraphNode<T>> parents = new LinkedList<>();
-        if (root == addingNode) {
-            return parents;
-        }
         addParents(addingNode, root, parents);
-
-//        // todo: не учитывается глубина, вернее учитывается только 2 - до "родителей родителя".
-
         return parents;
     }
 
     private <T extends TActivity> void addParents(DependencyGraphNode<T> addingNode, DependencyGraphNode<T> isParentNode,
                                              List<DependencyGraphNode<T>> parents) {
+        if (addingNode == isParentNode) return;
+
         if (addingNode.isDependingOn(isParentNode)) {
             parents.add(isParentNode);
         }

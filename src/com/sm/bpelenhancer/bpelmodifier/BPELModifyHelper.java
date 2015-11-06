@@ -44,6 +44,9 @@ public class BPELModifyHelper {
 
     public <T extends TActivity> void remove(T nodeValue) {
         FinderResult result = finder.find(nodeValue.getName());
+        if (result == null || result.getAct() == null) {
+            throw new IllegalStateException("cannot find " + nodeValue.getName() + " in the model");
+        }
 
         Iterator<Object> iterator = result.getContainer().getActivity().iterator();
         while (iterator.hasNext()) {

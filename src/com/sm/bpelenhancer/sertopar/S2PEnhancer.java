@@ -20,21 +20,22 @@ public class S2PEnhancer implements BPELEnhancer {
             return;
         }
 
-        ActivityRunner activityRunner = ActivityRunner.getOne();
-        SequenceDependencyGraph dependencyGraph = new SequenceDependencyGraph();
+        ActivityRunner<DependencyGraphNode> activityRunner = ActivityRunner.getOne();
+        S2PEnhancingModel model = new S2PEnhancingModel();
 
-        activityRunner.registerActivityProcessor(TReceive.class, new S2PReceiveProcessor(dependencyGraph));
-        activityRunner.registerActivityProcessor(TSequence.class, new S2PSequenceProcessor(dependencyGraph));
-        activityRunner.registerActivityProcessor(TFlow.class, new S2PFlowProcessor(dependencyGraph));
-        activityRunner.registerActivityProcessor(TAssign.class, new S2PAssignProcessor(dependencyGraph));
-        activityRunner.registerActivityProcessor(TInvoke.class, new S2PInvokeProcessor(dependencyGraph));
-        activityRunner.registerActivityProcessor(TReply.class, new S2PReplyProcessor(dependencyGraph));
+        activityRunner.registerActivityProcessor(TSequence.class, new S2PSequenceProcessor());
+        activityRunner.registerActivityProcessor(TReceive.class, new S2PReceiveProcessor());
+//        activityRunner.registerActivityProcessor(TFlow.class, new S2PFlowProcessor(model));
+        activityRunner.registerActivityProcessor(TAssign.class, new S2PAssignProcessor());
+        activityRunner.registerActivityProcessor(TInvoke.class, new S2PInvokeProcessor());
+        activityRunner.registerActivityProcessor(TReply.class, new S2PReplyProcessor());
+        activityRunner.registerActivityProcessor(TScope.class, new S2PScopeProcessor());
 
         // build dependency graph
-        activityRunner.goAhead(sequence);
+        DependencyGraphSequenceComplexNode root = (DependencyGraphSequenceComplexNode) activityRunner.goAhead(sequence);
 
         S2PModifier modifier = new S2PModifier();
-        modifier.modify(process, changeLog, dependencyGraph, this);
+        modifier.modify(process, changeLog, root, this);
 
         // TODO:
 //        проверить, если уже был flow, то его не надо переделывать!

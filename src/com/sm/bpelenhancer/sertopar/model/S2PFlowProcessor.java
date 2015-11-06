@@ -14,14 +14,14 @@ import java.util.List;
  * Time: 20:06
  */
 public class S2PFlowProcessor extends S2PAbstractProcessor implements ActivityProcessor<TFlow, Action> {
-    public S2PFlowProcessor(SequenceDependencyGraph dependencyGraph) {
-        super(dependencyGraph);
+    public S2PFlowProcessor(S2PEnhancingModel model) {
+        super();
     }
 
     @Override
     public Action processActivity(TFlow flow, ActivityRunner<Action> activityRunner) {
         List<Object> flows = flow.getActivity();
-        dependencyGraph.addNode(new DependencyGraphNode<>(flow));
+//        model.addNode(new DependencyGraphNode<>(flow));
         for (Object a : flows) {
             activityRunner.goAhead((TActivity) a);
         }

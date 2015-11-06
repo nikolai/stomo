@@ -32,11 +32,11 @@ public class DependencyGraphNode<T extends TActivity> {
         return getReadVars(false);
     }
 
-    public List<String> getAllReadVars() {
+    protected List<String> getAllReadVars() {
         return getReadVars(true);
     }
 
-    public List<String> getAllWriteVars() {
+    protected List<String> getAllWriteVars() {
         return getWriteVars(true);
     }
 
@@ -87,9 +87,9 @@ public class DependencyGraphNode<T extends TActivity> {
         return isDepending(existedNode.getReadVars(), existedNode.getWriteVars());
     }
 
-    public boolean isDependingOnParent(DependencyGraphNode<T> parent) {
-        return isDepending(parent.getAllReadVars(), parent.getAllWriteVars());
-    }
+//    public boolean isDependingOnParent(DependencyGraphNode<T> parent) {
+//        return isDepending(parent.getAllReadVars(), parent.getAllWriteVars());
+//    }
 
     private boolean isDepending(List<String> existingRead,
                                 List<String> existingWrite) {
@@ -104,11 +104,15 @@ public class DependencyGraphNode<T extends TActivity> {
     }
 
     public void addKid(DependencyGraphNode<T> addingNode) {
-        getKids().add(addingNode);
+        if (!getKids().contains(addingNode)) {
+            getKids().add(addingNode);
+        }
     }
 
-    public void addParent(DependencyGraphNode parent) {
-        parents.add(parent);
+    public void addParent(DependencyGraphNode<T> parent) {
+        if (!getParents().contains(parent)) {
+            getParents().add(parent);
+        }
     }
 
     public List<DependencyGraphNode<T>> getParents() {
