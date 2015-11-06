@@ -16,7 +16,7 @@ public class BMCReply extends AbstractActivity<TReply> {
 
     @Override
     public AbstractActivity<TReply> setReadVars(String... vars) {
-        super.setWriteVars(vars);
+        super.setReadVars(vars);
         if (!getReadVars().isEmpty()) {
             getDelegate().setVariable(getReadVars().get(0));
         }

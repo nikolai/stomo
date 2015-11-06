@@ -14,16 +14,14 @@ import java.util.List;
  */
 public class S2PSequenceProcessor extends S2PAbstractProcessor implements ActivityProcessor<TSequence, DependencyGraphNode> {
 
-    private final SequenceDependencyGraph sdg;
-
     public S2PSequenceProcessor() {
         super();
-        sdg = new SequenceDependencyGraph();
     }
 
     @Override
     public DependencyGraphComplexNode processActivity(TSequence sequence, ActivityRunner<DependencyGraphNode> activityRunner) {
         DependencyGraphSequenceComplexNode complexNode = new DependencyGraphSequenceComplexNode(sequence);
+        SequenceDependencyGraph sdg = new SequenceDependencyGraph();
         List<Object> activities = sequence.getActivity();
         for (Object a : activities) {
             DependencyGraphNode kidNode = activityRunner.goAhead((TActivity) a);

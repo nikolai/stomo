@@ -11,10 +11,7 @@ import java.util.List;
  * Time: 15:26
  */
 public abstract class DependencyGraphComplexNode<T extends TActivity> extends DependencyGraphNode<T> {
-    private List<String> allReadVars;
-    private List<String> allWriteVars;
-
-    private final List<DependencyGraphNode<T>> containedElements = new ArrayList<>();
+    private final List<DependencyGraphNode> containedElements = new ArrayList<>();
 
     public DependencyGraphComplexNode(T activity) {
         super(activity);
@@ -22,13 +19,11 @@ public abstract class DependencyGraphComplexNode<T extends TActivity> extends De
 
     @Override
     public List<String> getReadVars() {
-        if (allReadVars == null) {
-            allReadVars = new ArrayList<>();
-            for (DependencyGraphNode<T> containedElement : containedElements) {
-                for (String rv : containedElement.getAllReadVars()) {
-                    if (!allReadVars.contains(rv)) {
-                        allReadVars.add(rv);
-                    }
+        List<String> allReadVars = new ArrayList<>();
+        for (DependencyGraphNode<T> containedElement : containedElements) {
+            for (String rv : containedElement.getAllReadVars()) {
+                if (!allReadVars.contains(rv)) {
+                    allReadVars.add(rv);
                 }
             }
         }
@@ -37,20 +32,28 @@ public abstract class DependencyGraphComplexNode<T extends TActivity> extends De
 
     @Override
     public List<String> getWriteVars() {
-        if (allWriteVars == null) {
-            allWriteVars = new ArrayList<>();
-            for (DependencyGraphNode<T> containedElement : containedElements) {
-                for (String rv : containedElement.getAllWriteVars()) {
-                    if (!allWriteVars.contains(rv)) {
-                        allWriteVars.add(rv);
-                    }
+        List<String> allWriteVars = new ArrayList<>();
+        for (DependencyGraphNode<T> containedElement : containedElements) {
+            for (String rv : containedElement.getAllWriteVars()) {
+                if (!allWriteVars.contains(rv)) {
+                    allWriteVars.add(rv);
                 }
             }
         }
         return allWriteVars;
     }
 
-    public List<DependencyGraphNode<T>> getContainedElements() {
+    @Override
+    protected List<String> getAllReadVars() {
+        return this.getReadVars();
+    }
+
+    @Override
+    protected List<String> getAllWriteVars() {
+        return this.getWriteVars();
+    }
+
+    public List<DependencyGraphNode> getContainedElements() {
         return containedElements;
     }
 

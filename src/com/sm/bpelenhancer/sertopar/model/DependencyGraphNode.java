@@ -77,7 +77,7 @@ public class DependencyGraphNode<T extends TActivity> {
 
     public void addReadVar(String... varName) {
         for (String name : varName) {
-            if (!readVars.contains(name)) {
+            if (name != null && !readVars.contains(name)) {
                 readVars.add(name);
             }
         }

@@ -21,27 +21,19 @@ public class S2PEnhancer implements BPELEnhancer {
         }
 
         ActivityRunner<DependencyGraphNode> activityRunner = ActivityRunner.getOne();
-        S2PEnhancingModel model = new S2PEnhancingModel();
 
         activityRunner.registerActivityProcessor(TSequence.class, new S2PSequenceProcessor());
         activityRunner.registerActivityProcessor(TReceive.class, new S2PReceiveProcessor());
-//        activityRunner.registerActivityProcessor(TFlow.class, new S2PFlowProcessor(model));
+        activityRunner.registerActivityProcessor(TFlow.class, new S2PFlowProcessor());
         activityRunner.registerActivityProcessor(TAssign.class, new S2PAssignProcessor());
         activityRunner.registerActivityProcessor(TInvoke.class, new S2PInvokeProcessor());
         activityRunner.registerActivityProcessor(TReply.class, new S2PReplyProcessor());
         activityRunner.registerActivityProcessor(TScope.class, new S2PScopeProcessor());
 
-        // build dependency graph
+        // build enhancing model
         DependencyGraphSequenceComplexNode root = (DependencyGraphSequenceComplexNode) activityRunner.goAhead(sequence);
 
         S2PModifier modifier = new S2PModifier();
         modifier.modify(process, changeLog, root, this);
-
-        // TODO:
-//        проверить, если уже был flow, то его не надо переделывать!
-
-        // TODO:
-//                Не доделано: учитывать, что зависимость может быть не на один уровень вверх
-//        (сейчас просмотр идет только до родителя на один уровень вверх!)
     }
 }

@@ -57,6 +57,34 @@ public class BPELModifyHelper {
     }
 
     public <T extends TActivity> void cutAndPasteInFlow(List<List<T>> flowsContent, T afterThis) {
+        pasteAfter(convertToFlow(flowsContent), afterThis);
+    }
+
+    public <T extends TActivity> void cutAndPasteInFlowInSequence(List<List<T>> flowsContent, TSequence seq) {
+        pasteIn(convertToFlow(flowsContent), seq);
+    }
+
+    private <T extends TActivity> void pasteAfter(T pasteThis, T afterThis) {
+        FinderResult result = finder.find(afterThis.getName());
+        List<Object> oldList = result.getContainer().getActivity();
+        List<Object> newList = new ArrayList<>(oldList.size()+1);
+        Iterator<Object> iterator = oldList.iterator();
+        while(iterator.hasNext()) {
+            Object next = iterator.next();
+            newList.add(next);
+            iterator.remove();
+            if (next == afterThis) {
+                newList.add(pasteThis);
+            }
+        }
+        result.getContainer().getActivity().addAll(newList);
+    }
+
+    private <T extends TActivity> void pasteIn(T pasteThis, TSequence inThis) {
+        inThis.getActivity().add(pasteThis);
+    }
+
+    private <T extends TActivity> TFlow convertToFlow(List<List<T>> flowsContent) {
         TFlow flow = createTFlow();
         for (List<T> flowContent : flowsContent) {
             TActivity activityToAdd;
@@ -76,22 +104,6 @@ public class BPELModifyHelper {
 
             flow.getActivity().add(activityToAdd);
         }
-        pasteAfter(flow, afterThis);
-    }
-
-    private <T extends TActivity> void pasteAfter(T pasteThis, T afterThis) {
-        FinderResult result = finder.find(afterThis.getName());
-        List<Object> oldList = result.getContainer().getActivity();
-        List<Object> newList = new ArrayList<>(oldList.size()+1);
-        Iterator<Object> iterator = oldList.iterator();
-        while(iterator.hasNext()) {
-            Object next = iterator.next();
-            newList.add(next);
-            iterator.remove();
-            if (next == afterThis) {
-                newList.add(pasteThis);
-            }
-        }
-        result.getContainer().getActivity().addAll(newList);
+        return flow;
     }
 }

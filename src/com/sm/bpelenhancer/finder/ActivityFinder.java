@@ -3,6 +3,7 @@ package com.sm.bpelenhancer.finder;
 import com.sm.bpelmodeller.ActivityProcessor;
 import com.sm.bpelmodeller.ActivityRunner;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TActivity;
+import org.oasis_open.docs.wsbpel._2_0.process.executable.TFlow;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TProcess;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TSequence;
 
@@ -33,6 +34,23 @@ public class ActivityFinder {
                     TActivity act = (TActivity) a;
                     if (searchedName.equals(act.getName())) {
                         return new FinderResult(sequence, act);
+                    }
+                    FinderResult res = ActivityFinder.this.activityRunner.goAhead((TActivity) a);
+                    if (res != null) {
+                        return res;
+                    }
+                }
+                return null;
+            }
+        });
+        activityRunner.registerActivityProcessor(TFlow.class, new ActivityProcessor<TFlow, FinderResult>() {
+            @Override
+            public FinderResult processActivity(TFlow flow, ActivityRunner activityRunner) {
+                List<Object> activities = flow.getActivity();
+                for (Object a : activities) {
+                    TActivity act = (TActivity) a;
+                    if (searchedName.equals(act.getName())) {
+                        return new FinderResult(null, act);
                     }
                     FinderResult res = ActivityFinder.this.activityRunner.goAhead((TActivity) a);
                     if (res != null) {
