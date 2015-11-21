@@ -10,7 +10,7 @@ import java.util.List;
  * Date: 06.11.15
  * Time: 15:26
  */
-public abstract class DependencyGraphComplexNode<T extends TActivity> extends DependencyGraphNode<T> {
+public class DependencyGraphComplexNode<T extends TActivity> extends DependencyGraphNode<T> {
     private final List<DependencyGraphNode> containedElements = new ArrayList<>();
 
     public DependencyGraphComplexNode(T activity) {

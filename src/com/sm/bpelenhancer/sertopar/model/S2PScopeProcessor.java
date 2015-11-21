@@ -18,7 +18,7 @@ public class S2PScopeProcessor implements ActivityProcessor<TScope, DependencyGr
     @Override
     public DependencyGraphNode processActivity(TScope a, ActivityRunner<DependencyGraphNode> activityRunner) {
         DependencyGraphScopeComplexNode complexNode = new DependencyGraphScopeComplexNode(a);
-        TActivity activity = ChildActivitySelector.getOne().selectChild(a).getActivity();
+        TActivity activity = ChildActivitySelector.getOne().selectChildSafe(a).getActivity();
         complexNode.addContainedElement(activityRunner.goAhead(activity));
         return complexNode;
     }

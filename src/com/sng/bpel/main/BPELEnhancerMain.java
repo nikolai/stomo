@@ -5,7 +5,6 @@ import com.sm.bpelenhancer.EnhancerChain;
 import com.sm.bpelenhancer.sertopar.S2PEnhancer;
 import com.sm.logging.LogService;
 import com.sm.util.XmlUtil;
-import com.sng.bpel.main.param.AppArgumentReader;
 import com.sng.bpel.main.param.AppArgumentReaderException;
 import com.sng.bpel.main.param.MandatoryParameter;
 import com.sng.bpel.main.param.StringParameter;
@@ -13,7 +12,8 @@ import org.oasis_open.docs.wsbpel._2_0.process.executable.ObjectFactory;
 import org.oasis_open.docs.wsbpel._2_0.process.executable.TProcess;
 
 import java.io.File;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,13 +32,39 @@ public class BPELEnhancerMain {
     }
 
     public static void main(String[] args) throws AppArgumentReaderException {
-        AppArgumentReader params = new AppArgumentReader("java -jar bpel-enhancer.jar", args, Collections.singletonList(BPEL_FILE));
-        if (!params.parse()) {
-            System.exit(0);
-        }
+//        AppArgumentReader params = new AppArgumentReader("java -jar bpel-enhancer.jar", args, Collections.singletonList(BPEL_FILE));
+//        if (!params.parse()) {
+//            System.exit(0);
+//        }
+        List<Exception> errors = new ArrayList<>();
 
-        String bpelFilePath = BPEL_FILE.getValue();
-        File bpelFile = new File(bpelFilePath);
+//        count
+        for (String arg : args) {
+            try {
+                processFile(new File(arg));
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error occurs: ", e);
+                System.out.println("error: " + e);
+                errors.add(e);
+            }
+        }
+        System.out.println("Errors: " + errors.size());
+//
+//        String bpelFilePath = BPEL_FILE.getValue();
+//        if (bpelFilePath.contains("*")) {
+//            String path = bpelFilePath.substring(0, bpelFilePath.indexOf("*") - 1);
+//            File dir = new File(path);
+//            File[] files = dir.listFiles();
+//            for (File file : files) {
+//                processFile(file);
+//            }
+//        } else {
+//            processFile(new File(bpelFilePath));
+//        }
+
+    }
+
+    private static void processFile(File bpelFile) throws Exception {
 
         log.info("Reading BPEL file " + bpelFile.getAbsolutePath() + "...");
         try {
@@ -49,7 +75,7 @@ public class BPELEnhancerMain {
 
             ObjectFactory factory = new ObjectFactory();
             if (!changeLog.isEmpty()) {
-                String newName = bpelFilePath.replaceFirst("\\.bpel", "_enhanced\\.bpel");
+                String newName = bpelFile.getAbsolutePath().replaceFirst("\\.bpel", "_enhanced\\.bpel");
                 File enhancedFile = new File(newName);
                 log.info("Saving changes to BPEL file " + enhancedFile.getAbsolutePath() + "...");
                 XmlUtil.marshall(newName, factory.createProcess(process), ObjectFactory.class);
@@ -59,7 +85,7 @@ public class BPELEnhancerMain {
             }
 
         } catch (Exception e) {
-            log.log(Level.SEVERE, "Error occurs: ", e);
+            throw e;
         }
     }
 

@@ -25,10 +25,18 @@ public class S2PEnhancer implements BPELEnhancer {
         activityRunner.registerActivityProcessor(TSequence.class, new S2PSequenceProcessor());
         activityRunner.registerActivityProcessor(TReceive.class, new S2PReceiveProcessor());
         activityRunner.registerActivityProcessor(TFlow.class, new S2PFlowProcessor());
+        activityRunner.registerActivityProcessor(TPick.class, new S2PPickProcessor());
         activityRunner.registerActivityProcessor(TAssign.class, new S2PAssignProcessor());
         activityRunner.registerActivityProcessor(TInvoke.class, new S2PInvokeProcessor());
         activityRunner.registerActivityProcessor(TReply.class, new S2PReplyProcessor());
         activityRunner.registerActivityProcessor(TScope.class, new S2PScopeProcessor());
+        activityRunner.registerActivityProcessor(TIf.class, new S2PIfProcessor());
+        activityRunner.registerActivityProcessor(TWhile.class, new S2PWhileProcessor());
+        activityRunner.registerActivityProcessor(TForEach.class, new S2PForEachProcessor());
+        activityRunner.registerActivityProcessor(TThrow.class, new S2PThrowProcessor());
+        activityRunner.registerActivityProcessor(TWait.class, new S2PWaitProcessor());
+        activityRunner.registerActivityProcessor(TExit.class, new S2PExitProcessor());
+        activityRunner.registerActivityProcessor(TEmpty.class, new S2PEmptyProcessor());
 
         // build enhancing model
         DependencyGraphSequenceComplexNode root = (DependencyGraphSequenceComplexNode) activityRunner.goAhead(sequence);

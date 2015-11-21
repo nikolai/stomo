@@ -26,23 +26,33 @@ public class S2PAssignProcessor extends S2PAbstractProcessor implements Activity
         for (TExtensibleElements extEl : copyElems) {
             if (extEl instanceof TCopy) {
                 TCopy copy = (TCopy) extEl;
-                if (copy.getFrom().getContent() != null) {
-                    graphNode.addReadVar(extractVarName((String) copy.getFrom().getContent().get(0)));
+                if (copy.getFrom().getContent() != null && copy.getFrom().getContent().size() > 0) {
+                    graphNode.addReadVar(extractVarName(copy.getFrom().getContent()));
+                } else {
+                    graphNode.addReadVar(copy.getFrom().getVariable());
                 }
-                if (copy.getTo().getContent() != null) {
-                    graphNode.addWriteVar(extractVarName((String) copy.getTo().getContent().get(0)));
+                if (copy.getTo().getContent() != null && copy.getTo().getContent().size() > 0) {
+                    graphNode.addWriteVar(extractVarName(copy.getTo().getContent()));
+                } else {
+                    graphNode.addWriteVar(copy.getTo().getVariable());
                 }
             }
         }
         return graphNode;
     }
 
-    private String[] extractVarName(String expression) {
-        List<String> vars = new ArrayList<>();
-        String[] splittedVars = expression.split("\\$");
-        for (int i = 1; i < splittedVars.length; i++) {
-            vars.add(splittedVars[i].split("\\.")[0]);
+    public static String[] extractVarName(List<Object> contents) {
+        if (contents != null && contents.size() > 0) {
+            if (contents.size() > 1) {
+                throw new IllegalStateException("Contents size > 1");
+            }
+            List<String> vars = new ArrayList<>();
+            String[] splittedVars = ((String)contents.get(0)).split("\\$");
+            for (int i = 1; i < splittedVars.length; i++) {
+                vars.add(splittedVars[i].split("\\.")[0]);
+            }
+            return vars.toArray(new String[vars.size()]);
         }
-        return vars.toArray(new String[vars.size()]);
+        return new String[0];
     }
 }

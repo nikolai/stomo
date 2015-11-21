@@ -17,22 +17,39 @@ public class ChildActivitySelector {
 
 
     public SelectedChild selectChild(Object parentBpelObject) {
+        return selectChildPrivate(parentBpelObject, false);
+    }
+
+    public SelectedChild selectChildSafe(Object parentBpelObject) {
+        return selectChildPrivate(parentBpelObject, true);
+    }
+
+    private SelectedChild selectChildPrivate(Object parentBpelObject, boolean nullable) {
+        if (parentBpelObject == null && nullable) {
+            return new NullChild();
+        }
         Class parentClass = parentBpelObject.getClass();
-        try {
-            for (BpelActivityType type : BpelActivityType.values()) {
+        for (BpelActivityType type : BpelActivityType.values()) {
+            try {
                 Object result = parentClass.getMethod(type.getGetter()).invoke(parentBpelObject);
                 if (result != null) {
                     return new SelectedChild(type.getClazz().cast(result), type);
                 }
+            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                // ignore
             }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
+        }
+
+        if (nullable) {
+            return new NullChild();
         }
         throw new IllegalArgumentException("object doesn't have any child");
+    }
+
+    public static class NullChild extends SelectedChild{
+        public NullChild() {
+            super(null, null);
+        }
     }
 
     public static class SelectedChild {
